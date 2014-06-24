@@ -3,7 +3,7 @@
 <html>
   
   <head>
-    <title>Sign In</title>
+    <title>Input item</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -52,33 +52,34 @@
   
   <body>
     <div class="container">
-      <form class="form-signin">
+      <!--<form class="form-signin">-->
+        <?php echo form_open('InputController/insert_validation'); ?>
         <h2 class="form-signin-heading">Input new item</h2>
         <br>
         <div class="form-group">
           <label class="control-label">Divisi :</label>
-          <select class="form-control">
+          <select class="form-control" name="boxDivisi">
             <option>Divisi Telkom Barat</option>
             <option>Divisi Telkom Timur</option>
           </select>
         </div>
         <div class="form-group">
           <label class="control-label">Regional : (dinamis berdasarkan divisi)</label>
-          <select class="form-control">
+          <select class="form-control" name="boxRegional">
             <option>Regional 1</option>
             <option>Regional 2</option>
           </select>
         </div>
         <div class="form-group">
           <label class="control-label">Lokasi : (dinamis berdasarkan proyek)</label>
-          <select class="form-control">
+          <select class="form-control" name="boxLokasi">
             <option>SMA 1</option>
             <option>SMA 2</option>
           </select>
         </div>
         <div class="form-group">
           <label class="control-label">Status Progress :</label>
-          <select class="form-control">
+          <select class="form-control" name="boxStatus">
             <option>A. Non Progress</option>
             <option>B. Survey</option>
             <option>C. On Progress</option>
@@ -89,9 +90,10 @@
             <option>H. Batal</option>
           </select>
         </div>
-        <br>
+        <label class="form-label">Keterangan :</label>
+        <textarea class="form-control" name="boxKeterangan"></textarea><br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-      </form>
+      <!--</form>-->
     </div>
     <!-- /container -->
   </body>
