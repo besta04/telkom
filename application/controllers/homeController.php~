@@ -7,12 +7,6 @@ class HomeController extends CI_Controller{
 		parent::__construct();
 	}
 
-	public function iciplaa()
-	{
-		$this->load->view('test');
-	}
-	
-
 	public function index()
 	{
 		$this->load->view('index');

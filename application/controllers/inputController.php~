@@ -18,7 +18,7 @@ class InputController extends CI_Controller
         //if($this->form_validation->run() )
         //{
         	$data = array(
-            	     'Divisi' => $this->input->post('boxDivisi'),
+            	    'Divisi' => $this->input->post('boxDivisi'),
                     'Regional' => $this->input->post('boxRegional'),
                     'Lokasi' => $this->input->post('boxLokasi'),
                     'Status' => $this->input->post('boxStatus'),
