@@ -59,9 +59,9 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+          <div class="navbar-form navbar-right">
+            <button type="submit" class="btn btn-success" onClick="window.location='<?php echo site_url("HomeController/login");?>'" >Sign In</Button>
+          </div>
         </div>
         <!--/.navbar-collapse -->
       </div>
@@ -79,7 +79,7 @@
       <div class="row"></div>
       <hr>
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; PT. Telekomunikasi Indonesia Tbk. 2014</p>
       </footer>
     </div>
     <!-- /container -->
