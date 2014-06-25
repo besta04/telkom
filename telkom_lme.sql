@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2014 at 04:58 AM
+-- Generation Time: Jun 25, 2014 at 05:01 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.27
 
@@ -19,17 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `telkom_lme`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_order`(IN `surat` varchar(1024),IN `tanggal` date)
-BEGIN
-	INSERT INTO tabel_order (surat_pesanan, toc) VALUES (surat, tanggal);
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
