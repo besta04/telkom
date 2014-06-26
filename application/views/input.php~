@@ -117,7 +117,7 @@
         <div class="form-group">
           <label class="control-label">Lokasi : (dinamis berdasarkan proyek)</label>
           <select class="form-control" name="boxLokasi">
-            <option>HOTEL IBIS SLIPI</option>
+            <option>SMA 1</option>
             <option>SMA 2</option>
           </select>
         </div>
