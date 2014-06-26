@@ -8,6 +8,7 @@ class LoginController extends CI_Controller
     $this->load->library('form_validation');
     $this->load->helper('url');
     $this->load->library('session');
+    $this->load->helper(array('form'));
 	}
 
 	public function login()
@@ -29,8 +30,8 @@ class LoginController extends CI_Controller
 	}
   public function loginValidation()
   {
-    $this->form_validation->set_rules('boxUname','username','required|valid_username');
-    $this->form_validation->set_rules('boxPass','password','required|callback_verifyUser');
+    $this->form_validation->set_rules('boxUname','Username','required|valid_username');
+    $this->form_validation->set_rules('boxPass','Password','required|callback_verifyUser');
             
     if($this->form_validation->run()==false)
     {
@@ -49,17 +50,18 @@ class LoginController extends CI_Controller
         
   public function verifyUser()
   {
-    $username = $this->input->post('username');
-    $password = $this->input->post('password');
+    $username = $this->input->post('boxUname');
+    $password = $this->input->post('boxPass');
             
     $this->load->model('RekapModel');
-    if($this->RekapModel->login($username,$password))
+    $result = $this->RekapModel->login($username,$password);
+    if($result)
     {
       return true;
     }
     else
     {
-      $this->form_validation->set_message('verifyUser','incorrect Username or Password, please try again');
+      $this->form_validation->set_message('verifyUser','Incorrect Username or Password, please try again');
       return false;
     }
   }

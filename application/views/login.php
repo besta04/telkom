@@ -53,6 +53,8 @@
     <body>
         <div class="container">
             <div class="form-signin">
+                <!--<?php //echo form_open('LoginController/loginValidation'); ?>-->
+                <?php echo validation_errors(); ?>
                 <?php echo form_open('LoginController/loginValidation'); ?>
                 <h2 class="form-signin-heading">Please sign in</h2>
                 <input type="text" name="boxUname" class="form-control" placeholder="Email address">

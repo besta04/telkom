@@ -28,11 +28,12 @@ class RekapModel extends CI_Model
         $this->db->select('username','password');
         $this->db->from('tabel_login');
         $this->db->where('username', $username);
-        $this->db->where('password', $password);
+        $this->db->where('password', MD5($password));
+        $this->db->limit(1);
         $query = $this->db->get();
         if($query->num_rows() == 1)
         {
-            return true;
+            return $query->result();
         }
         else 
         {

@@ -54,5 +54,10 @@ class HomeController extends CI_Controller{
 		$this->load->helper('form');
 		$this->load->view('input');
 	}    
+
+	public function report1()
+	{
+		$this->load->view('report1');
+	}
 }
 ?>

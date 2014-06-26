@@ -136,7 +136,7 @@
             <ul class="nav">
               <li>Pengelolaan</li>
               <li class="active">
-                <a href="input.html">Input new data</a>
+                <a href="<?php echo "../HomeController/inputItem" ?>">Input new data</a>
               </li>
               <li>Lihat lebih detail</li>
               <li>
