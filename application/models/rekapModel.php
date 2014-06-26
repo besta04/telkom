@@ -18,7 +18,6 @@ class RekapModel extends CI_Model
         $this->title   = $_POST['title'];
         $this->content = $_POST['content'];
         $this->date    = time();
-
         $this->db->update('entries', $this, array('id' => $_POST['id']));
     }
 
