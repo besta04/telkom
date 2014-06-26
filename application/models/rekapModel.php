@@ -20,5 +20,23 @@ class RekapModel extends CI_Model
         $this->date    = time();
         $this->db->update('entries', $this, array('id' => $_POST['id']));
     }
+
+    function login($username, $password)
+    {
+        $this->load->database();
+        $this->db->select('username','password');
+        $this->db->from('tabel_login');
+        $this->db->where('username', $username);
+        $this->db->where('password', $password);
+        $query = $this->db->get();
+        if($query->num_rows() == 1)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
 }
 ?>

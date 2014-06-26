@@ -72,6 +72,9 @@
               <a href="#contact">Contact</a>
             </li>
           </ul>
+          <div class="navbar-form navbar-right">
+            <button type="submit" class="btn btn-danger" onClick="window.location='<?php echo "../LoginController/logout" ?>'" >Sign Out</button>
+          </div>
         </div>
         <!-- /.nav-collapse -->
       </div>

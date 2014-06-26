@@ -5,6 +5,8 @@ class HomeController extends CI_Controller{
 	public function __construct() 
 	{
 		parent::__construct();
+		$this->load->library('session');
+		$this->load->helper('url');
 	}
 
 	public function iciplaa()
@@ -15,21 +17,20 @@ class HomeController extends CI_Controller{
 
 	public function index()
 	{
+		$this->load->helper('url');
 		$this->load->view('index');
 	}
 
 	public function main()
 	{
-             if($this->session->userdata('is_logged_in'))
-             {
-             	$this->load->model('DropdownModel');
-             	$data['title']= 'Dropdown';
-             	$data['groups'] = $this->DropdownModel->getAllGroups();
-                $this->load->view('main', $data);
-             }else{
-                 redirect('HomeController/restricted');
-             }
-		
+		if($this->session->userdata('is_logged_in'))
+		{
+			$this->load->view('mainPage');
+		}
+		else
+		{
+			redirect('HomeController/restricted');
+		}	
 	}
        
     public function berhasil()
@@ -44,6 +45,7 @@ class HomeController extends CI_Controller{
 
 	public function login()
 	{
+		$this->load->helper('form');
 		$this->load->view('login');
 	}
 

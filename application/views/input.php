@@ -52,7 +52,7 @@
   
   <body>
     <div class="container">
-      <!--<form class="form-signin">-->
+      <div class="form-signin">
         <?php echo form_open('InputController/insert_validation'); ?>
         <h2 class="form-signin-heading">Input new item</h2>
         <br>
@@ -141,6 +141,8 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         
       <!--</form>-->
+
+      </div>
     </div>
     <!-- /container -->
   </body>
