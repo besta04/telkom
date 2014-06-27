@@ -144,6 +144,7 @@
               <!--<th>Alamat</th>-->
               <th>Nama Project</th>
               <th>Project SP</th>
+              <th>SP</th>
               <th>Witel</th>
               <th>Order</th>
               <th>Status</th>
@@ -161,6 +162,7 @@
             //echo "<td>" . $row['ALAMAT'] . "</td>";
             echo "<td>" . $row['NAMA_PROJECT'] . "</td>";
             echo "<td>" . $row['PROJECT_SP'] . "</td>";
+            echo "<td>" . $row['SP'] . "</td>";
             echo "<td>" . $row['WITEL'] . "</td>";
             echo "<td>" . $row['ORDERS'] . "</td>";
             echo "<td>" . $row['KLAS_STAT_PROGRESS'] . "</td>";
