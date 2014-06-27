@@ -34,7 +34,8 @@ class InputController extends CI_Controller
                     'ID_ORDER' => $temp3,
                     'WITEL' => $this->input->post('boxWitel'),
                     'ID_SITE' => $temp2,
-                    'KLAS_STAT_PROGRESS' => $this->input->post('boxklasifikasi'),
+                    'ORDERS' => $this->input->post('boxOrder'),
+                    'KLAS_STAT_PROGRESS' => $this->input->post('boxKlasifikasi'),
                     'STAT_PROGRESS' => $this->input->post('boxStatus'),
                     'KETERANGAN' => $this->input->post('boxKeterangan')
                     );

@@ -23,7 +23,7 @@ class InputController extends CI_Controller
 			//$this->db->from('TABEL_ORDER');
 			//$this->db->where('SURAT_PESANAN', $temp);
 			$order = $this->db->query("SELECT ID_ORDER FROM TABEL_ORDER WHERE SURAT_PESANAN = '".$id_order."'");
-			$lokasi = $this->db->query("SELECT ID_ORDER FROM TABEL_SITE WHERE NAMA_LOKASI = '".$id_site."'");
+			$lokasi = $this->db->query("SELECT ID_SITE FROM TABEL_SITE WHERE NAMA_LOKASI = '".$id_site."'");
         	$temp3 = $order->first_row()->ID_ORDER;
         	$temp2 = $lokasi->first_row()->ID_SITE;
         	$data = array(
@@ -34,7 +34,7 @@ class InputController extends CI_Controller
                     'ID_ORDER' => $temp3,
                     'WITEL' => $this->input->post('boxWitel'),
                     'ID_SITE' => $temp2,
-                    'KLAS_STAT_PROGRESS' => $this->input->post('boxklasifikasi'),
+                    'KLAS_STAT_PROGRESS' => $this->input->post('boxKlasifikasi'),
                     'STAT_PROGRESS' => $this->input->post('boxStatus'),
                     'KETERANGAN' => $this->input->post('boxKeterangan')
                     );
