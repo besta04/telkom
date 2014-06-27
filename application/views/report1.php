@@ -3,6 +3,12 @@
 <html>
   
   <head>
+    <script type="text/javascript">
+    function overlay() {
+  el = document.getElementById("overlay");
+  el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+</script>
     <title>Off Canvas Nav</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
@@ -48,10 +54,31 @@
           /* 6 columns */
         }
       }
+      #overlay {
+     visibility: hidden;
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+     background-color: rgba(1,1,1,0.8)
+      }
+      #overlay div {
+           width:300px;
+           margin: 100px auto;
+           background-color: #fff;
+           border:1px solid #000;
+           padding:15px;
+           text-align:center;
+           vertical-align: text-top;
+      }
     </style>
   </head>
   
   <body>
+
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -79,6 +106,7 @@
     </div>
     <!-- /.navbar -->
     <div class="container">
+
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="">
           <p class="pull-right visible-xs">
@@ -87,14 +115,25 @@
             <div class="panel panel-default">
             <div class="panel-body" style="text-align:center"><b style="font-size:x-large">Judul Reportnya</b></div>
           </div>
+          
           <?php
+          
         $con=mysqli_connect("localhost","root","root","telkom_lme");
         if (mysqli_connect_errno())
         {
           echo "Failed to connect : ". mysqli_connect_error();
         }
-       $result = mysqli_query($con,"select tabel_lme_main.ID_LME, tabel_order.SURAT_PESANAN, tabel_order.TOC, tabel_site.NAMA_LOKASI, tabel_site.ALAMAT, tabel_lme_main.NAMA_PROJECT, tabel_lme_main.PROJECT_SP, tabel_lme_main.SP, tabel_lme_main.WITEL, tabel_lme_main.ORDERS FROM tabel_lme_main, tabel_order, tabel_site where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER and tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
-        
+       $result = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order, tabel_site 
+                              where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER 
+                              and tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
+         
+        echo "<div id='overlay'>
+           <div>
+                <p>Content you want the user to see goes here.</p>
+                Click here to [<a href='#' onclick='overlay()'>close</a>]
+           </div>
+          </div>";
+
         echo "<table class='table table-hover table-bordered'>
           <thead>
             <tr>
@@ -102,12 +141,14 @@
               <th>Surat Pesanan</th>
               <th>TOC</th>
               <th>Nama Lokasi</th>
-              <th>Alamat</th>
+              <!--<th>Alamat</th>-->
               <th>Nama Project</th>
               <th>Project SP</th>
               <th>SP</th>
               <th>Witel</th>
               <th>Order</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>";
           echo "<tbody>";
@@ -117,13 +158,15 @@
             echo "<td>" . $row['ID_LME'] . "</td>";
             echo "<td>" . $row['SURAT_PESANAN'] . "</td>";
             echo "<td>" . $row['TOC'] . "</td>";
-            echo "<td>" . $row['NAMA_LOKASI'] . "</td>";
-            echo "<td>" . $row['ALAMAT'] . "</td>";
+            echo "<td><a href='#'' onclick='overlay()'>" . $row['NAMA_LOKASI'] . "</a></td>";
+            //echo "<td>" . $row['ALAMAT'] . "</td>";
             echo "<td>" . $row['NAMA_PROJECT'] . "</td>";
             echo "<td>" . $row['PROJECT_SP'] . "</td>";
             echo "<td>" . $row['SP'] . "</td>";
             echo "<td>" . $row['WITEL'] . "</td>";
             echo "<td>" . $row['ORDERS'] . "</td>";
+            echo "<td>" . $row['KLAS_STAT_PROGRESS'] . "</td>";
+            echo "<td><button>Edit</button></td>";
             echo "</tr>";
           }
           echo "</tbody>";
