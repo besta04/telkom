@@ -47,24 +47,7 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
-      #overlay {
-     	visibility: hidden;
-     	position: absolute;
-     	left: 0px;
-     	top: 0px;
-     	width:100%;
-     	height:100%;
-     	text-align:center;
-     	z-index: 1000;
-		}
-		#overlay div {
-     width:300px;
-     margin: 100px auto;
-     background-color: #fff;
-     border:1px solid #000;
-     padding:15px;
-     text-align:center;
-}
+
     </style>
   </head>
   
@@ -164,11 +147,6 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         
     </div>
-    <?php function overlay() {
-		el.document.getElementById("overlay");
-		el.style.visibility.(el.style.visibility == "visible") ? "hidden" : "visible";
-	}
-	?>
   </body>
 
 </html>
