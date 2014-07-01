@@ -9,6 +9,18 @@ class HomeController extends CI_Controller{
 		$this->load->helper('url');
 	}
 
+	function process()
+	{
+  		if(isset($_POST["restore"])) 
+  		{
+    		echo "restored";
+  		}
+  		if(isset($_POST["deleted"]))
+  		{
+    	echo "deleted";
+  		}   
+	}	
+	
 	public function iciplaa()
 	{
 		$this->load->view('test');

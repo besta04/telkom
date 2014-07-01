@@ -1,0 +1,8 @@
+<html>
+
+<form id="your_form" action="homeController/process" method="post">
+<input type="submit" name="restore" id="restore" value="Restore" />
+<input type="submit" name="delete"  id="delete" value="Delete" />
+</form>
+
+</html>

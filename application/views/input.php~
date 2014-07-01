@@ -47,106 +47,128 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
       }
-      #overlay {
-     	visibility: hidden;
-     	position: absolute;
-     	left: 0px;
-     	top: 0px;
-     	width:100%;
-     	height:100%;
-     	text-align:center;
-     	z-index: 1000;
-		}
-		#overlay div {
-     width:300px;
-     margin: 100px auto;
-     background-color: #fff;
-     border:1px solid #000;
-     padding:15px;
+		#overlay {
+     visibility: hidden;
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
      text-align:center;
-}
+     z-index: 1000;
+     background-color: rgba(1,1,1,0.8)
+      }
+      #overlay div {
+           width:300px;
+           margin: 100px auto;
+           background-color: #fff;
+           border:1px solid #000;
+           padding:15px;
+           text-align:center;
+           vertical-align: text-top;
+      }
     </style>
   </head>
   
   <body>
-  <div id="overlay">
-     <div>
-          <p>Content you want the user to see goes here.</p>
-     </div>
-	</div>
-    <div class="container">
-      <!--<div class="form-signin">-->
-        <?php echo form_open('InputController/insert_validation'); ?>
-        <h2 class="form-signin-heading">Input new item</h2>
+  <?php
+    echo "<div class='container'>
+      <!--<div class='form-signin'>-->
+		";
+        $con=mysqli_connect("localhost","root","root","telkom_lme");
+        if (mysqli_connect_errno())
+        {
+          echo "Failed to connect : ". mysqli_connect_error();
+        }
+       $resultDivisi = mysqli_query($con,"select distinct divisi from tabel_lme_main");  
+       $resultRegion = mysqli_query($con,"select distinct region from tabel_lme_main"); 
+       $resultProject = mysqli_query($con,"select distinct nama_project from tabel_lme_main"); 
+       $resultSp = mysqli_query($con,"select distinct project_sp from tabel_lme_main");
+       $resultSurat = mysqli_query($con,"select distinct surat_pesanan FROM tabel_order, tabel_lme_main WHERE tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER");
+		 $resultOrder = mysqli_query($con,"select distinct orders from tabel_lme_main");		 
+       $resultWitel = mysqli_query($con,"select distinct witel from tabel_lme_main");
+       $resultSite = mysqli_query($con, "select distinct NAMA_LOKASI, ALAMAT FROM tabel_site, tabel_lme_main WHERE tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
+		  echo form_open('InputController/insert_validation');
+        echo "<h2 class='form-signin-heading'>Input new item</h2>
         <br>
-        <div class="form-group">
-          <label class="control-label">Divisi :</label>
-          <select class="form-control" name="boxDivisi">
-            <option>Divisi Telkom Barat</option>
-            <option>Divisi Telkom Timur</option>
-          </select>
+        <div class='form-group'>
+          <label class='control-label'>Divisi :</label>";
+         echo "<select class='form-control' name='boxDivisi'>";
+         while ($row = mysqli_fetch_array($resultDivisi)){
+         echo "<option>".$row['divisi']."</option>";
+         }
+         
+         echo "<div id='overlay'>
+           <div>
+           		
+               Click here to [<a href='#' onclick='overlay()'>close</a>]
+           </div>
+          </div>";
+         
+       echo "</select>
         </div>
-        <div class="form-group">
-          <label class="control-label">Regional : (dinamis berdasarkan divisi)</label>
-          <select class="form-control" name="boxRegional">
-            <option>Regional 1</option>
-            <option>Regional 2</option>
-            <option>Regional 3</option>
-            <option>Regional 4</option>
-            <option>Regional 5</option>
-            <option>Regional 6</option>
-				<option>Regional 7</option>
-				<option>Regional 8</option>
-				<option>Regional 9</option>
-				<option>Regional 10</option>
+        
+        <div class='form-group'>
+          <label class='control-label'>Regional : (dinamis berdasarkan divisi)</label>
+          <select class='form-control' name='boxRegional'>";
+          while ($row = mysqli_fetch_array($resultRegion)){
+         echo "<option>".$row['region']."</option>";
+         }
 
-          </select>
+         echo "</select>
+         <button onclick='overlay()'>test</button>
         </div>
-        <div class="form-group">
-          <label class="control-label">Project :</label>
-          <select class="form-control" name="boxProject">
-            <option>Tahap12014(4715)</option>
-            <option>Tier-1</option>
-          </select>
+        <div class='form-group'>
+          <label class='control-label'>Nama Project :</label>
+          <select class='form-control' name='boxProject'>";
+        while ($row = mysqli_fetch_array($resultProject)){
+         echo "<option>".$row['nama_project']."</option>";
+         }
+         echo "</select>
         </div>
-        <div class="form-group">
-          <label class="control-label">Project/SP :</label>
-          <select class="form-control" name="boxProject/SP">
-            <option>SP 004</option>
-            <option>SP #7</option>
-          </select>
+        <div class='form-group'>
+          <label class='control-label'>Project/SP :</label>
+          <select class='form-control' name='boxProject/SP'>";
+            while ($row = mysqli_fetch_array($resultSp)){
+         echo "<option>".$row['project_sp']."</option>";
+         }
+          echo "</select>
         </div>
-        <div class="form-group">
-          <label class="control-label">Surat Pesanan :</label>
-          <select class="form-control" name="boxSurat" id="boxSurat">
-            <option>TEL.649/HK.810/DBB-A1000000/2014</option>
-            <option>A.K.TEL.004/HK.810/SUC-A1020000/2014</option>
-          </select>
+        <div class='form-group'>
+          <label class='control-label'>Surat Pesanan :</label>
+          <select class='form-control' name='boxSurat' id='boxSurat'>";
+            while ($row = mysqli_fetch_array($resultSurat)){
+         echo "<option>".$row['surat_pesanan']."</option>";
+         }
+         echo "</select>
         </div>
-        <div class="form-group">
-          <label class="control-label">Order :</label>
-          <select class="form-control" name="boxOrder">
-            <option>DNB</option>
-            <option>DBB</option>
-          </select>
+        <div class='form-group'>
+          <label class='control-label'>Order :</label>
+          <select class='form-control' name='boxOrder'>";
+            while ($row = mysqli_fetch_array($resultOrder)){
+         echo "<option>".$row['orders']."</option>";
+         }
+         echo "</select>
         </div>
-        <div class="form-group">
-          <label class="control-label">Witel :</label>
-          <select class="form-control" name="boxWitel">
-            <option>TELKOM BANTEN TIMUR (TANGERANG)</option>
-            <option>TELKOM JATIM BARAT (MADIUN)</option>
-          </select>
+        <div class='form-group'>
+          <label class='control-label'>Witel :</label>
+          <select class='form-control' name='boxWitel'>";
+            while ($row = mysqli_fetch_array($resultWitel)){
+         echo "<option>".$row['witel']."</option>";
+         }
+         echo "</select>
         </div>
-        <div class="form-group">
-          <label class="control-label" href='#' onclick='overlay()'>Lokasi : (dinamis berdasarkan proyek)</label>
-          <select class="form-control" name="boxLokasi">
-            <option>HOTEL IBIS SLIPI</option>
-            <option>SMA 2</option>
-          </select>
+        <div class='form-group'>
+          <label class='control-label' href='#' onclick='overlay()'>Lokasi : (dinamis berdasarkan proyek)</label>
+          <select class='form-control' name='boxLokasi'>";
+            while ($row = mysqli_fetch_array($resultSite)){
+         echo "<option>".$row['NAMA_LOKASI']."</option>";
+         }
+         echo "</select>
         </div>
-        <div class="form-group">
-          <label class="control-label">Klasifikasi Status Progress :</label>
-          <select class="form-control" name="boxKlasifikasi">
+        <div class='form-group'>
+          <label class='control-label'>Klasifikasi Status Progress :</label>
+          <select class='form-control' name='boxKlasifikasi'>
             <option>A. Non Progress</option>
             <option>B. Survey</option>
             <option>C. On Progress</option>
@@ -157,18 +179,17 @@
             <option>H. Batal</option>
           </select>
         </div>
-        <label class="form-label">Status Progress :</label>
-        <textarea class="form-control" name="boxStatus"></textarea><br>
-        <label class="form-label">Keterangan :</label>
-        <textarea class="form-control" name="boxKeterangan"></textarea><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-        
-    </div>
-    <?php function overlay() {
-		el.document.getElementById("overlay");
-		el.style.visibility.(el.style.visibility == "visible") ? "hidden" : "visible";
-	}
-	?>
+        <label class='form-label'>Status Progress :</label>
+        <textarea class='form-control' name='boxStatus'></textarea><br>
+        <label class='form-label'>Keterangan :</label>
+        <textarea class='form-control' name='boxKeterangan'></textarea><br>
+        <button class='btn btn-lg btn-primary btn-block' value='submit' action='index.php/InputController/insert_validation'>Submit</button> 
+    </div>";
+	//if(isset($_REQUEST['submit']))
+	//{
+    //form_open('InputController/insert_validation');
+	//}
+  //?>
   </body>
 
 </html>
