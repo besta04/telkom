@@ -4,11 +4,48 @@
   
   <head>
     <script type="text/javascript">
-    function overlay() {
-  el = document.getElementById("overlay");
-  el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-}
-</script>
+    function overlay() 
+    {
+      el = document.getElementById("overlay");
+      el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    }
+    function value()
+    {
+      $('#thetable').find('tr').click( function()
+      {
+        var row = $(this).find('td').eq(3).text();
+        alert('You clicked ' + row);
+        return row;
+      });
+    }
+    function showUser(str) 
+    {
+      if (str=="") 
+      {
+        document.getElementById("txtHint").innerHTML="";
+        return;
+      }
+      if (window.XMLHttpRequest) 
+      {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+      }
+      else
+      {
+        // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange=function() 
+      {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) 
+        {
+          document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+        }
+      }
+      xmlhttp.open("GET","getuser.php?q="+str,true);
+      xmlhttp.send();
+    }
+    </script>
     <title>Off Canvas Nav</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
@@ -117,7 +154,6 @@
           </div>
           
           <?php
-          
         $con=mysqli_connect("localhost","root","root","telkom_lme");
         if (mysqli_connect_errno())
         {
@@ -126,15 +162,31 @@
        $result = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order, tabel_site 
                               where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER 
                               and tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
-         
+       $result2 = mysqli_query($con,"select * from tabel_site");
         echo "<div id='overlay'>
            <div>
-                <p>Content you want the user to see goes here.</p>
+                <table class='table table-hover table-bordered'>
+                  <thead>
+                    <tr>
+                      <th>Nama Lokasi</th>
+                      <th>Alamat Lokasi</th>
+                    </tr>
+                  </thead>
+                  <tbody>";
+                  while ($row = mysqli_fetch_array($result2))
+                  {
+                    echo "<tr>";
+                      echo "<td>" . $row['NAMA_LOKASI'] . "</td>";
+                      echo "<td>" . $row['ALAMAT'] . "</td>";
+                    echo "</tr>";
+                  }
+                  echo "</tbody>
+                </table>
                 Click here to [<a href='#' onclick='overlay()'>close</a>]
            </div>
           </div>";
 
-        echo "<table class='table table-hover table-bordered'>
+        echo "<table id='thetable' class='table table-hover table-bordered'>
           <thead>
             <tr>
               <th>#</th>
@@ -157,7 +209,7 @@
             echo "<td>" . $row['ID_LME'] . "</td>";
             echo "<td>" . $row['SURAT_PESANAN'] . "</td>";
             echo "<td>" . $row['TOC'] . "</td>";
-            echo "<td><a href='#'' onclick='overlay()'>" . $row['NAMA_LOKASI'] . "</a></td>";
+            echo "<td><a href='#' onclick='overlay()'>" . $row['NAMA_LOKASI'] . "</a></td>";
             //echo "<td>" . $row['ALAMAT'] . "</td>";
             echo "<td>" . $row['NAMA_PROJECT'] . "</td>";
             echo "<td>" . $row['PROJECT_SP'] . "</td>";
