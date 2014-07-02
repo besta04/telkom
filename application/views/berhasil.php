@@ -71,11 +71,25 @@
   <body>
     <div class="form-signin">
       
-        <h2 class="form-signin">Insert Successfull</h2>
+        <h2 class="form-signin"> <?php echo $stat ?> Successfull</h2>
         <br />
         If your browser does not redirect you in 5 seconds, or you do
-        not wish to wait, <a href="<?php echo "inputItem" ?>">click here</a>
-        <?php header('Refresh: 5; URL=inputItem'); ?>
+        not wish to wait, <a href="<?php if($stat == 'Insert')
+        { 
+          echo '../inputItem';
+        }
+        else
+        {
+          echo '../report1';
+        }  ?>">click here</a>
+        <?php if($stat == 'Insert')
+        { 
+          header('Refresh: 5; URL=../inputItem');
+        }
+        else
+        {
+          header('Refresh: 5; URL=../report1');
+        } ?>
         
        </div>
     <!-- /container -->

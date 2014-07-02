@@ -45,9 +45,10 @@ class HomeController extends CI_Controller{
 		}	
 	}
        
-    public function berhasil()
+    public function berhasil($stat = '')
     {
-    	$this->load->view('berhasil');
+    	$data = array('stat' => $stat);
+    	$this->load->view('berhasil', $data);
     }
       
     public function restricted()
@@ -67,8 +68,16 @@ class HomeController extends CI_Controller{
 		$this->load->view('input');
 	}    
 
+	public function editItem($id='')
+	{
+		$this->load->helper('form');
+		$data = array('id' => $id);
+		$this->load->view('edit',$data);
+	}
+
 	public function report1()
 	{
+		$this->load->helper('url');
 		$this->load->view('report1');
 	}
 }

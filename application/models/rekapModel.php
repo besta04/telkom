@@ -10,15 +10,28 @@ class RekapModel extends CI_Model
     function insert_entry($data)
     {
         $this->load->database();
-        $this->db->insert('tabel_lme_main',$data);
+        try
+        {
+            $this->db->insert('tabel_lme_main',$data);
+            return true;
+        }
+        catch (Exception $e) 
+        {
+            return false;
+        }
     }
 
-    function update_entry()
+    function update_entry($data, $id)
     {
-        $this->title   = $_POST['title'];
-        $this->content = $_POST['content'];
-        $this->date    = time();
-        $this->db->update('entries', $this, array('id' => $_POST['id']));
+        try 
+        {
+            $this->db->where('id_lme', $id)->update('tabel_lme_main' ,$data);   
+            return true;
+        } 
+        catch (Exception $e) 
+        {
+            return false;            
+        }
     }
 
     function login($username, $password)

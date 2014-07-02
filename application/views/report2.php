@@ -3,50 +3,9 @@
 <html>
   
   <head>
-    <script type="text/javascript">
-    function overlay() 
-    {
-      el = document.getElementById("overlay");
-      el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-    }
-    function value()
-    {
-      $('#thetable').find('tr').click( function()
-      {
-        var row = $(this).find('td').eq(3).text();
-        alert('You clicked ' + row);
-        return row;
-      });
-    }
-    function showUser(str) 
-    {
-      if (str=="") 
-      {
-        document.getElementById("txtHint").innerHTML="";
-        return;
-      }
-      if (window.XMLHttpRequest) 
-      {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-      }
-      else
-      {
-        // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange=function() 
-      {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200) 
-        {
-          document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-        }
-      }
-      xmlhttp.open("GET","getuser.php?q="+str,true);
-      xmlhttp.send();
-    }
-    </script>
-    <title>Off Canvas Nav</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Report baru</title>
+
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -153,77 +112,29 @@
             <div class="panel-body" style="text-align:center"><b style="font-size:x-large">Judul Reportnya</b></div>
           </div>
           
-          <?php
-        $con=mysqli_connect("localhost","root","root","telkom_lme");
-        if (mysqli_connect_errno())
-        {
-          echo "Failed to connect : ". mysqli_connect_error();
-        }
-       $result = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order, tabel_site 
-                              where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER 
-                              and tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
-       $result2 = mysqli_query($con,"select * from tabel_site");
-        echo "<div id='overlay'>
-           <div>
-                <table class='table table-hover table-bordered'>
-                  <thead>
-                    <tr>
-                      <th>Nama Lokasi</th>
-                      <th>Alamat Lokasi</th>
-                    </tr>
-                  </thead>
-                  <tbody>";
-                  while ($row = mysqli_fetch_array($result2))
-                  {
-                    echo "<tr>";
-                      echo "<td>" . $row['NAMA_LOKASI'] . "</td>";
-                      echo "<td>" . $row['ALAMAT'] . "</td>";
-                    echo "</tr>";
-                  }
-                  echo "</tbody>
-                </table>
-                Click here to [<a href='#' onclick='overlay()'>close</a>]
-           </div>
-          </div>";
+          <div id="wrap">
+    <h1>Report Baru</h1> 
+    
+      <!-- Feedback message zone -->
+      <div id="message"></div>
 
-        echo "<table id='thetable' class='table table-hover table-bordered'>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Surat Pesanan</th>
-              <th>TOC</th>
-              <th>Nama Lokasi</th>
-              <!--<th>Alamat</th>-->
-              <th>Nama Project</th>
-              <th>Project SP</th>
-              <th>Witel</th>
-              <th>Order</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>";
-          echo "<tbody>";
-          while ($row = mysqli_fetch_array($result))
-          {
-            echo "<tr>";
-            echo "<td>" . $row['ID_LME'] . "</td>";
-            echo "<td>" . $row['SURAT_PESANAN'] . "</td>";
-            echo "<td>" . $row['TOC'] . "</td>";
-            echo "<td><a href='#' onclick='overlay()'>" . $row['NAMA_LOKASI'] . "</a></td>";
-            //echo "<td>" . $row['ALAMAT'] . "</td>";
-            echo "<td>" . $row['NAMA_PROJECT'] . "</td>";
-            echo "<td>" . $row['PROJECT_SP'] . "</td>";
-            echo "<td>" . $row['WITEL'] . "</td>";
-            echo "<td>" . $row['ORDERS'] . "</td>";
-            echo "<td>" . $row['KLAS_STAT_PROGRESS'] . "</td>";
-            echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $row['ID_LME']) . "' >Edit</button></td>";
-            echo "</tr>";
-          }
-          echo "</tbody>";
-          echo "</table>";
+      <!-- Grid contents -->
+      <div id="tablecontent"></div>
+    
+      <!-- Paginator control -->
+      <div id="paginator"></div>
+    </div>  
+    
+    <script src="../js/editablegrid-2.0.1.js"></script>   
+    <!-- I use jQuery for the Ajax methods -->
+    <script src="../js/jquery-1.7.2.min.js" ></script>
+    <script src="../js/demo.js" ></script>
 
-          mysqli_close($con);
-          ?>
+    <script type="text/javascript">
+      window.onload = function() { 
+        datagrid = new DatabaseGrid();
+      }; 
+    </script>
           </div>
           <!--/row-->
         </div>
