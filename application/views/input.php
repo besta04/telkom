@@ -105,10 +105,10 @@
        $resultRegion = mysqli_query($con,"select distinct region from tabel_lme_main"); 
        $resultProject = mysqli_query($con,"select distinct nama_project from tabel_lme_main"); 
        $resultSp = mysqli_query($con,"select distinct project_sp from tabel_lme_main");
-       $resultSurat = mysqli_query($con,"select distinct surat_pesanan FROM tabel_order, tabel_lme_main WHERE tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER");
+       $resultSurat = mysqli_query($con,"select distinct surat_pesanan FROM tabel_order");
 		 $resultOrder = mysqli_query($con,"select distinct orders from tabel_lme_main");		 
        $resultWitel = mysqli_query($con,"select distinct witel from tabel_lme_main");
-       $resultSite = mysqli_query($con, "select distinct NAMA_LOKASI, ALAMAT FROM tabel_site, tabel_lme_main WHERE tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
+       $resultSite = mysqli_query($con, "select nama_lokasi FROM tabel_site");
 		  echo form_open('InputController/insert_validation');
         echo "<h2 class='form-signin-heading'>Input new item</h2>
         <br>
@@ -188,7 +188,7 @@
           <label class='control-label'>Lokasi : (dinamis berdasarkan proyek)</label>
           <input type='text' list='lokasi' class='form-control' name='boxLokasi'>
           <datalist id='lokasi'>";
-         echo "<option>".$row['NAMA_LOKASI']."</option>";
+         echo "<option>".$row['nama_lokasi']."</option>";
             while ($row = mysqli_fetch_array($resultSite)){
          }
          echo "</datalist>";
