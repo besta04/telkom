@@ -9,9 +9,9 @@
       el = document.getElementById("overlay");
       el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     }
-    function overlay2() 
+    function overlayB() 
     {
-      el = document.getElementById("overlay2");
+      el = document.getElementById("overlayB");
       el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     }
     function value()
@@ -23,9 +23,8 @@
         return row;
       });
     }
-    }
     </script>
-    <title>Off Canvas Nav</title>
+    <title>Laporan</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -39,6 +38,9 @@
         padding-left: 15px;
         padding-right: 15px;
       }
+      body.modal-open {
+    overflow: visible;
+}
       /*       * Off Canvas       * --------------------------------------------------       */
       @media screen and(max-width: 768px) {
         .row-offcanvas {
@@ -90,19 +92,19 @@
            text-align:center;
            vertical-align: text-top;
       }
-      #overlay2 {
+      #overlayB {
      visibility: hidden;
      position: absolute;
      left: 0px;
      top: 0px;
      width:100%;
-     height:100%;
+     height:200%;
      text-align:center;
      z-index: 1000;
      background-color: rgba(1,1,1,0.8)
       }
-      #overlay2 div {
-           width:300px;
+      #overlayB div {
+           width:500px;
            margin: 100px auto;
            background-color: #fff;
            border:1px solid #000;
@@ -151,15 +153,40 @@
             <div class="panel panel-default">
             <div class="panel-body" style="text-align:center"><b style="font-size:x-large">Judul Reportnya</b></div>
           </div>
-          
+          <p>Surat Pesanan : 
+            <select>
+            <option value=""></option>
+            </select></p>
+          <p>TOC : 
+            <select>
+              <option value=""></option>
+            </select></p>
+            <p>Nama Lokasi : 
+            <select>
+              <option value=""></option>
+            </select></p>
+            <p>Nama Project : 
+            <select>
+              <option value=""></option>
+            </select></p>
           <?php
         $con=mysqli_connect("localhost","root","root","telkom_lme");
         if (mysqli_connect_errno())
         {
           echo "Failed to connect : ". mysqli_connect_error();
         }
+        if (is_array($results))
+        {
+          foreach ($results as $data)
+          {
+          }
+        }
+        //echo "<script>alert(".$data->ID_LME.");</script>";
+        $num = (int)$data->ID_LME;
+        $num -=20;
        $result2 = mysqli_query($con,"select distinct NAMA_LOKASI, ALAMAT from tabel_lme_main");
-       $result3 = mysqli_query($con,"select distinct ID_LME, STAT_PROGRESS, KLAS_STAT_PROGRESS, KETERANGAN from tabel_lme_main");
+       $result3 = mysqli_query($con,"select distinct ID_LME, STAT_PROGRESS, KLAS_STAT_PROGRESS, KETERANGAN 
+                              from tabel_lme_main limit ".$num." , 20");
         echo "<div id='overlay'>
            <div>
                 <table class='table table-hover table-bordered'>
@@ -183,7 +210,7 @@
            </div>
           </div>";
 
-          echo "<div id='overlay2'>
+          echo "<div id='overlayB'>
            <div>
                 <table class='table table-hover table-bordered'>
                   <thead>
@@ -206,7 +233,7 @@
                   }
                   echo "</tbody>
                 </table>
-                Click here to [<a href='#' onclick='overlay2()'>close</a>]
+                Click here to [<a href='#' onclick='overlayB()'>close</a>]
            </div>
           </div>";
 
@@ -245,13 +272,12 @@
             echo "<td>" . $data->PROJECT_SP . "</td>";
             echo "<td>" . $data->WITEL . "</td>";
             echo "<td>" . $data->ORDERS . "</td>";
-            echo "<td><a href='#' onClick='overlay2()'>" . $data->KLAS_STAT_PROGRESS . "</a></td>";
+            echo "<td><a href='#' onclick='overlayB()'>" . $data->KLAS_STAT_PROGRESS . "</a></td>";
             echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $data->ID_LME) . "' >Edit</button></td>";
             echo "</tr>";
           //}
           }
-        }
-          //echo "<script>alert(".$num.");</script>";
+        };
           echo "</tbody>";
           echo "</table>";
 
