@@ -70,12 +70,12 @@ class InputController extends CI_Controller
         $this->load->helper('url');
 
         $surat = $this->input->post('boxSurat');
-        $lokasi = $this->input->post('boxLokasi');
+        //$lokasi = $this->input->post('boxLokasi');
         $this->load->database();
         $id_order = $this->db->query("SELECT ID_ORDER FROM TABEL_ORDER WHERE SURAT_PESANAN = '".$surat."'");
-        $id_lokasi = $this->db->query("SELECT ID_SITE FROM TABEL_SITE WHERE NAMA_LOKASI = '".$lokasi."'");
+        //$id_lokasi = $this->db->query("SELECT ID_SITE FROM TABEL_SITE WHERE NAMA_LOKASI = '".$lokasi."'");
         $temp3 = $id_order->first_row()->ID_ORDER;
-        $temp2 = $id_lokasi->first_row()->ID_SITE;
+        //$temp2 = $id_lokasi->first_row()->ID_SITE;
         $data = array(
             'DIVISI' => $this->input->post('boxDivisi'),
             'REGION' => $this->input->post('boxRegional'),
@@ -83,7 +83,7 @@ class InputController extends CI_Controller
             'PROJECT_SP' => $this->input->post('boxProject/SP'),
             'ID_ORDER' => $temp3,
             'WITEL' => $this->input->post('boxWitel'),
-            'ID_SITE' => $temp2,
+            'ID_SITE' => $this->input->post('boxIdSite'),
             'ORDERS' => $this->input->post('boxOrder'),
             'KLAS_STAT_PROGRESS' => $this->input->post('boxKlasifikasi'),
             'STAT_PROGRESS' => $this->input->post('boxStatus'),
@@ -100,7 +100,7 @@ class InputController extends CI_Controller
         else
         {
             echo "<script> alert('Update gagal') </script>";
-            header('Refresh:1, URL=../../HomeController/editItem/' . $id);
+            header('Refresh:1, URL=../../ReportController/editItem/' . $id);
         }
     }
 }

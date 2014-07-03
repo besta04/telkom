@@ -9,6 +9,11 @@
       el = document.getElementById("overlay");
       el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     }
+    function overlay2() 
+    {
+      el = document.getElementById("overlay2");
+      el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    }
     function value()
     {
       $('#thetable').find('tr').click( function()
@@ -18,32 +23,6 @@
         return row;
       });
     }
-    function showUser(str) 
-    {
-      if (str=="") 
-      {
-        document.getElementById("txtHint").innerHTML="";
-        return;
-      }
-      if (window.XMLHttpRequest) 
-      {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-      }
-      else
-      {
-        // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange=function() 
-      {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200) 
-        {
-          document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-        }
-      }
-      xmlhttp.open("GET","getuser.php?q="+str,true);
-      xmlhttp.send();
     }
     </script>
     <title>Off Canvas Nav</title>
@@ -111,6 +90,26 @@
            text-align:center;
            vertical-align: text-top;
       }
+      #overlay2 {
+     visibility: hidden;
+     position: absolute;
+     left: 0px;
+     top: 0px;
+     width:100%;
+     height:100%;
+     text-align:center;
+     z-index: 1000;
+     background-color: rgba(1,1,1,0.8)
+      }
+      #overlay2 div {
+           width:300px;
+           margin: 100px auto;
+           background-color: #fff;
+           border:1px solid #000;
+           padding:15px;
+           text-align:center;
+           vertical-align: text-top;
+      }
     </style>
   </head>
   
@@ -159,10 +158,8 @@
         {
           echo "Failed to connect : ". mysqli_connect_error();
         }
-       $result = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order, tabel_site 
-                              where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER 
-                              and tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
-       $result2 = mysqli_query($con,"select * from tabel_site");
+       $result2 = mysqli_query($con,"select distinct NAMA_LOKASI, ALAMAT from tabel_lme_main");
+       $result3 = mysqli_query($con,"select distinct ID_LME, STAT_PROGRESS, KLAS_STAT_PROGRESS, KETERANGAN from tabel_lme_main");
         echo "<div id='overlay'>
            <div>
                 <table class='table table-hover table-bordered'>
@@ -186,6 +183,33 @@
            </div>
           </div>";
 
+          echo "<div id='overlay2'>
+           <div>
+                <table class='table table-hover table-bordered'>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Klasifikasi Status</th>
+                      <th>Status Progress</th>
+                      <th>Keterangan</th>
+                    </tr>
+                  </thead>
+                  <tbody>";
+                  while ($row = mysqli_fetch_array($result3))
+                  {
+                    echo "<tr>";
+                      echo "<td>" . $row['ID_LME'] . "</td>";
+                      echo "<td>" . $row['KLAS_STAT_PROGRESS'] . "</td>";
+                      echo "<td>" . $row['STAT_PROGRESS'] . "</td>";
+                      echo "<td>" . $row['KETERANGAN'] . "</td>";
+                    echo "</tr>";
+                  }
+                  echo "</tbody>
+                </table>
+                Click here to [<a href='#' onclick='overlay2()'>close</a>]
+           </div>
+          </div>";
+
         echo "<table id='thetable' class='table table-hover table-bordered'>
           <thead>
             <tr>
@@ -203,27 +227,37 @@
             </tr>
           </thead>";
           echo "<tbody>";
-          while ($row = mysqli_fetch_array($result))
+          //$num = 0;
+          //while ($row = mysqli_fetch_array($result))
+          //{
+          if (is_array($results))
           {
+          foreach ($results as $data)
+          {
+            //$num++;
             echo "<tr>";
-            echo "<td>" . $row['ID_LME'] . "</td>";
-            echo "<td>" . $row['SURAT_PESANAN'] . "</td>";
-            echo "<td>" . $row['TOC'] . "</td>";
-            echo "<td><a href='#' onclick='overlay()'>" . $row['NAMA_LOKASI'] . "</a></td>";
+            echo "<td>" . $data->ID_LME/*$row['ID_LME']*/ . "</td>";
+            echo "<td>" . $data->SURAT_PESANAN/*$row['SURAT_PESANAN']*/ . "</td>";
+            echo "<td>" . $data->TOC . "</td>";
+            echo "<td><a href='#' onclick='overlay()'>" . $data->NAMA_LOKASI . "</a></td>";
             //echo "<td>" . $row['ALAMAT'] . "</td>";
-            echo "<td>" . $row['NAMA_PROJECT'] . "</td>";
-            echo "<td>" . $row['PROJECT_SP'] . "</td>";
-            echo "<td>" . $row['WITEL'] . "</td>";
-            echo "<td>" . $row['ORDERS'] . "</td>";
-            echo "<td>" . $row['KLAS_STAT_PROGRESS'] . "</td>";
-            echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $row['ID_LME']) . "' >Edit</button></td>";
+            echo "<td>" . $data->NAMA_PROJECT . "</td>";
+            echo "<td>" . $data->PROJECT_SP . "</td>";
+            echo "<td>" . $data->WITEL . "</td>";
+            echo "<td>" . $data->ORDERS . "</td>";
+            echo "<td><a href='#' onClick='overlay2()'>" . $data->KLAS_STAT_PROGRESS . "</a></td>";
+            echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $data->ID_LME) . "' >Edit</button></td>";
             echo "</tr>";
+          //}
           }
+        }
+          //echo "<script>alert(".$num.");</script>";
           echo "</tbody>";
           echo "</table>";
 
           mysqli_close($con);
           ?>
+          <p><?php echo $links; ?></p>
           </div>
           <!--/row-->
         </div>

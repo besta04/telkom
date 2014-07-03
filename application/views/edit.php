@@ -111,9 +111,8 @@
        $resultWitel = mysqli_query($con,"select distinct witel from tabel_lme_main");
        $resultSite = mysqli_query($con, "select distinct NAMA_LOKASI, ALAMAT FROM tabel_site, tabel_lme_main WHERE tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
 
-       $resultSelected = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order, tabel_site 
-                              where id_lme = " . $id . " and tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER 
-                              and tabel_lme_main.ID_SITE = tabel_site.ID_SITE");  
+       $resultSelected = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order 
+                              where id_lme = " . $id . " and tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER");  
 
       echo form_open('InputController/UpdateValidation/' . $id);
         echo "<h2 class='form-signin-heading'>Edit an item</h2>

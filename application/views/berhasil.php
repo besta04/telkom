@@ -80,7 +80,7 @@
         }
         else
         {
-          echo '../report1';
+          echo '../../ReportController/report1';
         }  ?>">click here</a>
         <?php if($stat == 'Insert')
         { 
@@ -88,7 +88,7 @@
         }
         else
         {
-          header('Refresh: 5; URL=../report1');
+          header('Refresh: 5; URL=../../ReportController/report1');
         } ?>
         
        </div>

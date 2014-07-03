@@ -92,15 +92,15 @@
           </div>
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-              <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+              <h2>Laporan Wifi Nasional</h2>
+              <p>Lihat laporan LME Wifi Nasional Telkom Indonesia</p>
+              <p><a class="btn btn-default" href="<?php echo "../HomeController/report1" ?>">View details &raquo;</a></p>
             </div>
             <!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Heading</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-              <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+              <h2>Input data baru</h2>
+              <p>Masukkan data baru LME Wifi Nasional Telkom Indonesia</p>
+              <p><a class="btn btn-default" href="<?php echo "../HomeController/inputItem" ?>">View details &raquo;</a></p>
             </div>
             <!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
