@@ -17,23 +17,26 @@ class InputController extends CI_Controller
         //if($this->form_validation->run() )
         //{
         	$id_order = $this->input->post('boxSurat');
-        	$id_site = $this->input->post('boxLokasi');
+        	//$id_site = $this->input->post('boxLokasi');
 			$this->load->database();
 			//$this->db->select('ID_ORDER');
 			//$this->db->from('TABEL_ORDER');
 			//$this->db->where('SURAT_PESANAN', $temp);
 			$order = $this->db->query("SELECT ID_ORDER FROM TABEL_ORDER WHERE SURAT_PESANAN = '".$id_order."'");
-			$lokasi = $this->db->query("SELECT ID_SITE FROM TABEL_SITE WHERE NAMA_LOKASI = '".$id_site."'");
+			//$lokasi = $this->db->query("SELECT ID_SITE FROM TABEL_SITE WHERE NAMA_LOKASI = '".$id_site."'");
         	$temp3 = $order->first_row()->ID_ORDER;
-        	$temp2 = $lokasi->first_row()->ID_SITE;
+        	//$temp2 = $lokasi->first_row()->ID_SITE;
         	$data = array(
             	     'DIVISI' => $this->input->post('boxDivisi'),
                     'REGION' => $this->input->post('boxRegional'),
                     'NAMA_PROJECT' => $this->input->post('boxProject'),
                     'PROJECT_SP' => $this->input->post('boxProject/SP'),
+                    'SP' => $this->input->post('boxSP'),
                     'ID_ORDER' => $temp3,
                     'WITEL' => $this->input->post('boxWitel'),
-                    'ID_SITE' => $temp2,
+                    'ID_SITE' => $this->input->post('boxIdSite'),
+                    'NAMA_LOKASI' => $this->input->post('boxLokasi'),
+                    'ALAMAT' => $this->input->post('boxAlamat'),
                     'ORDERS' => $this->input->post('boxOrder'),
                     'KLAS_STAT_PROGRESS' => $this->input->post('boxKlasifikasi'),
                     'STAT_PROGRESS' => $this->input->post('boxStatus'),

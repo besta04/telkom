@@ -105,7 +105,11 @@
        $resultRegion = mysqli_query($con,"select distinct region from tabel_lme_main"); 
        $resultProject = mysqli_query($con,"select distinct nama_project from tabel_lme_main"); 
        $resultSp = mysqli_query($con,"select distinct project_sp from tabel_lme_main");
+       $resultSp2 = mysqli_query($con,"select distinct sp from tabel_lme_main");
+       $resultIdSite = mysqli_query($con,"select distinct id_site from tabel_lme_main");
        $resultSurat = mysqli_query($con,"select distinct surat_pesanan FROM tabel_order");
+       $resultLokasi = mysqli_query($con,"select distinct nama_lokasi FROM tabel_lme_main");
+       $resultAlamat = mysqli_query($con,"select distinct alamat FROM tabel_lme_main");
 		 $resultOrder = mysqli_query($con,"select distinct orders from tabel_lme_main");		 
        $resultWitel = mysqli_query($con,"select distinct witel from tabel_lme_main");
        $resultSite = mysqli_query($con, "select nama_lokasi FROM tabel_site");
@@ -152,6 +156,16 @@
          echo "<option>".$row['project_sp']."</option>";
          }
          echo "</datalist>";
+         echo "</select>
+        </div>
+        <div class='form-group'>
+          <label class='control-label'>SP :</label>
+        <input type='text' list='SP2' class='form-control' name='boxSP'>
+        <datalist id='SP2'>";
+            while ($row = mysqli_fetch_array($resultSp2)){
+         echo "<option>".$row['sp']."</option>";
+         }
+         echo "</datalist>";
           echo "</select>
         </div>
         <div class='form-group'>
@@ -185,11 +199,31 @@
          echo "</select>
         </div>
         <div class='form-group'>
-          <label class='control-label'>Lokasi : (dinamis berdasarkan proyek)</label>
+          <label class='control-label'>ID Site :</label>
+          <input type='text' list='id' class='form-control' name='boxIdSite'>
+          <datalist id='id'>";
+            while ($row = mysqli_fetch_array($resultIdSite)){
+         echo "<option>".$row['id_site']."</option>";
+         }
+         echo "</datalist>";
+        echo "</select>
+        </div>
+        <div class='form-group'>
+          <label class='control-label'>Nama Lokasi :</label>
           <input type='text' list='lokasi' class='form-control' name='boxLokasi'>
           <datalist id='lokasi'>";
+            while ($row = mysqli_fetch_array($resultLokasi)){
          echo "<option>".$row['nama_lokasi']."</option>";
-            while ($row = mysqli_fetch_array($resultSite)){
+         }
+         echo "</datalist>";
+         echo "</select>
+        </div>
+        <div class='form-group'>
+          <label class='control-label'>Alamat :</label>
+          <input type='text' list='alamat' class='form-control' name='boxAlamat'>
+          <datalist id='alamat'>";
+            while ($row = mysqli_fetch_array($resultAlamat)){
+         echo "<option>".$row['alamat']."</option>";
          }
          echo "</datalist>";
          echo "</select>
@@ -213,16 +247,7 @@
         <textarea class='form-control' name='boxKeterangan'></textarea><br>
         <button class='btn btn-lg btn-primary btn-block' id='submit'>Submit</button> 
     </div>";
-	//if(isset($_REQUEST['submit']))
-	//{
-    //form_open('InputController/insert_validation');
-	//}
-  //?>
-  <script type="text/javascript">
-  	$('#submit').click(function(){
-		form_open('InputController/insert_validation');
-	});
-  </script>
+    ?>
   </body>
 
 </html>
