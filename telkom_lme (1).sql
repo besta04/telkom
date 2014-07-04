@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2014 at 05:40 AM
+-- Generation Time: Jul 04, 2014 at 08:46 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.27
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `tabel_lme_main` (
   `KETERANGAN` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`ID_LME`),
   KEY `FK_RELATIONSHIP_1` (`ID_ORDER`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101517 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101518 ;
 
 --
 -- Dumping data for table `tabel_lme_main`
@@ -15149,6 +15149,51 @@ INSERT INTO `tabel_lme_main` (`ID_LME`, `ID_ORDER`, `DIVISI`, `REGION`, `NAMA_PR
 (89046, 8, NULL, NULL, 'NON SP', 'NON SP', NULL, 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)', NULL, NULL, 'BANDARA DEPATI AMIR', 'JL.SOEKARNO HATTA', 'E. REKON', NULL, NULL),
 (89047, 8, NULL, NULL, 'NON SP', 'NON SP', NULL, 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)', NULL, NULL, 'POLMAN', 'JL.BERUJUNG', 'E. REKON', NULL, NULL),
 (89048, 8, NULL, NULL, 'NON SP', 'NON SP', NULL, 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)', NULL, NULL, 'PEKAN RAYA BABEL', 'JL.RUSTAM EFFENDI', 'E. REKON', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_login`
+--
+
+CREATE TABLE IF NOT EXISTS `tabel_login` (
+  `username` varchar(222) NOT NULL,
+  `password` varchar(222) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel_login`
+--
+
+INSERT INTO `tabel_login` (`username`, `password`) VALUES
+('admin', '21232f297a57a5a743894a0e4a801fc3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabel_order`
+--
+
+CREATE TABLE IF NOT EXISTS `tabel_order` (
+  `ID_ORDER` int(11) NOT NULL AUTO_INCREMENT,
+  `SURAT_PESANAN` varchar(1024) NOT NULL,
+  `TOC` date NOT NULL,
+  PRIMARY KEY (`ID_ORDER`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `tabel_order`
+--
+
+INSERT INTO `tabel_order` (`ID_ORDER`, `SURAT_PESANAN`, `TOC`) VALUES
+(1, 'A.K.TEL.004/HK.810/SUC-A1020000/2014', '2014-07-30'),
+(2, 'K.TEL. 149/HK.810/SUC-A1000000/2014', '2014-09-30'),
+(3, 'K.TEL. 150/HK.810/SUC-A1020000/2014', '2014-09-30'),
+(4, 'K.TEL647/HK.810/DBB-A1010000/2014', '2014-08-07'),
+(5, 'K.TEL648/HK.810/DBB-A1000000/2014', '2014-08-07'),
+(6, 'Tel.641/HK810/DBB-A1010000/2014', '2014-08-07'),
+(7, 'TEL.649/HK.810/DBB-A1000000/2014', '2014-08-07'),
+(8, '[BLANK]', '0000-00-00');
 
 --
 -- Constraints for dumped tables
