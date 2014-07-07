@@ -7,6 +7,7 @@ class HomeController extends CI_Controller{
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->helper('url');
+      $this->load->model('data');
 	}
 
 	function process()
@@ -15,17 +16,39 @@ class HomeController extends CI_Controller{
   		{
     		echo "restored";
   		}
-  		if(isset($_POST["delete"]))
+  		if(isset($_POST["deleted"]))
   		{
     	echo "deleted";
   		}   
 	}	
 	
+	public function data()
+	{
+    $data = $this->data->get_data();
+        
+    $category = array();
+    $category['name'] = 'STATUS';
+        
+    $series1 = array();
+    $series1['name'] = 'JUMLAH';
+        
+    foreach ($data as $row)
+    {
+        $category['data'][] = $row->STATUS;
+        $series1['data'][] = $row->JUMLAH;
+    }
+        
+    $result = array();
+    array_push($result,$category);
+    array_push($result,$series1);
+    
+    print json_encode($result, JSON_NUMERIC_CHECK);
+	}
+	
 	public function iciplaa()
 	{
 		$this->load->view('test');
 	}
-	
 
 	public function index()
 	{
@@ -45,11 +68,12 @@ class HomeController extends CI_Controller{
 		}	
 	}
        
-    public function berhasil()
+    public function berhasil($stat = '')
     {
-    	$this->load->view('berhasil');
+    	$data = array('stat' => $stat);
+    	$this->load->view('berhasil', $data);
     }
-      
+    
     public function restricted()
     {
     	$this->load->view('restricted');
@@ -67,8 +91,16 @@ class HomeController extends CI_Controller{
 		$this->load->view('input');
 	}    
 
+	public function editItem($id='')
+	{
+		$this->load->helper('form');
+		$data = array('id' => $id);
+		$this->load->view('edit',$data);
+	}
+
 	public function report1()
 	{
+		$this->load->helper('url');
 		$this->load->view('report1');
 	}
 }

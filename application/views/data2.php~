@@ -1,0 +1,41 @@
+<?php
+include('phpgraphlib.php');
+//include('phpgraphlib_pie.php');
+$graph=new PHPGraphLib(600,640);
+$link = mysql_connect('localhost', 'root', 'root')
+   or die('Could not connect: ' . mysql_error());
+     
+mysql_select_db('telkom_lme') or die('Could not select database');
+  
+$dataArray=array();
+  
+//get data from database
+$sql="SELECT DISTINCT KLAS_STAT_PROGRESS AS KELAS_STATUS_PROGRESS, COUNT(KLAS_STAT_PROGRESS) AS JUMLAH
+FROM tabel_lme_main
+GROUP BY tabel_lme_main.KLAS_STAT_PROGRESS";
+$result = mysql_query($sql) or die('Query failed: ' . mysql_error());
+if ($result) {
+  while ($row = mysql_fetch_assoc($result)) {
+      $salesgroup=$row["KELAS_STATUS_PROGRESS"];
+      $count=$row["JUMLAH"];
+      //add to data areray
+      $dataArray[$salesgroup]=$count;
+  }
+}
+$graph->setBackgroundColor("black");
+$graph->addData($dataArray);
+$graph->setBarColor('255,255,204');
+$graph->setTitle('IQ Scores');
+$graph->setTitleColor('yellow');
+$graph->setupYAxis(12, 'yellow');
+$graph->setupXAxis(20, 'yellow');
+$graph->setGrid(false);
+$graph->setGradient('silver', 'gray');
+$graph->setBarOutlineColor('white');
+$graph->setTextColor('white');
+$graph->setDataPoints(true);
+$graph->setDataPointColor('yellow');
+$graph->setLine(true);
+$graph->setLineColor('yellow');
+$graph->createGraph();
+?>

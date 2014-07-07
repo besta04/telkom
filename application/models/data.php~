@@ -1,0 +1,19 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Data extends CI_Model {
+
+    function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+    }
+    
+    function get_data()
+    {
+    	$this->db->select('KLAS_STAT_PROGRESS, COUNT(KLAS_STAT_PROGRESS) AS JUMLAH');
+    	$this->db->from('tabel_lme_main');
+    	$this->db->group_by('tabel_lme_main.KLAS_STAT_PROGRESS');
+    	$query = $this->db->get();
+      return $query->result();
+    }
+}

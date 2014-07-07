@@ -7,6 +7,7 @@ class HomeController extends CI_Controller{
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->helper('url');
+      $this->load->model('data');
 	}
 
 	function process()
@@ -21,11 +22,33 @@ class HomeController extends CI_Controller{
   		}   
 	}	
 	
-	public function iciplaa()
+	public function data()
+	{
+    $data = $this->data->get_data();
+        
+    $category = array();
+    $category['name'] = 'STATUS';
+        
+    $series1 = array();
+    $series1['name'] = 'JUMLAH';
+        
+    foreach ($data as $row)
+    {
+        $category['data'][] = $row->STATUS;
+        $series1['data'][] = $row->JUMLAH;
+    }
+        
+    $result = array();
+    array_push($result,$category);
+    array_push($result,$series1);
+    
+    print json_encode($result, JSON_NUMERIC_CHECK);
+	}
+	
+	public function statusProgress()
 	{
 		$this->load->view('test');
 	}
-	
 
 	public function index()
 	{
@@ -50,7 +73,7 @@ class HomeController extends CI_Controller{
     	$data = array('stat' => $stat);
     	$this->load->view('berhasil', $data);
     }
-      
+    
     public function restricted()
     {
     	$this->load->view('restricted');
