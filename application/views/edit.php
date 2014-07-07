@@ -202,7 +202,8 @@
         </div>
         <div class='form-group'>
           <label class='control-label'>Klasifikasi Status Progress :</label>
-          <select class='form-control' name='boxKlasifikasi' value='" . $rows['KLAS_STAT_PROGRESS'] . "'>
+          <input type='text' list='status' class='form-control' name='boxKlasifikasi' value='" . $rows['KLAS_STAT_PROGRESS'] . "'>
+            <datalist id='status'>;
             <option>A. Non Progress</option>
             <option>B. Survey</option>
             <option>C. On Progress</option>
@@ -211,6 +212,7 @@
             <option>F. Kendala Sitac</option>
             <option>G. Kendala Non-Sitac</option>
             <option>H. Batal</option>
+            </datalist>
           </select>
         </div>
         <label class='form-label'>Status Progress :</label>
