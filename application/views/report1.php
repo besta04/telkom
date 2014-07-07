@@ -23,6 +23,17 @@
         return row;
       });
     }
+    function getStatusIndex() 
+    {
+      //$('#status_index_id').val($('#status').attr("selectedIndex"));
+      document.getElementById("status_index_id").value = document.getElementById("status").selectedIndex;
+    }
+    function setIndex()
+    {
+      var index = document.getElementById("status_index_id").value;
+      //alert(index);
+      document.getElementById("status").selectedIndex = index;
+    }
     </script>
     <title>Laporan</title>
     <meta name="viewport" content="width=device-width">
@@ -115,7 +126,7 @@
     </style>
   </head>
   
-  <body>
+  <body onload="setIndex()">
 
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
@@ -287,7 +298,8 @@
           <td><p>Status</td>
           <td><p>:</p></td>
           <td>
-            <select name='status'>
+          <input type='hidden' name='status_index' value='".$data->statusIndex."' id='status_index_id' />
+            <select name='status' id='status' onchange='getStatusIndex()'>
             <option></option>";
             if (is_array($status))
             {
@@ -299,11 +311,12 @@
             echo "</select></p>
           </td>";
           ?>
-          <td rowspan="4"><button type='submit' class='btn btn-success' style='height:5em; width:10em'>Filter</button></td>
-          <?php echo form_close(); 
-          ?>
         </tr>
           </table>
+          <button type='submit' class='btn btn-success btn-block'>Filter</button>
+          <br>
+          <?php echo form_close(); 
+          ?>
           <?php
         $con=mysqli_connect("localhost","root","root","telkom_lme");
         if (mysqli_connect_errno())

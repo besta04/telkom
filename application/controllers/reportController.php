@@ -7,6 +7,8 @@ class ReportController extends CI_Controller
         $this->load->model("reportModel");
         $this->load->library("pagination");
         $this->load->helper("form");
+
+        $statusIndex = 0;
     }
  
     public function report1() 
@@ -40,6 +42,8 @@ class ReportController extends CI_Controller
 
     public function search()
     {
+        $data["statusIndex"] = $this->input->post("status_index");
+
         $suratPesanan = $this->input->post("suratPesanan");
         $TOC = $this->input->post("toc");
         $namaLokasi = $this->input->post("namaLokasi");
@@ -49,7 +53,7 @@ class ReportController extends CI_Controller
         $order = $this->input->post("order");
         $status = $this->input->post("status");
         
-        //echo "<script>alert(".$suratPesanan.")</script>";
+        //echo "<script>alert(".$statusIndex.")</script>";
 
         $config = array();
         $config["base_url"] = site_url() . "/ReportController/search";
