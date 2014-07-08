@@ -170,7 +170,7 @@
         </div>
         <div class='form-group'>
           <label class='control-label'>Surat Pesanan :</label>
-          <input type='text' list='surat' class='form-control' name='boxSurat' id='boxSurat'>
+          <select list='surat' class='form-control' name='boxSurat' id='boxSurat'>
           <datalist id='surat'>";
             while ($row = mysqli_fetch_array($resultSurat)){
          echo "<option>".$row['surat_pesanan']."</option>";

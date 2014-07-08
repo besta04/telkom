@@ -45,7 +45,17 @@ class InputController extends CI_Controller
          //$this
 			//$this->db->insert('tabel_lme_main',$data);
         	$this->load->model('RekapModel');
-         $result = $this->RekapModel->insert_entry($data);
+        	//$result = $this->RekapModel->insert_entry($data);
+         $data2 = array(
+						'keterangan' => 'input',
+						'subjek' => $this->input->post('Username')
+						//'waktu' => 'NOW()'
+						);
+		  $this->db->set('waktu', 'NOW()', FALSE);
+		  //$this->db->insert('log', $data2);
+		  
+		  $result = $this->RekapModel->log_insert($data2);
+		  
         if($result==true)
         {
             $stat = 'Insert';
@@ -91,6 +101,7 @@ class InputController extends CI_Controller
             );
         $this->load->model('RekapModel');
         $result = $this->RekapModel->update_entry($data, $id);
+        
         //echo "<script> alert('" . $result . "') </script>";
         if($result==true)
         {
@@ -102,6 +113,7 @@ class InputController extends CI_Controller
             echo "<script> alert('Update gagal') </script>";
             header('Refresh:1, URL=../../ReportController/editItem/' . $id);
         }
+        
     }
 
     public function DeleteValidation($id)

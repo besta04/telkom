@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2014 at 08:46 AM
+-- Generation Time: Jul 08, 2014 at 08:48 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.27
 
@@ -19,6 +19,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `telkom_lme`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log`
+--
+
+CREATE TABLE IF NOT EXISTS `log` (
+  `id_log` int(255) NOT NULL AUTO_INCREMENT,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `subjek` varchar(255) DEFAULT NULL,
+  `waktu` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_log`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `log`
+--
+
+INSERT INTO `log` (`id_log`, `keterangan`, `subjek`, `waktu`) VALUES
+(1, 'insert', 'admin', '2014-07-08 10:57:15'),
+(2, 'insert', 'admin', '2014-07-08 10:58:06'),
+(3, 'input', 'admin', '2014-07-08 11:07:43'),
+(4, 'input', 'admin', '2014-07-08 11:12:23'),
+(5, 'input', 'admin', '2014-07-08 11:12:56'),
+(6, 'input', NULL, '2014-07-08 13:41:16'),
+(7, 'input', '0', '2014-07-08 13:43:25'),
+(8, 'input', '0', '2014-07-08 13:44:06');
 
 -- --------------------------------------------------------
 
@@ -44,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `tabel_lme_main` (
   `KETERANGAN` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`ID_LME`),
   KEY `FK_RELATIONSHIP_1` (`ID_ORDER`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=101518 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=89064 ;
 
 --
 -- Dumping data for table `tabel_lme_main`
@@ -15148,7 +15176,22 @@ INSERT INTO `tabel_lme_main` (`ID_LME`, `ID_ORDER`, `DIVISI`, `REGION`, `NAMA_PR
 (89045, 8, NULL, NULL, 'NON SP', 'NON SP', NULL, 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)', NULL, NULL, 'PGP', 'JL.KEMUNING', 'E. REKON', NULL, NULL),
 (89046, 8, NULL, NULL, 'NON SP', 'NON SP', NULL, 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)', NULL, NULL, 'BANDARA DEPATI AMIR', 'JL.SOEKARNO HATTA', 'E. REKON', NULL, NULL),
 (89047, 8, NULL, NULL, 'NON SP', 'NON SP', NULL, 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)', NULL, NULL, 'POLMAN', 'JL.BERUJUNG', 'E. REKON', NULL, NULL),
-(89048, 8, NULL, NULL, 'NON SP', 'NON SP', NULL, 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)', NULL, NULL, 'PEKAN RAYA BABEL', 'JL.RUSTAM EFFENDI', 'E. REKON', NULL, NULL);
+(89048, 8, NULL, NULL, 'NON SP', 'NON SP', NULL, 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)', NULL, NULL, 'PEKAN RAYA BABEL', 'JL.RUSTAM EFFENDI', 'E. REKON', NULL, NULL),
+(89049, 3, 'test', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89050, 1, 'test', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89051, 3, 'test', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89052, 2, 'test', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89053, 4, '', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89054, 3, '', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89055, 6, '', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89056, NULL, 'test', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89057, NULL, '  ', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89058, NULL, 'test', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89059, NULL, '', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89060, NULL, '', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89061, NULL, '', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89062, 3, '', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', ''),
+(89063, 2, '', '', '', '', '', '', '', '', '', '', 'A. Non Progress', '', '');
 
 -- --------------------------------------------------------
 
@@ -15158,15 +15201,16 @@ INSERT INTO `tabel_lme_main` (`ID_LME`, `ID_ORDER`, `DIVISI`, `REGION`, `NAMA_PR
 
 CREATE TABLE IF NOT EXISTS `tabel_login` (
   `username` varchar(222) NOT NULL,
-  `password` varchar(222) NOT NULL
+  `password` varchar(222) NOT NULL,
+  `keterangan` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tabel_login`
 --
 
-INSERT INTO `tabel_login` (`username`, `password`) VALUES
-('admin', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `tabel_login` (`username`, `password`, `keterangan`) VALUES
+('admin', '21232f297a57a5a743894a0e4a801fc3', NULL);
 
 -- --------------------------------------------------------
 
