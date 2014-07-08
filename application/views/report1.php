@@ -56,7 +56,7 @@
       document.getElementById("status_index_id").value = document.getElementById("status").selectedIndex;
     }
     </script>
-    <title>Laporan</title>
+    <title>Laporan Wifi LME</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -169,6 +169,9 @@
               <a href="#contact">Contact</a>
             </li>
           </ul>
+          <div class="navbar-form navbar-right">
+            <button type="submit" class="btn btn-danger" onClick="window.location='<?php echo "../LoginController/logout" ?>'" >Sign Out</button>
+          </div>
         </div>
         <!-- /.nav-collapse -->
       </div>

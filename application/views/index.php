@@ -3,7 +3,7 @@
 <html>
   
   <head>
-    <title>Jumbotron</title>
+    <title>Telkom Indonesia</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -60,7 +60,7 @@
             </li>
           </ul>
           <div class="navbar-form navbar-right">
-            <button type="submit" class="btn btn-success" onClick="window.location='<?php echo site_url("HomeController/login");?>'" >Sign In</Button>
+            <button type="submit" class="btn btn-success" onClick="window.location='<?php echo site_url("LoginController/login");?>'" >Sign In</Button>
           </div>
         </div>
         <!--/.navbar-collapse -->

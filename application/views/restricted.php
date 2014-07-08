@@ -74,8 +74,8 @@
         <h2 class="form-signin-heading">you have to LOGIN first</h2>
         You are being automatically redirected to a new location.<br />
         If your browser does not redirect you in 5 seconds, or you do
-        not wish to wait, <a href="<?php echo "login" ?>">click here</a>
-        <?php header('Refresh: 5; URL=login'); ?>
+        not wish to wait, <a href="<?php echo "../LoginController/login" ?>">click here</a>
+        <?php header('Refresh: 5; URL=../LoginController/login'); ?>
         
        </div>
     <!-- /container -->

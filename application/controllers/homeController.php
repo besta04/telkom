@@ -81,33 +81,55 @@ class HomeController extends CI_Controller{
 
 	public function login()
 	{
-		$this->load->helper('form');
-		$this->load->view('login');
+		if($this->session->userdata('is_logged_in'))
+	    {
+	      $this->load->helper('form');
+	      $this->load->view('login');
+	    }
+	    else
+	    {
+	      redirect('HomeController/restricted');
+	    }
 	}
 
 	public function inputItem()
 	{
-		$this->load->helper('form');
-		$this->load->view('input');
+		if($this->session->userdata('is_logged_in'))
+	    {
+	    	$this->load->helper('form');
+			$this->load->view('input');
+		}
+	    else
+	    {
+	      redirect('HomeController/restricted');
+	    }
 	}    
 
 	public function editItem($id='')
 	{
-		$this->load->helper('form');
-		$data = array('id' => $id);
-		$this->load->view('edit',$data);
+		if($this->session->userdata('is_logged_in'))
+	    {
+			$this->load->helper('form');
+			$data = array('id' => $id);
+			$this->load->view('edit',$data);
+	    }
+	    else
+	    {
+	      redirect('HomeController/restricted');
+	    }
 	}
 
 	public function deleteItem($id='')
 	{
-		$data = array('id'=>$id);
-		$this->load->view('delete',$data);
-	}
-
-	public function report1()
-	{
-		$this->load->helper('url');
-		$this->load->view('report1');
+		if($this->session->userdata('is_logged_in'))
+	    {
+			$data = array('id'=>$id);
+			$this->load->view('delete',$data);
+	    }
+	    else
+	    {
+	      redirect('HomeController/restricted');
+	    }
 	}
 }
 ?>
