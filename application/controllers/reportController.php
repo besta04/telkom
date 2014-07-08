@@ -47,7 +47,7 @@ class ReportController extends CI_Controller
         $config["per_page"] = 20;
         $config["uri_segment"] = 3;
         $choice = $config["total_rows"] / $config["per_page"];
-        $config["num_links"] = $choice>5 ? 5 : $choice;
+        $config["num_links"] = $choice > 5 ? 5 : $choice;
  
         $this->pagination->initialize($config);
  
@@ -121,7 +121,7 @@ class ReportController extends CI_Controller
         $data["status"] = $this->reportModel->load_dropdown("KLAS_STAT_PROGRESS");
 
         $data["links"] = $this->pagination->create_links();
- 
+
         $this->load->view("report1", $data);
     }
 }

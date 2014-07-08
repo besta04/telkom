@@ -98,6 +98,12 @@ class HomeController extends CI_Controller{
 		$this->load->view('edit',$data);
 	}
 
+	public function deleteItem($id='')
+	{
+		$data = array('id'=>$id);
+		$this->load->view('delete',$data);
+	}
+
 	public function report1()
 	{
 		$this->load->helper('url');

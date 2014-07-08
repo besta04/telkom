@@ -27,12 +27,12 @@ class InputController extends CI_Controller
         	$temp3 = $order->first_row()->ID_ORDER;
         	//$temp2 = $lokasi->first_row()->ID_SITE;
         	$data = array(
-            	     'DIVISI' => $this->input->post('boxDivisi'),
+                    'ID_ORDER' => $temp3,
+                    'DIVISI' => $this->input->post('boxDivisi'),
                     'REGION' => $this->input->post('boxRegional'),
                     'NAMA_PROJECT' => $this->input->post('boxProject'),
                     'PROJECT_SP' => $this->input->post('boxProject/SP'),
                     'SP' => $this->input->post('boxSP'),
-                    'ID_ORDER' => $temp3,
                     'WITEL' => $this->input->post('boxWitel'),
                     'ID_SITE' => $this->input->post('boxIdSite'),
                     'NAMA_LOKASI' => $this->input->post('boxLokasi'),
@@ -102,6 +102,22 @@ class InputController extends CI_Controller
             echo "<script> alert('Update gagal') </script>";
             header('Refresh:1, URL=../../ReportController/editItem/' . $id);
         }
+    }
+
+    public function DeleteValidation($id)
+    {
+        $this->load->model('RekapModel');
+        $result = $this->RekapModel->delete_entry($id);
+        if($result==true)
+        {
+            $stat = 'Delete';
+            redirect('HomeController/berhasil/' . $stat);
+        }
+        else
+        {
+            echo "<script> alert('Delete gagal') </script>";
+            header('Refresh:1, URL=../../ReportController/report1/');
+        } 
     }
 }
 

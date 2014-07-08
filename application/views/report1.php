@@ -441,8 +441,23 @@
           }
         }
         //echo "<script>alert(".$data->ID_LME.");</script>";
-        $num = (int)$data->ID_LME;
-        $num -=20;
+        try
+        {
+          if(empty($data->ID_LME))
+          {
+             throw new Exception("No data found.");
+          }
+          else
+          {
+            $num = (int)$data->ID_LME;
+            $num -=20;
+          }
+        }
+        catch(Exception $e)
+        {
+          echo "<script>alert('No data found.')</script>";
+          $num = -1;
+        }
        $result2 = mysqli_query($con,"select distinct NAMA_LOKASI, ALAMAT from tabel_lme_main limit ".$num." , 20");
        $result3 = mysqli_query($con,"select distinct ID_LME, STAT_PROGRESS, KLAS_STAT_PROGRESS, KETERANGAN 
                               from tabel_lme_main limit ".$num." , 20");
@@ -532,7 +547,8 @@
             echo "<td>" . $data->WITEL . "</td>";
             echo "<td>" . $data->ORDERS . "</td>";
             echo "<td><a href='#' onclick='overlayB()'>" . $data->KLAS_STAT_PROGRESS . "</a></td>";
-            echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $data->ID_LME) . "' >Edit</button></td>";
+            echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $data->ID_LME) . "' >Edit</button>
+            <button type='submit' onClick=window.location='" . site_url('/HomeController/deleteItem/' . $data->ID_LME) . "' >Delete</button></td>";
             echo "</tr>";
           //}
           }

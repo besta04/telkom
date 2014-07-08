@@ -34,6 +34,19 @@ class RekapModel extends CI_Model
         }
     }
 
+    function delete_entry($id)
+    {
+        try 
+        {
+            $this->db->delete('tabel_lme_main', array('id_lme' => $id));  
+            return true;
+        } 
+        catch (Exception $e) 
+        {
+            return false;            
+        }
+    }
+
     function login($username, $password)
     {
         $this->load->database();
