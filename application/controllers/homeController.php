@@ -47,7 +47,14 @@ class HomeController extends CI_Controller{
 	
 	public function statusProgress()
 	{
-		$this->load->view('test');
+		if($this->session->userdata('is_logged_in'))
+		{
+			$this->load->view('test');
+		}
+		else
+		{
+			redirect('HomeController/restricted');
+		}	
 	}
 
 	public function index()
