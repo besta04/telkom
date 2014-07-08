@@ -170,7 +170,7 @@
         </div>
         <div class='form-group'>
           <label class='control-label'>Surat Pesanan :</label>
-          <input type='text' list='surat' class='form-control' name='boxSurat' id='boxSurat'>
+          <select list='surat' class='form-control' name='boxSurat' id='boxSurat'>
           <datalist id='surat'>";
             while ($row = mysqli_fetch_array($resultSurat)){
          echo "<option>".$row['surat_pesanan']."</option>";
@@ -219,7 +219,7 @@
          echo "</select>
         </div>
         <div class='form-group'>
-          <label class='control-label'>Nama Lokasi :</label>
+          <label class='control-label'>Alamat :</label>
           <input type='text' list='alamat' class='form-control' name='boxAlamat'>
           <datalist id='alamat'>";
             while ($row = mysqli_fetch_array($resultAlamat)){

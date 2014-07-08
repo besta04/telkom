@@ -20,6 +20,21 @@ class RekapModel extends CI_Model
             return false;
         }
     }
+    
+    function log_insert($data2)
+	 {
+		$this->load->database();
+		try
+		{
+			$this->db->insert('log',$data2);
+			return true;
+		}
+		catch (Exception $e) 
+      {
+         return false;
+      }
+
+	 }
 
     function update_entry($data, $id)
     {

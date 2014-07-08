@@ -3,7 +3,7 @@
 <html>
   
   <head>
-    <title>Main Page</title>
+    <title>Off Canvas Nav</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -94,7 +94,7 @@
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Laporan Wifi Nasional</h2>
               <p>Lihat laporan LME Wifi Nasional Telkom Indonesia</p>
-              <p><a class="btn btn-default" href="<?php echo "../ReportController/report1" ?>">View details &raquo;</a></p>
+              <p><a class="btn btn-default" href="<?php echo "../HomeController/report1" ?>">View details &raquo;</a></p>
             </div>
             <!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
@@ -138,7 +138,7 @@
               <li class="active">
                 <a href="<?php echo "../HomeController/inputItem" ?>">Input new data</a>
               </li>
-              <li>Laporan</li>
+              <li>Lihat lebih detail</li>
               <li>
                 <a href="<?php echo "../HomeController/statusProgress"?>">Chart Semua Status Progress</a>
               </li>
