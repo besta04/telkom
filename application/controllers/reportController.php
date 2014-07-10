@@ -38,7 +38,15 @@ class ReportController extends CI_Controller
             $data["status"] = $this->reportModel->load_dropdown("KLAS_STAT_PROGRESS");
 
             $data["links"] = $this->pagination->create_links();
-            $this->load->view("report1", $data);
+
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view("report1", $data);
+            }
+            else if ($this->session->userdata('is_staff')) 
+            {
+                $this->load->view("report1Staff", $data);
+            }
         }
         else
         {
@@ -131,7 +139,14 @@ class ReportController extends CI_Controller
 
             $data["links"] = $this->pagination->create_links();
 
-            $this->load->view("report1", $data);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view("report1", $data);
+            }
+            else if ($this->session->userdata('is_staff')) 
+            {
+                $this->load->view("report1Staff", $data);
+            }
         }
         else
         {

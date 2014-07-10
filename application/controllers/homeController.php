@@ -7,7 +7,7 @@ class HomeController extends CI_Controller{
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->helper('url');
-      $this->load->model('data');
+      	$this->load->model('data');
 	}
 
 	function process()
@@ -67,7 +67,14 @@ class HomeController extends CI_Controller{
 	{
 		if($this->session->userdata('is_logged_in'))
 		{
-			$this->load->view('mainPage');
+			if($this->session->userdata('is_admin'))
+			{
+				$this->load->view('mainPage');
+			}
+			else if($this->session->userdata('is_staff'))
+			{
+				$this->load->view('mainPageStaff');
+			}
 		}
 		else
 		{
@@ -90,8 +97,15 @@ class HomeController extends CI_Controller{
 	{
 		if($this->session->userdata('is_logged_in'))
 	    {
-	      $this->load->helper('form');
-	      $this->load->view('login');
+	    	$this->load->helper('form');
+	    	if($this->session->userdata('is_admin'))
+			{
+				$this->load->view('mainPage');
+			}
+			else if($this->session->userdata('is_staff'))
+			{
+				$this->load->view('mainPageStaff');
+			}
 	    }
 	    else
 	    {
@@ -104,7 +118,14 @@ class HomeController extends CI_Controller{
 		if($this->session->userdata('is_logged_in'))
 	    {
 	    	$this->load->helper('form');
-			$this->load->view('input');
+	    	if($this->session->userdata('is_admin'))
+			{
+				$this->load->view('input');
+			}
+			else if($this->session->userdata('is_staff'))
+			{
+				$this->load->view('restricted');
+			}
 		}
 	    else
 	    {
@@ -116,9 +137,16 @@ class HomeController extends CI_Controller{
 	{
 		if($this->session->userdata('is_logged_in'))
 	    {
-			$this->load->helper('form');
+	    	$this->load->helper('form');
 			$data = array('id' => $id);
-			$this->load->view('edit',$data);
+	    	if($this->session->userdata('is_admin'))
+			{
+				$this->load->view('edit',$data);
+			}
+			else if($this->session->userdata('is_staff'))
+			{
+				$this->load->view('editStaff',$data);
+			}
 	    }
 	    else
 	    {
@@ -130,8 +158,15 @@ class HomeController extends CI_Controller{
 	{
 		if($this->session->userdata('is_logged_in'))
 	    {
-			$data = array('id'=>$id);
-			$this->load->view('delete',$data);
+	    	if($this->session->userdata('is_admin'))
+			{
+				$data = array('id'=>$id);
+				$this->load->view('delete',$data);
+			}
+			else if($this->session->userdata('is_staff'))
+			{
+				$this->load->view('restricted');
+			}
 	    }
 	    else
 	    {

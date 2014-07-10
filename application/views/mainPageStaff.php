@@ -96,51 +96,18 @@
               <p>Lihat dan edit laporan LME Wifi Nasional Telkom Indonesia</p>
               <p><a class="btn btn-default" href="<?php echo "../ReportController/report1" ?>">View details &raquo;</a></p>
             </div>
-            <!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Input data baru</h2>
-              <p>Masukkan data baru LME Wifi Nasional Telkom Indonesia</p>
-              <p><a class="btn btn-default" href="<?php echo "../HomeController/inputItem" ?>">View details &raquo;</a></p>
-            </div>
-            <!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Chart</h2>
               <p>Lihat chart LME Wifi Nasional Telkom Indonesia</p>
               <p><a class="btn btn-default" href="<?php echo "../HomeController/statusProgress" ?>">View details &raquo;</a></p>
             </div>
+            
             <!--/span-->
           </div>
           <!--/row-->
         </div>
         <!--/span-->
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="well sidebar-nav">
-            <ul class="nav">
-              <li>Pengelolaan</li>
-              <li class="active">
-                <a href="<?php echo "../HomeController/inputItem" ?>">Input new data</a>
-              </li>
-              <li>Laporan</li>
-              <li>
-                <a href="<?php echo "../HomeController/statusProgress"?>">Chart Semua Status Progress</a>
-              </li>
-              <li>
-                <a href="#">ini</a>
-              </li>
-              <li>
-                <a href="#">itu</a>
-              </li>
-              <li>Mungkin ada lagi</li>
-              <li>
-                <a href="#">ini</a>
-              </li>
-              <li>
-                <a href="#">dan itu</a>
-              </li>
-            </ul>
-          </div>
-          <!--/.well -->
-        </div>
+        
         <!--/span-->
       </div>
       <!--/row-->

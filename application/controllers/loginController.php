@@ -13,7 +13,7 @@ class LoginController extends CI_Controller
 
 	public function login()
   {
-    $this->session->sess_destroy();
+    //$this->session->sess_destroy();
     $this->load->view('login');
 	}
         
@@ -32,19 +32,38 @@ class LoginController extends CI_Controller
   {
     $this->form_validation->set_rules('boxUname','Username','required|valid_username');
     $this->form_validation->set_rules('boxPass','Password','required|callback_verifyUser');
-            
+    //echo "masuk";
     if($this->form_validation->run()==false)
     {
       $this->load->view('login');
     }
     else
     {
-      $data = array(
-                  'username' => $this->input->post('username'),
-                  'is_logged_in' => 1
+      //$this->session->set_userdata($array);
+      $username = $this->input->post('boxUname');
+      $this->load->model('UserModel');
+      $result = $this->UserModel->GetPrevilege($username);
+      if($result == 'admin')
+      {
+        $data = array(
+                  'username' => $username,
+                  'is_logged_in' => 1,
+                  'is_admin' => 1
                   );
-      $this->session->set_userdata($data);
-      redirect('HomeController/main');
+        $this->session->set_userdata($data);
+        redirect('HomeController/main');
+      }
+      else if($result == 'staff')
+      {
+        $data = array(
+                  'username' => $username,
+                  'is_logged_in' => 1,
+                  'is_staff' => 1
+                  );
+        $this->session->set_userdata($data);
+        redirect('HomeController/main');
+      }
+      
     }
   }
         
