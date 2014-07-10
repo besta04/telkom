@@ -10,10 +10,9 @@ class Data extends CI_Model {
     
     function get_data()
     {
-    	$this->db->select('KLAS_STAT_PROGRESS AS STATUS, COUNT(KLAS_STAT_PROGRESS) AS JUMLAH');
-    	$this->db->from('tabel_lme_main');
-    	$this->db->group_by('tabel_lme_main.KLAS_STAT_PROGRESS');
-    	$query = $this->db->get();
+    	//$this->db->select('*');
+    	//$this->db->from('chart');
+    	$query = $this->db->get('chart');
       return $query->result();
     }
 }

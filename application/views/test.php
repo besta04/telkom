@@ -56,6 +56,13 @@
             $.getJSON("data", function(json) {
             options.xAxis.categories = json[0]['data'];
                 options.series[0] = json[1];
+                options.series[1] = json[2];
+                options.series[2] = json[3];
+                options.series[3] = json[4];
+                options.series[4] = json[5];
+                options.series[5] = json[6];
+                options.series[6] = json[7];
+                options.series[7] = json[8];
                 chart = new Highcharts.Chart(options);
             });
         });

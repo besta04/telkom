@@ -27,20 +27,55 @@ class HomeController extends CI_Controller{
     $data = $this->data->get_data();
         
     $category = array();
-    $category['name'] = 'STATUS';
+    $category['name'] = 'WAKTU';
         
     $series1 = array();
-    $series1['name'] = 'JUMLAH';
+    $series1['name'] = 'NON PROGRESS';
+
+    $series2 = array();
+    $series2['name'] = 'SURVEY';
+
+    $series3 = array();
+    $series3['name'] = 'ON PROGRESS';
         
+    $series4 = array();
+    $series4['name'] = 'SELESAI INSTALASI';
+    
+    $series5 = array();
+    $series5['name'] = 'REKON';
+
+    $series6 = array();
+    $series6['name'] = 'KENDALA SITAC';
+
+    $series7 = array();
+    $series7['name'] = 'KENDALA NON SITAC';
+
+    $series8 = array();
+    $series8['name'] = 'BATAL';
+
     foreach ($data as $row)
     {
-        $category['data'][] = $row->STATUS;
-        $series1['data'][] = $row->JUMLAH;
+        $category['data'][] = $row->WAKTU;
+        $series1['data'][] = $row->NON_PROGRESS;
+        $series2['data'][] = $row->SURVEY;
+        $series3['data'][] = $row->ON_PROGRESS;
+        $series4['data'][] = $row->SELESAI_INSTALASI;
+        $series5['data'][] = $row->REKON;
+        $series6['data'][] = $row->KENDALA_SITAC;
+        $series7['data'][] = $row->KENDALA_NON_SITAC;
+        $series8['data'][] = $row->BATAL;
     }
         
     $result = array();
     array_push($result,$category);
     array_push($result,$series1);
+    array_push($result,$series2);
+    array_push($result,$series3);
+    array_push($result,$series4);
+    array_push($result,$series5);
+    array_push($result,$series6);
+    array_push($result,$series7);
+    array_push($result,$series8);
     
     print json_encode($result, JSON_NUMERIC_CHECK);
 	}
