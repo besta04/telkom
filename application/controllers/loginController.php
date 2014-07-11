@@ -63,6 +63,11 @@ class LoginController extends CI_Controller
         $this->session->set_userdata($data);
         redirect('HomeController/main');
       }
+      else
+      {
+        echo "<script> alert('Login tidak ditemukan') </script>";
+        redirect('LoginController/login');
+      }
       
     }
   }
