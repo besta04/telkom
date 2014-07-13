@@ -2,9 +2,12 @@
 
 class InputController extends CI_Controller 
 {
+    public $para;
+
 	public function __construct() 
 	{
 		parent::__construct();
+        $para = $this->input->post('boxKlasifikasi');
 	}
 
 	public function insert_validation()
@@ -42,19 +45,21 @@ class InputController extends CI_Controller
                     'STAT_PROGRESS' => $this->input->post('boxStatus'),
                     'KETERANGAN' => $this->input->post('boxKeterangan')
                     );
-         //$this
-			//$this->db->insert('tabel_lme_main',$data);
+
         	$this->load->model('RekapModel');
-        	//$result = $this->RekapModel->insert_entry($data);
-         $data2 = array(
-						'keterangan' => 'input',
-						'subjek' => $this->input->post('Username')
-						//'waktu' => 'NOW()'
-						);
+
+            $data2 = array(
+						'keterangan' => 'INSERT DATA BARU',
+						'subjek' => $this->session->userdata('username'),
+						'witel' => $this->input->post('boxWitel'),
+                        'lokasi' => $this->input->post('boxLokasi'),
+                        'from' => '-',
+                        'to' => '-'
+            );
 		  $this->db->set('waktu', 'NOW()', FALSE);
 		  //$this->db->insert('log', $data2);
-		  
 		  $result = $this->RekapModel->log_insert($data2);
+          $result = $this->RekapModel->insert_validation($data);
 		  
         if($result==true)
         {
@@ -78,7 +83,6 @@ class InputController extends CI_Controller
     {
         $this->load->library('form_validation');
         $this->load->helper('url');
-
         $surat = $this->input->post('boxSurat');
         //$lokasi = $this->input->post('boxLokasi');
         $this->load->database();
@@ -100,6 +104,17 @@ class InputController extends CI_Controller
             'KETERANGAN' => $this->input->post('boxKeterangan')
             );
         $this->load->model('RekapModel');
+        $data2 = array(
+                        'keterangan' => 'UPDATE DATA',
+                        'subjek' => $this->session->userdata('username'),
+                        'witel' => $this->input->post('boxWitel'),
+                        'lokasi' => $this->input->post('boxLokasi'),
+                        'from' => $this->session->userdata('from'),
+                        'to' => $this->input->post('boxKlasifikasi'),
+            );
+          $this->db->set('waktu', 'NOW()', FALSE);
+          //$this->db->insert('log', $data2);
+        $result = $this->RekapModel->log_insert($data2);
         $result = $this->RekapModel->update_entry($data, $id);
         
         //echo "<script> alert('" . $result . "') </script>";
@@ -118,7 +133,26 @@ class InputController extends CI_Controller
 
     public function DeleteValidation($id)
     {
+        $con=mysqli_connect("localhost","root","root","telkom_lme");
+        if (mysqli_connect_errno())
+        {
+          echo "Failed to connect : ". mysqli_connect_error();
+        }
+        //print_r($id);
+        $resultDelete = mysqli_query($con,"select witel, alamat from tabel_lme_main where id_lme =".$id);
+        $rows = mysqli_fetch_array($resultDelete);
         $this->load->model('RekapModel');
+        $data2 = array(
+                        'keterangan' => 'DELETE',
+                        'subjek' => $this->session->userdata('username'),
+                        'witel' => $rows['witel'],
+                        'lokasi' => $rows['alamat'],
+                        'from' => '-',
+                        'to' => '-'
+            );
+          $this->db->set('waktu', 'NOW()', FALSE);
+          //$this->db->insert('log', $data2);
+          $result = $this->RekapModel->log_insert($data2);
         $result = $this->RekapModel->delete_entry($id);
         if($result==true)
         {

@@ -109,7 +109,7 @@
        $resultSurat = mysqli_query($con,"select distinct surat_pesanan FROM tabel_order, tabel_lme_main WHERE tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER");
        $resultOrder = mysqli_query($con,"select distinct orders from tabel_lme_main");		 
        $resultWitel = mysqli_query($con,"select distinct witel from tabel_lme_main");
-       $resultSite = mysqli_query($con, "select distinct NAMA_LOKASI, ALAMAT FROM tabel_site, tabel_lme_main WHERE tabel_lme_main.ID_SITE = tabel_site.ID_SITE");
+       $resultSite = mysqli_query($con, "select distinct NAMA_LOKASI, ALAMAT FROM tabel_site, tabel_lme_main");
 
        $resultSelected = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order 
                               where id_lme = " . $id . " and tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER");  
@@ -198,6 +198,8 @@
             while ($row = mysqli_fetch_array($resultSite)){
          }
          echo "</datalist>";
+         $data = array('from' => $rows['KLAS_STAT_PROGRESS']);
+         $this->session->set_userdata($data);
          echo "</select>
         </div>
         <div class='form-group'>

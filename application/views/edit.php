@@ -198,6 +198,8 @@
             while ($row = mysqli_fetch_array($resultSite)){
          }
          echo "</datalist>";
+         $data = array('from' => $rows['KLAS_STAT_PROGRESS']);
+         $this->session->set_userdata($data);
          echo "</select>
         </div>
         <div class='form-group'>

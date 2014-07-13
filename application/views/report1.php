@@ -534,6 +534,7 @@
           //$num = 0;
           //while ($row = mysqli_fetch_array($result))
           //{
+          
           if (is_array($results))
           {
           foreach ($results as $data)
