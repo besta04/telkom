@@ -155,7 +155,7 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href='<?php echo "../HomeController/main"?>'>Telkom LME</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -606,7 +606,7 @@
       <!--/row-->
       <hr>
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; PT. Telekomunikasi Indonesia 2014</p>
       </footer>
     </div>
     <!--/.container-->

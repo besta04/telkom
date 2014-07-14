@@ -9,7 +9,42 @@ class ReportController extends CI_Controller
         $this->load->helper("form");
         $this->load->library('session');
         }
- 
+
+    public function log()
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $config = array();
+            $config["base_url"] = site_url() . "/ReportController/log";
+            $config["total_rows"] = $this->reportModel->record_count();
+            $config["per_page"] = 20;
+            $config["uri_segment"] = 3;
+            $choice = $config["total_rows"] / $config["per_page"];
+            $config["num_links"] = $choice>5 ? 5 : $choice;
+     
+            $this->pagination->initialize($config);
+     
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $data["results"] = $this->reportModel->
+                fetch_log($config["per_page"], $page);
+
+            $data["links"] = $this->pagination->create_links();
+
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view("log", $data);
+            }
+            else if ($this->session->userdata('is_staff')) 
+            {
+                $this->load->view("mainPageStaff", $data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
     public function report1() 
     {
         if($this->session->userdata('is_logged_in'))

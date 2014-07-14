@@ -82,6 +82,22 @@ class ReportModel extends CI_Model
         return false;
    }
 
+   public function fetch_log($limit, $start)
+   {
+        $this->db->select('*');
+        $this->db->from('log');
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   }
+
    public function filter_data($limit, $start, $suratPesanan, $TOC, $namaLokasi, $namaProject, $projectSP, $witel, $order, $status)
    {
         $this->db->select("*");

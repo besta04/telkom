@@ -58,7 +58,7 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href='<?php echo "../HomeController/main"?>'>Telkom LME</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -109,6 +109,11 @@
               <p><a class="btn btn-default" href="<?php echo "../HomeController/statusProgress" ?>">View details &raquo;</a></p>
             </div>
             <!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Log</h2>
+              <p>Lihat log LME Wifi Nasional Telkom Indonesia</p>
+              <p><a class="btn btn-default" href="<?php echo "../ReportController/log" ?>">View details &raquo;</a></p>
+            </div>
           </div>
           <!--/row-->
         </div>

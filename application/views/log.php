@@ -3,7 +3,8 @@
 <html>
   
   <head>
-    <title>Main Page</title>
+    
+    <title>Changes Log Wifi LME</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -17,6 +18,9 @@
         padding-left: 15px;
         padding-right: 15px;
       }
+      body.modal-open {
+    overflow: visible;
+}
       /*       * Off Canvas       * --------------------------------------------------       */
       @media screen and(max-width: 768px) {
         .row-offcanvas {
@@ -25,6 +29,9 @@
           -moz-transition: all 0.25s ease-out;
           transition: all 0.25s ease-out;
         }
+        .table td {
+   text-align: center;   
+}
         .row-offcanvas-right .sidebar-offcanvas {
           right: -50%;
           /* 6 columns */
@@ -52,6 +59,7 @@
   </head>
   
   <body>
+
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -82,32 +90,127 @@
     </div>
     <!-- /.navbar -->
     <div class="container">
+
       <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-xs-12 col-sm-9">
+        <div class="">
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button></p>
-          <div class="jumbotron">
-            <h1>Monitoring LME Wifi Nasional</h1>
-            <p>PT. Telekomunikasi Indonesia</p>
-          </div>
           <div class="row">
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Laporan Wifi Nasional</h2>
-              <p>Lihat dan edit laporan LME Wifi Nasional Telkom Indonesia</p>
-              <p><a class="btn btn-default" href="<?php echo "../ReportController/report1" ?>">View details &raquo;</a></p>
-            </div>
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Chart</h2>
-              <p>Lihat chart LME Wifi Nasional Telkom Indonesia</p>
-              <p><a class="btn btn-default" href="<?php echo "../HomeController/statusProgress" ?>">View details &raquo;</a></p>
-            </div>
-            
-            <!--/span-->
+            <div class="panel panel-default">
+            <div class="panel-body" style="text-align:center"><b style="font-size:x-large">Log LME Wifi Nasional</b></div>
+          </div>
+          <table>
+          <?php
+        $con=mysqli_connect("localhost","root","root","telkom_lme");
+        if (mysqli_connect_errno())
+        {
+          echo "Failed to connect : ". mysqli_connect_error();
+        }
+        if (is_array($results))
+        {
+          foreach ($results as $data)
+          {
+          }
+        }
+        //echo "<script>alert(".$data->ID_LME.");</script>";
+        try
+        {
+          if(empty($data->id_log))
+          {
+             throw new Exception("No data found.");
+          }
+          else
+          {
+            $num = (int)$data->id_log;
+            $num -=20;
+          }
+        }
+        catch(Exception $e)
+        {
+          echo "<script>alert('No data found.')</script>";
+          $num = -1;
+        }
+
+        echo "<table id='thetable' class='table table-hover table-bordered' >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Keterangan</th>
+              <th>Subjek</th>
+              <th>Waktu</th>
+              <th>Witel</th>
+              <th>Lokasi</th>
+              <th>Before</th>
+              <th>After</th>
+            </tr>
+          </thead>";
+          echo "<tbody>";
+          //$num = 0;
+          //while ($row = mysqli_fetch_array($result))
+          //{
+          
+          if (is_array($results))
+          {
+          foreach ($results as $data)
+          {
+            //$num++;
+            echo "<tr>";
+            echo "<td>" . $data->id_log . "</td>";
+            echo "<td>" . $data->keterangan . "</td>";
+            echo "<td>" . $data->subjek . "</td>";
+            echo "<td>" . $data->waktu . "</td>";
+            echo "<td>" . $data->witel . "</td>";
+            echo "<td>" . $data->lokasi . "</td>";
+            echo "<td>" . $data->from . "</td>";
+            echo "<td>" . $data->to . "</td>";
+            echo "</tr>";
+          //}
+          }
+        };
+          echo "</tbody>";
+          echo "</table>";
+
+          mysqli_close($con);
+          ?>
+          <p><?php echo $links; ?></p>
           </div>
           <!--/row-->
         </div>
         <!--/span-->
-        
+        <!--<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="well sidebar-nav">
+            <ul class="nav">
+              <li>Sidebar</li>
+              <li class="active">
+                <a href="#">Link</a>
+              </li>
+              <li>
+                <a href="#">Link</a>
+              </li>
+              <li>
+                <a href="#">Link</a>
+              </li>
+              <li>Sidebar</li>
+              <li>
+                <a href="#">Link</a>
+              </li>
+              <li>
+                <a href="#">Link</a>
+              </li>
+              <li>
+                <a href="#">Link</a>
+              </li>
+              <li>Sidebar</li>
+              <li>
+                <a href="#">Link</a>
+              </li>
+              <li>
+                <a href="#">Link</a>
+              </li>
+            </ul>
+          </div>
+          
+        </div>-->
         <!--/span-->
       </div>
       <!--/row-->
