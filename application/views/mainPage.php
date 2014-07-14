@@ -58,7 +58,7 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href='<?php echo "../HomeController/main"?>'>Telkom LME</a>
+          <a class="navbar-brand" href='<?php echo site_url('HomeController/main') ?>'>Telkom LME</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -123,24 +123,18 @@
             <ul class="nav">
               <li>Pengelolaan</li>
               <li class="active">
-                <a href="<?php echo "../HomeController/inputItem" ?>">Input new data</a>
+                <a href="<?php echo site_url('HomeController/inputItem') ?>">Input new data</a>
               </li>
               <li>Laporan</li>
               <li>
-                <a href="<?php echo "../HomeController/statusProgress"?>">Chart Semua Status Progress</a>
+                <a href="<?php echo site_url('HomeController/statusProgress') ?>">Chart Status Progress</a>
               </li>
               <li>
-                <a href="#">ini</a>
+                <a href="<?php echo site_url('ReportController/report1') ?>">Laporan</a>
               </li>
+              <li>Admin</li>
               <li>
-                <a href="#">itu</a>
-              </li>
-              <li>Mungkin ada lagi</li>
-              <li>
-                <a href="#">ini</a>
-              </li>
-              <li>
-                <a href="#">dan itu</a>
+                <a href="<?php echo site_url('ReportController/log') ?>">Log</a>
               </li>
             </ul>
           </div>

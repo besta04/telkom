@@ -86,6 +86,7 @@ class ReportModel extends CI_Model
    {
         $this->db->select('*');
         $this->db->from('log');
+        $this->db->order_by('waktu', 'desc');
         $this->db->limit($limit, $start);
         $query = $this->db->get();
 
