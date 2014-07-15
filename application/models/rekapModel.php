@@ -7,6 +7,7 @@ class RekapModel extends CI_Model
         parent::__construct();
     }
 
+    // fungsi input data baru
     function insert_entry($data)
     {
         $this->load->database();
@@ -21,21 +22,22 @@ class RekapModel extends CI_Model
         }
     }
     
+    // fungsi insert log baru
     function log_insert($data2)
-	 {
-		$this->load->database();
+    {
+        $this->load->database();
 		try
 		{
 			$this->db->insert('log',$data2);
 			return true;
 		}
 		catch (Exception $e) 
-      {
-         return false;
-      }
+        {
+            return false;
+        }
+	}
 
-	 }
-
+     // fungsi update data
     function update_entry($data, $id)
     {
         try 
@@ -49,6 +51,7 @@ class RekapModel extends CI_Model
         }
     }
 
+    // fungsi delete data
     function delete_entry($id)
     {
         try 
@@ -62,6 +65,7 @@ class RekapModel extends CI_Model
         }
     }
 
+    // fungsi login dapetin uname & pass dr database
     function login($username, $password)
     {
         $this->load->database();

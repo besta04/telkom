@@ -10,24 +10,38 @@ class ReportController extends CI_Controller
         $this->load->library('session');
         }
 
+    // fungsi untuk manggil view log
     public function log()
     {
         if($this->session->userdata('is_logged_in'))
         {
             $config = array();
+
+            // halaman awal log
             $config["base_url"] = site_url() . "/ReportController/log";
-            $config["total_rows"] = $this->reportModel->record_count();
+
+            // jumlah total log
+            $config["total_rows"] = $this->reportModel->log_count();
+
+            // yang ditampilkan per halaman
             $config["per_page"] = 20;
+
+            // jumlah segment untuk links
             $config["uri_segment"] = 3;
+
+            // jumlah pilihan 
             $choice = $config["total_rows"] / $config["per_page"];
             $config["num_links"] = $choice>5 ? 5 : $choice;
      
             $this->pagination->initialize($config);
      
             $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+            // ambil data log dari reportmodel
             $data["results"] = $this->reportModel->
                 fetch_log($config["per_page"], $page);
 
+            // buat pagination
             $data["links"] = $this->pagination->create_links();
 
             if($this->session->userdata('is_admin'))
@@ -45,6 +59,7 @@ class ReportController extends CI_Controller
         }
     }
 
+    // fungsi panggil view laporan
     public function report1() 
     {
         if($this->session->userdata('is_logged_in'))
@@ -74,6 +89,9 @@ class ReportController extends CI_Controller
 
             $data["links"] = $this->pagination->create_links();
 
+            $dataa = array('num'=>$page);
+            $this->session->set_userdata($dataa);
+
             if($this->session->userdata('is_admin'))
             {
                 $this->load->view("report1", $data);
@@ -89,22 +107,14 @@ class ReportController extends CI_Controller
         }
     }
 
+    // fungsi filter laporan
     public function search()
     {
         if($this->session->userdata('is_logged_in'))
-        {
-            $config = array();
-            $config["base_url"] = site_url() . "/ReportController/search";
-            $config["total_rows"] = $this->reportModel->record_count();
-            $config["per_page"] = 20;
-            $config["uri_segment"] = 3;
-            $choice = $config["total_rows"] / $config["per_page"];
-            $config["num_links"] = $choice > 5 ? 5 : $choice;
-     
-            $this->pagination->initialize($config);
-     
+        {     
             $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
+            // di set hanya pada result saat page pertama
             if($page == 0)
             {
                 $dataa = array('suratPesanan'=>$this->input->post("suratPesanan"));
@@ -124,15 +134,6 @@ class ReportController extends CI_Controller
                 $dataa = array('status'=>$this->input->post("status"));
                 $this->session->set_userdata($dataa);
 
-                /*
-                $suratPesanan = $this->input->post("suratPesanan");
-                $TOC = $this->input->post("toc");
-                $namaLokasi = $this->input->post("namaLokasi");
-                $namaProject = $this->input->post("namaProject");
-                $projectSP = $this->input->post("projectSP");
-                $witel = $this->input->post("witel");
-                $order = $this->input->post("order");
-                $status = $this->input->post("status");*/
                 $dataIndex = array('suratPesananIndex'=>$this->input->post("suratPesanan_index"));
                 $this->session->set_userdata($dataIndex);
                 $dataIndex = array('tocIndex'=>$this->input->post("toc_index"));
@@ -160,9 +161,7 @@ class ReportController extends CI_Controller
             $order = $this->session->userdata('order');
             $status = $this->session->userdata('status');
 
-            $data["results"] = $this->reportModel->
-                filter_data($config["per_page"], $page, $suratPesanan, $TOC, $namaLokasi, $namaProject, $projectSP, $witel, $order, $status);
-
+            // panggil fungsi untuk isi dari dropdown di laporan
             $data["suratPesanan"] = $this->reportModel->load_dropdown("SURAT_PESANAN");
             $data["toc"] = $this->reportModel->load_dropdown("TOC");
             $data["namaLokasi"] = $this->reportModel->load_dropdown("NAMA_LOKASI");
@@ -172,7 +171,23 @@ class ReportController extends CI_Controller
             $data["order"] = $this->reportModel->load_dropdown("ORDERS");
             $data["status"] = $this->reportModel->load_dropdown("KLAS_STAT_PROGRESS");
 
+            $config = array();
+            $config["base_url"] = site_url() . "/ReportController/search";
+            $config["total_rows"] = $this->reportModel->record_filter_count($suratPesanan, $TOC, $namaLokasi, $namaProject, $projectSP, $witel, $order, $status);
+            $config["per_page"] = 20;
+            $config["uri_segment"] = 3;
+            $choice = $config["total_rows"] / $config["per_page"];
+            $config["num_links"] = $choice > 5 ? 5 : $choice;
+     
+            $this->pagination->initialize($config);
+
+            $data["results"] = $this->reportModel->
+                filter_data($config["per_page"], $page, $suratPesanan, $TOC, $namaLokasi, $namaProject, $projectSP, $witel, $order, $status);
+
             $data["links"] = $this->pagination->create_links();
+
+            $dataa = array('num'=>$page);
+            $this->session->set_userdata($dataa);
 
             if($this->session->userdata('is_admin'))
             {

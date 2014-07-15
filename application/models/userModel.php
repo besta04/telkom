@@ -5,6 +5,7 @@ class UserModel extends CI_Model
         parent::__construct();
     }
 
+    // dapetin previlege, apakah admin atau user biasa
     function GetPrevilege($username)
     {
         $this->load->database();

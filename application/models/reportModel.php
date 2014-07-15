@@ -4,12 +4,64 @@ class ReportModel extends CI_Model
     public function __construct() {
         parent::__construct();
     }
- 
+
+    // fungsi hitung jumlah data
     public function record_count() {
         $this->load->database();
-        return $this->db->count_all("tabel_lme_main");
+        $this->db->select('*');
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        return $this->db->count_all_results();
     }
 
+    // fungsi hitung jumlah data filter
+    public function record_filter_count($suratPesanan, $TOC, $namaLokasi, $namaProject, $projectSP, $witel, $order, $status) {
+        $this->load->database();
+        $this->db->select("*");
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        if($suratPesanan != '')
+        {
+            $this->db->where('SURAT_PESANAN',$suratPesanan);
+        }
+        if($TOC != '')
+        {
+            $this->db->where('TOC',$TOC);
+        }
+        if($namaLokasi != '')
+        {
+            $this->db->where('NAMA_LOKASI',$namaLokasi);
+        }
+        if($namaProject != '')
+        {
+            $this->db->where('NAMA_PROJECT',$namaProject);
+        }
+        if($projectSP != '')
+        {
+            $this->db->where('PROJECT_SP',$projectSP);
+        }
+        if($witel != '')
+        {
+            $this->db->where('WITEL',$witel);
+        }
+        if($order != '')
+        {
+            $this->db->where('ORDERS',$order);
+        }
+        if($status != '')
+        {
+            $this->db->where('KLAS_STAT_PROGRESS',$status);
+        }
+        return $this->db->count_all_results();
+    }
+
+    // fungsi hitung jumlah log
+    public function log_count() {
+        $this->load->database();
+        return $this->db->count_all("log");
+    }
+
+    // fungsi select data untuk dropdown
     public function load_dropdown($key)
     {
         $this->db->distinct();
@@ -57,22 +109,15 @@ class ReportModel extends CI_Model
         return false;
     }
 
+    // fungsi select data utama untuk report
     public function fetch_data($limit, $start) 
     {
-        /*$result = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order 
-                              where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER LIMIT 50");*/
         $this->db->select('*');
         $this->db->from('tabel_lme_main');
-        //$this->db->from('tabel_order');
-        //$this->db->where('tabel_lme_main.ID_ORDER', 'tabel_order.ID_ORDER');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
         $this->db->limit($limit, $start);
-        //$query = $this->db->limit($limit, $start);
-        //$query = $this->db->query("select * from tabel_lme_main, tabel_order 
-                        //where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER limit ".$start.",".$limit);
         $query = $this->db->get();
-        //$query = $this->db->get("Country");
-        //echo "<script>alert(".$start.")</script>";
+
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $data[] = $row;
@@ -82,6 +127,7 @@ class ReportModel extends CI_Model
         return false;
    }
 
+   // fungsi select data untuk log
    public function fetch_log($limit, $start)
    {
         $this->db->select('*');
@@ -99,6 +145,7 @@ class ReportModel extends CI_Model
         return false;
    }
 
+   // fungsi untuk filter data report
    public function filter_data($limit, $start, $suratPesanan, $TOC, $namaLokasi, $namaProject, $projectSP, $witel, $order, $status)
    {
         $this->db->select("*");
@@ -139,6 +186,7 @@ class ReportModel extends CI_Model
         }
         $this->db->limit($limit, $start);
         $query = $this->db->get();
+
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
                 $data[] = $row;

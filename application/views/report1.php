@@ -110,7 +110,7 @@
      left: 0px;
      top: 0px;
      width:100%;
-     height:200%;
+     height:300%;
      text-align:center;
      z-index: 1000;
      background-color: rgba(1,1,1,0.8)
@@ -130,7 +130,7 @@
      left: 0px;
      top: 0px;
      width:100%;
-     height:200%;
+     height:300%;
      text-align:center;
      z-index: 1000;
      background-color: rgba(1,1,1,0.8)
@@ -452,20 +452,24 @@
           }
           else
           {
-            $num = (int)$data->ID_LME;
-            $num -=20;
+            //$num = (int)$data->ID_LME;
+            //$num -=20;
           }
         }
         catch(Exception $e)
         {
           echo "<script>alert('No data found.')</script>";
-          $num = -1;
+          //$num = -1;
         }
-       $result2 = mysqli_query($con,"select distinct NAMA_LOKASI, ALAMAT from tabel_lme_main limit ".$num." , 20");
+        $num = $this->session->userdata("num");
+       $result2 = mysqli_query($con,"select NAMA_LOKASI, ALAMAT from tabel_lme_main, tabel_order 
+                              where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER limit ".$num." , 20");
        $result3 = mysqli_query($con,"select distinct ID_LME, STAT_PROGRESS, KLAS_STAT_PROGRESS, KETERANGAN 
                               from tabel_lme_main limit ".$num." , 20");
         echo "<div id='overlay'>
            <div>
+           Click here to [<a href='#' onclick='overlay()'>close</a>]
+           <br><br>
                 <table class='table table-hover table-bordered'>
                   <thead>
                     <tr>
@@ -489,6 +493,8 @@
 
           echo "<div id='overlayB'>
            <div>
+           Click here to [<a href='#' onclick='overlayB()'>close</a>]
+           <br><br>
                 <table class='table table-hover table-bordered'>
                   <thead>
                     <tr>
