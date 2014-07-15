@@ -110,7 +110,7 @@
        $resultSurat = mysqli_query($con,"select distinct surat_pesanan FROM tabel_order");
        $resultLokasi = mysqli_query($con,"select distinct nama_lokasi FROM tabel_lme_main");
        $resultAlamat = mysqli_query($con,"select distinct alamat FROM tabel_lme_main");
-		 $resultOrder = mysqli_query($con,"select distinct orders from tabel_lme_main");		 
+       $resultOrder = mysqli_query($con,"select distinct orders from tabel_lme_main");		 
        $resultWitel = mysqli_query($con,"select distinct witel from tabel_lme_main");
        $resultSite = mysqli_query($con, "select nama_lokasi FROM tabel_site");
 		  echo form_open('InputController/insert_validation');

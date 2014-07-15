@@ -65,7 +65,27 @@ class ReportModel extends CI_Model
     public function load_dropdown($key)
     {
         $this->db->distinct();
-        if($key == "SURAT_PESANAN")
+        if($key == "REGION")
+        {
+            $this->db->select('DIVRE');
+        }
+        else if($key == "WITEL")
+        {
+            $this->db->select('WITEL');
+        }
+        else if($key == "KOTA")
+        {
+            $this->db->select('KOTA');
+        }
+        else if($key == "NAMA_LOKASI")
+        {
+            $this->db->select('NAMA_LOKASI');
+        }
+        else if($key == "ALAMAT")
+        {
+            $this->db->select('ALAMAT');
+        }
+        else if($key == "SURAT_PESANAN")
         {
             $this->db->select('SURAT_PESANAN');
         }
@@ -73,29 +93,25 @@ class ReportModel extends CI_Model
         {
             $this->db->select('TOC');
         }
-        if($key == "NAMA_LOKASI")
-        {
-            $this->db->select('NAMA_LOKASI');
-        }
-        if($key == "NAMA_PROJECT")
-        {
-            $this->db->select('NAMA_PROJECT');
-        }
-        if($key == "PROJECT_SP")
-        {
-            $this->db->select('PROJECT_SP');
-        }
-        if($key == "WITEL")
-        {
-            $this->db->select('WITEL');
-        }
-        if($key == "ORDERS")
+        else if($key == "ORDERS")
         {
             $this->db->select('ORDERS');
         }
-        if($key == "KLAS_STAT_PROGRESS")
+        else if($key == "KLAS_STAT_PROGRESS")
         {
-            $this->db->select('KLAS_STAT_PROGRESS');
+            $this->db->select('KLASIFIKASI_STATUS_SMILE');
+        }
+        else if($key == "STAT_PROGRESS")
+        {
+            $this->db->select('STATUS_PROGRESS_WIFI');
+        }
+        else if($key == "KETERANGAN")
+        {
+            $this->db->select('ALASAN_STATUS_PROGRESS');
+        }
+        else if($key == "TIPE_LME")
+        {
+            $this->db->select('TYPE_LME');
         }
         $this->db->from('tabel_lme_main');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');

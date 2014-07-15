@@ -23,6 +23,26 @@
         return row;
       });
     }
+    function setRegionalIndex() 
+    {
+      document.getElementById("regional_index_id").value = document.getElementById("regional").selectedIndex;
+    }
+    function setWitelIndex() 
+    {
+      document.getElementById("witel_index_id").value = document.getElementById("witel").selectedIndex;
+    }
+    function setKotaIndex() 
+    {
+      document.getElementById("kota_index_id").value = document.getElementById("kota").selectedIndex;
+    }
+    function setNamaLokasiIndex() 
+    {
+      document.getElementById("namaLokasi_index_id").value = document.getElementById("namaLokasi").selectedIndex;
+    }
+    function setAlamatIndex() 
+    {
+      document.getElementById("alamat_index_id").value = document.getElementById("alamat").selectedIndex;
+    }
     function setSuratPesananIndex() 
     {
       document.getElementById("suratPesanan_index_id").value = document.getElementById("suratPesanan").selectedIndex;
@@ -31,22 +51,6 @@
     {
       document.getElementById("toc_index_id").value = document.getElementById("toc").selectedIndex;
     }
-    function setNamaLokasiIndex() 
-    {
-      document.getElementById("namaLokasi_index_id").value = document.getElementById("namaLokasi").selectedIndex;
-    }
-    function setNamaProjectIndex() 
-    {
-      document.getElementById("namaProject_index_id").value = document.getElementById("namaProject").selectedIndex;
-    }
-    function setProjectSPIndex() 
-    {
-      document.getElementById("projectSP_index_id").value = document.getElementById("projectSP").selectedIndex;
-    }
-    function setWitelIndex() 
-    {
-      document.getElementById("witel_index_id").value = document.getElementById("witel").selectedIndex;
-    }
     function setOrderIndex() 
     {
       document.getElementById("order_index_id").value = document.getElementById("order").selectedIndex;
@@ -54,6 +58,18 @@
     function setStatusIndex() 
     {
       document.getElementById("status_index_id").value = document.getElementById("status").selectedIndex;
+    }
+    function setStatProgIndex() 
+    {
+      document.getElementById("statProg_index_id").value = document.getElementById("statProg").selectedIndex;
+    }
+    function setKeteranganIndex() 
+    {
+      document.getElementById("keterangan_index_id").value = document.getElementById("keterangan").selectedIndex;
+    }
+    function setTipeIndex() 
+    {
+      document.getElementById("tipe_index_id").value = document.getElementById("tipe").selectedIndex;
     }
     </script>
     <title>Laporan Wifi LME</title>
@@ -204,66 +220,37 @@
           }
         }
               echo form_open('ReportController/search' );
-          echo "<p>Surat Pesanan 
+          echo "<p>Regional
             <td><p>:</p></td>
           </td>
           <td> ";
-          $suratPesananSelected = $this->session->userdata('suratPesananIndex');
-            echo "<input type='hidden' name='suratPesanan_index' value='".$suratPesananSelected."' id='suratPesanan_index_id'/>
-            <select name='suratPesanan' id='suratPesanan' onchange='setSuratPesananIndex()'>
+          $regionalSelected = $this->session->userdata('regionalIndex');
+            echo "<input type='hidden' name='regional_index' value='".$regionalSelected."' id='regional_index_id'/>
+            <select name='regional' id='regional' onchange='setRegionalIndex()'>
             <option></option>";
-            if (is_array($suratPesanan))
-            {
-              $j = 1;
-              foreach ($suratPesanan as $data)
-              {
-                if($j == $suratPesananSelected)
-                {
-                  echo "<option selected='selected'>".$data->SURAT_PESANAN."</option>";
-                }
-                else
-                {
-                  echo "<option>".$data->SURAT_PESANAN."</option>";
-                }
-                $j++;
-              }
-            }
-            echo "</select></p>
-          </td>
-          <td><p>|</p></td>
-          <td><p>Project SP</td>
-          <td><p>:</p></td>
-          <td>";
-          $statusSelected = $this->session->userdata('projectSPIndex');
-            echo "<input type='hidden' name='projectSP_index' value='".$statusSelected."' id='projectSP_index_id'/>
-            <select name='projectSP' id='projectSP' onchange='setProjectSPIndex()'>
-            <option></option>";
-            if (is_array($projectSP))
+            if (is_array($regional))
             {
               $i = 1;
-              foreach ($projectSP as $data)
+              foreach ($regional as $data)
               {
-                if($i == $statusSelected)
+                if($i == $regionalSelected)
                 {
-                  echo "<option selected='selected'>".$data->PROJECT_SP."</option>";
+                  echo "<option selected='selected'>".$data->DIVRE."</option>";
                 }
                 else
                 {
-                  echo "<option>".$data->PROJECT_SP."</option>";
+                  echo "<option>".$data->DIVRE."</option>";
                 }
                 $i++;
               }
             }
             echo "</select></p>
           </td>
-        </tr>
-        <tr>
-          <td>
-          <p>TOC 
-            <td>:</td> 
-          </td>
+          <td><p>|</p></td>
+          <td><p>TOC</td>
+          <td><p>:</p></td>
           <td>";
-            $statusSelected = $this->session->userdata('tocIndex');
+          $statusSelected = $this->session->userdata('tocIndex');
             echo "<input type='hidden' name='toc_index' value='".$statusSelected."' id='toc_index_id'/>
             <select name='toc' id='toc' onchange='setTocIndex()'>
             <option></option>";
@@ -285,11 +272,14 @@
             }
             echo "</select></p>
           </td>
-          <td><p>|</p></td>
-          <td><p>Witel</td>
-          <td><p>:</p></td>
+        </tr>
+        <tr>
+          <td>
+          <p>Witel 
+            <td>:</td> 
+          </td>
           <td>";
-            $statusSelected = $this->session->userdata('witelIndex');
+          $statusSelected = $this->session->userdata('witelIndex');
             echo "<input type='hidden' name='witel_index' value='".$statusSelected."' id='witel_index_id'/>
             <select name='witel' id='witel' onchange='setWitelIndex()'>
             <option></option>";
@@ -305,6 +295,88 @@
                 else
                 {
                   echo "<option>".$data->WITEL."</option>";
+                }
+                $i++;
+              }
+            }            
+            echo "</select></p>
+          </td>
+          <td><p>|</p></td>
+          <td><p>Order</td>
+          <td><p>:</p></td>
+          <td>";
+          $statusSelected = $this->session->userdata('orderIndex');
+            echo "<input type='hidden' name='order_index' value='".$statusSelected."' id='order_index_id'/>
+            <select name='order' id='order' onchange='setOrderIndex()'>
+            <option></option>";
+            if (is_array($order))
+            {
+              $i = 1;
+              foreach ($order as $data)
+              {
+                if($i == $statusSelected)
+                {
+                  echo "<option selected='selected'>".$data->ORDERS."</option>";
+                }
+                else
+                {
+                  echo "<option>".$data->ORDERS."</option>";
+                }
+                $i++;
+              }
+            }
+            echo "</select></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>Kota
+              <td>:</td> 
+            </td>
+            <td>";
+            $statusSelected = $this->session->userdata('kotaIndex');
+            echo "<input type='hidden' name='kota_index' value='".$statusSelected."' id='kota_index_id'/>
+            <select name='kota' id='kota' onchange='setKotaIndex()'>
+            <option></option>";
+            if (is_array($kota))
+            {
+              $i = 1;
+              foreach ($kota as $data)
+              {
+                if($i == $statusSelected)
+                {
+                  echo "<option selected='selected'>".$data->KOTA."</option>";
+                }
+                else
+                {
+                  echo "<option>".$data->KOTA."</option>";
+                }
+                $i++;
+              }
+            }
+            echo "</select></p>
+          </td>
+          <td><p>|</p></td>
+          <td><p>Klasifikasi Status</td>
+          <td><p>:</p></td>
+          <td>";
+          $statusSelected = $this->session->userdata('statusIndex');
+            //echo "<script>alert('".$statusSelected."')</script>";
+            echo "<input type='hidden' name='status_index' value='".$statusSelected."' id='status_index_id'/>
+            <select name='status' id='status' onchange='setStatusIndex()'>";
+            echo "<option></option>";
+            if (is_array($status))
+            {
+              $i = 1;
+              foreach ($status as $data)
+              {
+                if($i == $statusSelected)
+                {
+                  echo "<option selected='selected'>".$data->KLASIFIKASI_STATUS_SMILE."</option>";
+                }
+                else
+                {
+                  echo "<option>".$data->KLASIFIKASI_STATUS_SMILE."</option>";
                 }
                 $i++;
               }
@@ -341,55 +413,54 @@
             echo "</select></p>
           </td>
           <td><p>|</p></td>
-          <td><p>Order</td>
+          <td><p>Status Progress</td>
           <td><p>:</p></td>
           <td>";
-            $statusSelected = $this->session->userdata('orderIndex');
-            echo "<input type='hidden' name='order_index' value='".$statusSelected."' id='order_index_id'/>
-            <select name='order' id='order' onchange='setOrderIndex()'>
+          $statusSelected = $this->session->userdata('statProgIndex');
+            echo "<input type='hidden' name='statProg_index' value='".$statusSelected."' id='statProg_index_id'/>
+            <select name='statProg' id='statProg' onchange='setStatProgIndex()'>
             <option></option>";
-            if (is_array($order))
+            if (is_array($statProg))
             {
               $i = 1;
-              foreach ($order as $data)
+              foreach ($statProg as $data)
               {
                 if($i == $statusSelected)
                 {
-                  echo "<option selected='selected'>".$data->ORDERS."</option>";
+                  echo "<option selected='selected'>".$data->STATUS_PROGRESS_WIFI."</option>";
                 }
                 else
                 {
-                  echo "<option>".$data->ORDERS."</option>";
+                  echo "<option>".$data->STAT_PROGRESS_WIFI."</option>";
                 }
                 $i++;
               }
             }
             echo "</select></p>
           </td>
-        </tr>
+          </tr>
         <tr>
           <td>
-            <p>Nama Project 
+            <p>Alamat 
               <td>:</td> 
             </td>
             <td>";
-            $statusSelected = $this->session->userdata('namaProjectIndex');
-            //echo "<script>alert('".$statusSelected."')</script>";
-            echo "<input type='hidden' name='namaProject_index' value='".$statusSelected."' id='namaProject_index_id'/>
-            <select name='namaProject' id='namaProject' onchange='setNamaProjectIndex()'>
+            $statusSelected = $this->session->userdata('alamatIndex');
+            echo "<input type='hidden' name='alamat_index' value='".$statusSelected."' id='alamat_index_id'/>
+            <select name='alamat' id='alamat' onchange='setAlamatIndex()'>
             <option></option>";
-            if (is_array($namaProject))
+            if (is_array($alamat))
             {
               $i = 1;
-              foreach ($namaProject as $data)
+              foreach ($alamat as $data)
               {
                 if($i == $statusSelected)
                 {
-                  echo "<option selected='selected'>".$data->NAMA_PROJECT."</option>";
+                  echo "<option selected='selected'>".$data->ALAMAT."</option>";
                 }
                 else
                 {
-                  echo "<option>".$data->NAMA_PROJECT."</option>";
+                  echo "<option>".$data->ALAMAT."</option>";
                 }
                 $i++;
               }
@@ -397,31 +468,84 @@
             echo "</select></p>
           </td>
           <td><p>|</p></td>
-          <td><p>Status</td>
+          <td><p>Keterangan</td>
           <td><p>:</p></td>
           <td>";
-            $statusSelected = $this->session->userdata('statusIndex');
-            //echo "<script>alert('".$statusSelected."')</script>";
-            echo "<input type='hidden' name='status_index' value='".$statusSelected."' id='status_index_id'/>
-            <select name='status' id='status' onchange='setStatusIndex()'>";
-            echo "<option></option>";
-            if (is_array($status))
+          $statusSelected = $this->session->userdata('keteranganIndex');
+            echo "<input type='hidden' name='keterangan_index' value='".$statusSelected."' id='keterangan_index_id'/>
+            <select name='keterangan' id='keterangan' onchange='setKeteranganIndex()'>
+            <option></option>";
+            if (is_array($keterangan))
             {
               $i = 1;
-              foreach ($status as $data)
+              foreach ($keterangan as $data)
               {
                 if($i == $statusSelected)
                 {
-                  echo "<option selected='selected'>".$data->KLAS_STAT_PROGRESS."</option>";
+                  echo "<option selected='selected'>".$data->ALASAN_STATUS_PROGRESS."</option>";
                 }
                 else
                 {
-                  echo "<option>".$data->KLAS_STAT_PROGRESS."</option>";
+                  echo "<option>".$data->ALASAN_STATUS_PROGRESS."</option>";
                 }
                 $i++;
               }
             }
-            
+            echo "</select></p>
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <p>Surat Pesanan 
+              <td>:</td> 
+            </td>
+            <td>";
+            $suratPesananSelected = $this->session->userdata('suratPesananIndex');
+            echo "<input type='hidden' name='suratPesanan_index' value='".$suratPesananSelected."' id='suratPesanan_index_id'/>
+            <select name='suratPesanan' id='suratPesanan' onchange='setSuratPesananIndex()'>
+            <option></option>";
+            if (is_array($suratPesanan))
+            {
+              $j = 1;
+              foreach ($suratPesanan as $data)
+              {
+                if($j == $suratPesananSelected)
+                {
+                  echo "<option selected='selected'>".$data->SURAT_PESANAN."</option>";
+                }
+                else
+                {
+                  echo "<option>".$data->SURAT_PESANAN."</option>";
+                }
+                $j++;
+              }
+            }
+            echo "</select></p>
+          </td>
+          <td><p>|</p></td>
+          <td><p>Tipe LME</td>
+          <td><p>:</p></td>
+          <td>";
+          $statusSelected = $this->session->userdata('tipeIndex');
+            echo "<input type='hidden' name='tipe_index' value='".$statusSelected."' id='tipe_index_id'/>
+            <select name='tipe' id='tipe' onchange='setTipeIndex()'>
+            <option></option>";
+            if (is_array($tipe))
+            {
+              $i = 1;
+              foreach ($tipe as $data)
+              {
+                if($i == $statusSelected)
+                {
+                  echo "<option selected='selected'>".$data->TYPE_LME."</option>";
+                }
+                else
+                {
+                  echo "<option>".$data->TYPE_LME."</option>";
+                }
+                $i++;
+              }
+            }
             echo "</select></p>
           </td>";
           ?>
@@ -509,9 +633,9 @@
                   {
                     echo "<tr>";
                       echo "<td>" . $row['ID_LME'] . "</td>";
-                      echo "<td>" . $row['KLAS_STAT_PROGRESS'] . "</td>";
-                      echo "<td>" . $row['STAT_PROGRESS'] . "</td>";
-                      echo "<td>" . $row['KETERANGAN'] . "</td>";
+                      echo "<td>" . $row['KLASIFIKASI_STATUS_SMILE'] . "</td>";
+                      echo "<td>" . $row['STATUS_PROGRESS_WIFI'] . "</td>";
+                      echo "<td>" . $row['ALASAN_STATUS_PROGRESS'] . "</td>";
                     echo "</tr>";
                   }
                   echo "</tbody>
@@ -528,8 +652,6 @@
               <th>TOC</th>
               <th>Nama Lokasi</th>
               <!--<th>Alamat</th>-->
-              <th>Nama Project</th>
-              <th>Project SP</th>
               <th>Witel</th>
               <th>Order</th>
               <th>Status</th>
@@ -552,11 +674,9 @@
             echo "<td>" . $data->TOC . "</td>";
             echo "<td><a href='#' onclick='overlay()'>" . $data->NAMA_LOKASI . "</a></td>";
             //echo "<td>" . $row['ALAMAT'] . "</td>";
-            echo "<td>" . $data->NAMA_PROJECT . "</td>";
-            echo "<td>" . $data->PROJECT_SP . "</td>";
             echo "<td>" . $data->WITEL . "</td>";
             echo "<td>" . $data->ORDERS . "</td>";
-            echo "<td><a href='#' onclick='overlayB()'>" . $data->KLAS_STAT_PROGRESS . "</a></td>";
+            echo "<td><a href='#' onclick='overlayB()'>" . $data->KLASIFIKASI_STATUS_SMILE . "</a></td>";
             echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $data->ID_LME) . "' >Edit</button>
             <button type='submit' onClick=window.location='" . site_url('/HomeController/deleteItem/' . $data->ID_LME) . "' >Delete</button></td>";
             echo "</tr>";

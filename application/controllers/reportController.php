@@ -78,14 +78,18 @@ class ReportController extends CI_Controller
             $data["results"] = $this->reportModel->
                 fetch_data($config["per_page"], $page);
 
+            $data["regional"] = $this->reportModel->load_dropdown("REGION");
+            $data["witel"] = $this->reportModel->load_dropdown("WITEL");
+            $data["kota"] = $this->reportModel->load_dropdown("KOTA");
+            $data["namaLokasi"] = $this->reportModel->load_dropdown("NAMA_LOKASI");
+            $data["alamat"] = $this->reportModel->load_dropdown("ALAMAT");
             $data["suratPesanan"] = $this->reportModel->load_dropdown("SURAT_PESANAN");
             $data["toc"] = $this->reportModel->load_dropdown("TOC");
-            $data["namaLokasi"] = $this->reportModel->load_dropdown("NAMA_LOKASI");
-            $data["namaProject"] = $this->reportModel->load_dropdown("NAMA_PROJECT");
-            $data["projectSP"] = $this->reportModel->load_dropdown("PROJECT_SP");
-            $data["witel"] = $this->reportModel->load_dropdown("WITEL");
             $data["order"] = $this->reportModel->load_dropdown("ORDERS");
             $data["status"] = $this->reportModel->load_dropdown("KLAS_STAT_PROGRESS");
+            $data["statProg"] = $this->reportModel->load_dropdown("STAT_PROGRESS");
+            $data["keterangan"] = $this->reportModel->load_dropdown("KETERANGAN");
+            $data["tipe"] = $this->reportModel->load_dropdown("TIPE_LME");
 
             $data["links"] = $this->pagination->create_links();
 
@@ -117,38 +121,32 @@ class ReportController extends CI_Controller
             // di set hanya pada result saat page pertama
             if($page == 0)
             {
-                $dataa = array('suratPesanan'=>$this->input->post("suratPesanan"));
-                $this->session->set_userdata($dataa);
-                $dataa = array('toc'=>$this->input->post("toc"));
-                $this->session->set_userdata($dataa);
-                $dataa = array('namaLokasi'=>$this->input->post("namaLokasi"));
-                $this->session->set_userdata($dataa);
-                $dataa = array('namaProject'=>$this->input->post("namaProject"));
-                $this->session->set_userdata($dataa);
-                $dataa = array('projectSP'=>$this->input->post("projectSP"));
-                $this->session->set_userdata($dataa);
-                $dataa = array('witel'=>$this->input->post("witel"));
-                $this->session->set_userdata($dataa);
-                $dataa = array('order'=>$this->input->post("order"));
-                $this->session->set_userdata($dataa);
-                $dataa = array('status'=>$this->input->post("status"));
+                $dataa = array(
+                    'suratPesanan'=>$this->input->post("suratPesanan"),
+                    'toc'=>$this->input->post("toc"),
+                    'namaLokasi'=>$this->input->post("namaLokasi"),
+                    'namaProject'=>$this->input->post("namaProject"),
+                    'projectSP'=>$this->input->post("projectSP"),
+                    'witel'=>$this->input->post("witel"),
+                    'order'=>$this->input->post("order"),
+                    'status'=>$this->input->post("status")
+                    );
                 $this->session->set_userdata($dataa);
 
-                $dataIndex = array('suratPesananIndex'=>$this->input->post("suratPesanan_index"));
-                $this->session->set_userdata($dataIndex);
-                $dataIndex = array('tocIndex'=>$this->input->post("toc_index"));
-                $this->session->set_userdata($dataIndex);
-                $dataIndex = array('namaLokasiIndex'=>$this->input->post("namaLokasi_index"));
-                $this->session->set_userdata($dataIndex);
-                $dataIndex = array('namaProjectIndex'=>$this->input->post("namaProject_index"));
-                $this->session->set_userdata($dataIndex);
-                $dataIndex = array('projectSPIndex'=>$this->input->post("projectSP_index"));
-                $this->session->set_userdata($dataIndex);
-                $dataIndex = array('witelIndex'=>$this->input->post("witel_index"));
-                $this->session->set_userdata($dataIndex);
-                $dataIndex = array('orderIndex'=>$this->input->post("order_index"));
-                $this->session->set_userdata($dataIndex);
-                $dataIndex = array('statusIndex'=>$this->input->post("status_index"));
+                $dataIndex = array(
+                    'regionalIndex'=>$this->input->post("regional_index"),
+                    'witelIndex'=>$this->input->post("witel_index"),
+                    'kotaIndex'=>$this->input->post("kota_index"),
+                    'namaLokasiIndex'=>$this->input->post("namaLokasi_index"),
+                    'alamatIndex'=>$this->input->post("alamat_index"),
+                    'suratPesananIndex'=>$this->input->post("suratPesanan_index"),
+                    'tocIndex'=>$this->input->post("toc_index"),
+                    'orderIndex'=>$this->input->post("order_index"),
+                    'statusIndex'=>$this->input->post("status_index"),
+                    'statProgIndex'=>$this->input->post("statProg_index"),
+                    'keteranganIndex'=>$this->input->post("keterangan_index"),
+                    'tipeIndex'=>$this->input->post("tipe_index")
+                    );
                 $this->session->set_userdata($dataIndex);
             }
             
@@ -162,14 +160,18 @@ class ReportController extends CI_Controller
             $status = $this->session->userdata('status');
 
             // panggil fungsi untuk isi dari dropdown di laporan
+            $data["regional"] = $this->reportModel->load_dropdown("REGION");
+            $data["witel"] = $this->reportModel->load_dropdown("WITEL");
+            $data["kota"] = $this->reportModel->load_dropdown("KOTA");
+            $data["namaLokasi"] = $this->reportModel->load_dropdown("NAMA_LOKASI");
+            $data["alamat"] = $this->reportModel->load_dropdown("ALAMAT");
             $data["suratPesanan"] = $this->reportModel->load_dropdown("SURAT_PESANAN");
             $data["toc"] = $this->reportModel->load_dropdown("TOC");
-            $data["namaLokasi"] = $this->reportModel->load_dropdown("NAMA_LOKASI");
-            $data["namaProject"] = $this->reportModel->load_dropdown("NAMA_PROJECT");
-            $data["projectSP"] = $this->reportModel->load_dropdown("PROJECT_SP");
-            $data["witel"] = $this->reportModel->load_dropdown("WITEL");
             $data["order"] = $this->reportModel->load_dropdown("ORDERS");
             $data["status"] = $this->reportModel->load_dropdown("KLAS_STAT_PROGRESS");
+            $data["statProg"] = $this->reportModel->load_dropdown("STAT_PROGRESS");
+            $data["keterangan"] = $this->reportModel->load_dropdown("KETERANGAN");
+            $data["tipe"] = $this->reportModel->load_dropdown("TIPE_LME");
 
             $config = array();
             $config["base_url"] = site_url() . "/ReportController/search";
