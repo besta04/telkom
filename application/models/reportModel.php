@@ -3,6 +3,7 @@ class ReportModel extends CI_Model
 {
     public function __construct() {
         parent::__construct();
+        $this->load->library('session');
     }
 
     // fungsi hitung jumlah data
@@ -15,7 +16,7 @@ class ReportModel extends CI_Model
     }
 
     // fungsi hitung jumlah data filter
-    public function record_filter_count($suratPesanan, $TOC, $namaLokasi, $namaProject, $projectSP, $witel, $order, $status) {
+    public function record_filter_count($regional, $witel, $kota, $namaLokasi, $alamat, $suratPesanan, $TOC, $order, $status, $statProg, $keterangan, $tipe) {
         $this->load->database();
         $this->db->select("*");
         $this->db->from('tabel_lme_main');
@@ -24,6 +25,18 @@ class ReportModel extends CI_Model
         {
             $this->db->where('SURAT_PESANAN',$suratPesanan);
         }
+        if($regional != '')
+        {
+            $this->db->where('DIVRE',$regional);
+        }
+        if($kota != '')
+        {
+            $this->db->where('KOTA',$kota);
+        }
+        if($tipe != '')
+        {
+            $this->db->where('TYPE_LME',$tipe);
+        }
         if($TOC != '')
         {
             $this->db->where('TOC',$TOC);
@@ -31,14 +44,6 @@ class ReportModel extends CI_Model
         if($namaLokasi != '')
         {
             $this->db->where('NAMA_LOKASI',$namaLokasi);
-        }
-        if($namaProject != '')
-        {
-            $this->db->where('NAMA_PROJECT',$namaProject);
-        }
-        if($projectSP != '')
-        {
-            $this->db->where('PROJECT_SP',$projectSP);
         }
         if($witel != '')
         {
@@ -50,7 +55,7 @@ class ReportModel extends CI_Model
         }
         if($status != '')
         {
-            $this->db->where('KLAS_STAT_PROGRESS',$status);
+            $this->db->where('KLASIFIKASI_STATUS_SMILE',$status);
         }
         return $this->db->count_all_results();
     }
@@ -65,27 +70,7 @@ class ReportModel extends CI_Model
     public function load_dropdown($key)
     {
         $this->db->distinct();
-        if($key == "REGION")
-        {
-            $this->db->select('DIVRE');
-        }
-        else if($key == "WITEL")
-        {
-            $this->db->select('WITEL');
-        }
-        else if($key == "KOTA")
-        {
-            $this->db->select('KOTA');
-        }
-        else if($key == "NAMA_LOKASI")
-        {
-            $this->db->select('NAMA_LOKASI');
-        }
-        else if($key == "ALAMAT")
-        {
-            $this->db->select('ALAMAT');
-        }
-        else if($key == "SURAT_PESANAN")
+        if($key == "SURAT_PESANAN")
         {
             $this->db->select('SURAT_PESANAN');
         }
@@ -113,8 +98,170 @@ class ReportModel extends CI_Model
         {
             $this->db->select('TYPE_LME');
         }
+
         $this->db->from('tabel_lme_main');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+    public function load_dropdown_region()
+    {
+        $this->db->distinct();
+        $this->db->select('DIVRE');
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        if($this->session->userdata('witel') != '')
+        {
+             $this->db->where('WITEL',$this->session->userdata('witel'));
+        }  
+        if($this->session->userdata('kota') != '')
+        {
+             $this->db->where('KOTA',$this->session->userdata('kota'));
+        } 
+        if($this->session->userdata('namaLokasi') != '')
+        {
+             $this->db->where('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
+        } 
+        if($this->session->userdata('alamat') != '')
+        {
+             $this->db->where('ALAMAT',$this->session->userdata('alamat'));
+        } 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+    public function load_dropdown_witel()
+    {
+        $this->db->distinct();
+        $this->db->select('WITEL');
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        if($this->session->userdata('regional') != '')
+        {
+             $this->db->where('DIVRE',$this->session->userdata('regional'));
+        }  
+        if($this->session->userdata('kota') != '')
+        {
+             $this->db->where('KOTA',$this->session->userdata('kota'));
+        } 
+        if($this->session->userdata('namaLokasi') != '')
+        {
+             $this->db->where('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
+        } 
+        if($this->session->userdata('alamat') != '')
+        {
+             $this->db->where('ALAMAT',$this->session->userdata('alamat'));
+        } 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+    public function load_dropdown_kota()
+    {
+        $this->db->distinct();
+        $this->db->select('KOTA');
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        if($this->session->userdata('regional') != '')
+        {
+             $this->db->where('DIVRE',$this->session->userdata('regional'));
+        }  
+        if($this->session->userdata('witel') != '')
+        {
+             $this->db->where('WITEL',$this->session->userdata('witel'));
+        } 
+        if($this->session->userdata('namaLokasi') != '')
+        {
+             $this->db->where('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
+        } 
+        if($this->session->userdata('alamat') != '')
+        {
+             $this->db->where('ALAMAT',$this->session->userdata('alamat'));
+        } 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+    public function load_dropdown_namaLokasi()
+    {
+        $this->db->distinct();
+        $this->db->select('NAMA_LOKASI');
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        if($this->session->userdata('regional') != '')
+        {
+             $this->db->where('DIVRE',$this->session->userdata('regional'));
+        }  
+        if($this->session->userdata('kota') != '')
+        {
+             $this->db->where('KOTA',$this->session->userdata('kota'));
+        } 
+        if($this->session->userdata('witel') != '')
+        {
+             $this->db->where('WITEL',$this->session->userdata('witel'));
+        } 
+        if($this->session->userdata('alamat') != '')
+        {
+             $this->db->where('ALAMAT',$this->session->userdata('alamat'));
+        } 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
+    public function load_dropdown_alamat()
+    {
+        $this->db->distinct();
+        $this->db->select('ALAMAT');
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        if($this->session->userdata('regional') != '')
+        {
+             $this->db->where('DIVRE',$this->session->userdata('regional'));
+        }  
+        if($this->session->userdata('kota') != '')
+        {
+             $this->db->where('KOTA',$this->session->userdata('kota'));
+        } 
+        if($this->session->userdata('namaLokasi') != '')
+        {
+             $this->db->where('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
+        } 
+        if($this->session->userdata('witel') != '')
+        {
+             $this->db->where('WITEL',$this->session->userdata('witel'));
+        } 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $row) {
@@ -162,15 +309,38 @@ class ReportModel extends CI_Model
    }
 
    // fungsi untuk filter data report
-   public function filter_data($limit, $start, $suratPesanan, $TOC, $namaLokasi, $namaProject, $projectSP, $witel, $order, $status)
+   public function filter_data($limit, $start, $regional, $witel, $kota, $namaLokasi, $alamat, $suratPesanan, $TOC, $order, $status, $statProg, $keterangan, $tipe)
    {
         $this->db->select("*");
         $this->db->from('tabel_lme_main');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
         if($suratPesanan != '')
         {
-            //echo "<script>alert('masuk')</script>";
             $this->db->where('SURAT_PESANAN',$suratPesanan);
+        }
+        if($regional != '')
+        {
+            $this->db->where('DIVRE',$regional);
+        }
+        if($kota != '')
+        {
+            $this->db->where('KOTA',$kota);
+        }
+        if($alamat != '')
+        {
+            $this->db->where('ALAMAT',$alamat);
+        }
+        if($statProg != '')
+        {
+            $this->db->where('STATUS_PROGRESS_WIFI',$statProg);
+        }
+        if($keterangan != '')
+        {
+            $this->db->where('KETERANGAN',$keterangan);
+        }
+        if($tipe != '')
+        {
+            $this->db->where('TYPE_LME',$tipe);
         }
         if($TOC != '')
         {
@@ -179,14 +349,6 @@ class ReportModel extends CI_Model
         if($namaLokasi != '')
         {
             $this->db->where('NAMA_LOKASI',$namaLokasi);
-        }
-        if($namaProject != '')
-        {
-            $this->db->where('NAMA_PROJECT',$namaProject);
-        }
-        if($projectSP != '')
-        {
-            $this->db->where('PROJECT_SP',$projectSP);
         }
         if($witel != '')
         {
@@ -198,7 +360,7 @@ class ReportModel extends CI_Model
         }
         if($status != '')
         {
-            $this->db->where('KLAS_STAT_PROGRESS',$status);
+            $this->db->where('KLASIFIKASI_STATUS_SMILE',$status);
         }
         $this->db->limit($limit, $start);
         $query = $this->db->get();

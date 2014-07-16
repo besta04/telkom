@@ -1,7 +1,6 @@
 <!doctype html>
 
 <html>
-  
   <head>
     <script type="text/javascript">
     function overlay() 
@@ -160,11 +159,22 @@
            text-align:center;
            vertical-align: text-top;
       }
+      #regional, #witel, #kota, #namaLokasi, #alamat, #suratPesanan, #toc, #order, #status, #statProg, #keterangan, #tipe
+      {
+        width:300px;   
+        position:relative; 
+        left:100px
+      }
+      #toc, #order, #status, #statProg, #keterangan, #tipe
+      {
+        position:relative; 
+        left:250px
+      }
     </style>
   </head>
   
   <body>
-
+    
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -206,7 +216,11 @@
           </div>
           <table>
             <tr>
-            <td>
+            <td><input type='text' list='namaLokasiList' name='namaLokasi' id='namaLokasi' >
+            <datalist id='namaLokasiList'>
+            <option>aa</option>
+            <option>bb</option>
+          </datalist>
               <?php 
               $con=mysqli_connect("localhost","root","root","telkom_lme");
         if (mysqli_connect_errno())
@@ -219,9 +233,20 @@
           {
           }
         }
-              echo form_open('ReportController/search' );
-          echo "<p>Regional
-            <td><p>:</p></td>
+        echo "<div class='form-group'><input type='text' list='namaLokasiList' name='namaLokasi' id='namaLokasi' >
+            <datalist id='namaLokasiList'>
+            <option>aa</option>
+            <option>bb</option>
+          </datalist></div>";
+              
+          echo form_open('ReportController/search');
+          echo "<div class='form-group'><input type='text' list='namaLokasiList' name='namaLokasi' id='namaLokasi' >
+            <datalist id='namaLokasiList'>
+            <option>aa</option>
+            <option>bb</option>
+          </datalist></div>
+          <p style='position:relative; left:100px'>Regional
+            <td><p style='position:relative; left:100px'>:</p></td>
           </td>
           <td> ";
           $regionalSelected = $this->session->userdata('regionalIndex');
@@ -246,9 +271,9 @@
             }
             echo "</select></p>
           </td>
-          <td><p>|</p></td>
-          <td><p>TOC</td>
-          <td><p>:</p></td>
+          
+          <td><p style='position:relative; left:250px'>TOC</td>
+          <td><p style='position:relative; left:250px'>:</p></td>
           <td>";
           $statusSelected = $this->session->userdata('tocIndex');
             echo "<input type='hidden' name='toc_index' value='".$statusSelected."' id='toc_index_id'/>
@@ -275,8 +300,8 @@
         </tr>
         <tr>
           <td>
-          <p>Witel 
-            <td>:</td> 
+          <p style='position:relative; left:100px'>Witel 
+            <td style='position:relative; left:100px'>:</td> 
           </td>
           <td>";
           $statusSelected = $this->session->userdata('witelIndex');
@@ -301,9 +326,9 @@
             }            
             echo "</select></p>
           </td>
-          <td><p>|</p></td>
-          <td><p>Order</td>
-          <td><p>:</p></td>
+          
+          <td><p style='position:relative; left:250px'>Order</td>
+          <td><p style='position:relative; left:250px'>:</p></td>
           <td>";
           $statusSelected = $this->session->userdata('orderIndex');
             echo "<input type='hidden' name='order_index' value='".$statusSelected."' id='order_index_id'/>
@@ -330,8 +355,8 @@
         </tr>
         <tr>
           <td>
-            <p>Kota
-              <td>:</td> 
+            <p style='position:relative; left:100px'>Kota
+              <td style='position:relative; left:100px'>:</td> 
             </td>
             <td>";
             $statusSelected = $this->session->userdata('kotaIndex');
@@ -356,9 +381,9 @@
             }
             echo "</select></p>
           </td>
-          <td><p>|</p></td>
-          <td><p>Klasifikasi Status</td>
-          <td><p>:</p></td>
+          
+          <td><p style='position:relative; left:250px'>Klasifikasi Status</td>
+          <td><p style='position:relative; left:250px'>:</p></td>
           <td>";
           $statusSelected = $this->session->userdata('statusIndex');
             //echo "<script>alert('".$statusSelected."')</script>";
@@ -384,37 +409,38 @@
             echo "</select></p>
           </td>
         </tr>
+
         <tr>
-          <td>
-            <p>Nama Lokasi 
-              <td>:</td> 
-            </td>
+          <td style='position:relative; left:100px'>Nama Lokasi</td>
+              <td style='position:relative; left:100px'>:</td> 
+            
             <td>";
-            $statusSelected = $this->session->userdata('namaLokasiIndex');
-            echo "<input type='hidden' name='namaLokasi_index' value='".$statusSelected."' id='namaLokasi_index_id'/>
-            <select name='namaLokasi' id='namaLokasi' onchange='setNamaLokasiIndex()'>
-            <option></option>";
+            //$statusSelected = $this->session->userdata('namaLokasiIndex');
+            echo //"<input type='hidden' name='namaLokasi_index' value='".$statusSelected."' id='namaLokasi_index_id'/>
+            "<input type='text' list='namaLokasiList' name='namaLokasi' id='namaLokasi'>
+            <datalist id='namaLokasiList'>
+            <option value='aa'></option>
+            <option value='bb'></option>";/*
             if (is_array($namaLokasi))
             {
-              $i = 1;
+              //$i = 1;
               foreach ($namaLokasi as $data)
               {
-                if($i == $statusSelected)
-                {
-                  echo "<option selected='selected'>".$data->NAMA_LOKASI."</option>";
-                }
-                else
-                {
+                //if($i == $statusSelected)
+                //{
+                  //echo "<option selected='selected'>".$data->NAMA_LOKASI."</option>";
+                //}
+                //else
+                //{
                   echo "<option>".$data->NAMA_LOKASI."</option>";
-                }
-                $i++;
+                //}
+                //$i++;
               }
-            }
-            echo "</select></p>
+            }*/
+            echo "</datalist></select>
           </td>
-          <td><p>|</p></td>
-          <td><p>Status Progress</td>
-          <td><p>:</p></td>
+          <td><p style='position:relative; left:250px'>Status Progress</td>
+          <td><p style='position:relative; left:250px'>:</p></td>
           <td>";
           $statusSelected = $this->session->userdata('statProgIndex');
             echo "<input type='hidden' name='statProg_index' value='".$statusSelected."' id='statProg_index_id'/>
@@ -431,7 +457,7 @@
                 }
                 else
                 {
-                  echo "<option>".$data->STAT_PROGRESS_WIFI."</option>";
+                  echo "<option>".$data->STATUS_PROGRESS_WIFI."</option>";
                 }
                 $i++;
               }
@@ -441,8 +467,8 @@
           </tr>
         <tr>
           <td>
-            <p>Alamat 
-              <td>:</td> 
+            <p style='position:relative; left:100px'>Alamat 
+              <td style='position:relative; left:100px'>:</td> 
             </td>
             <td>";
             $statusSelected = $this->session->userdata('alamatIndex');
@@ -467,9 +493,9 @@
             }
             echo "</select></p>
           </td>
-          <td><p>|</p></td>
-          <td><p>Keterangan</td>
-          <td><p>:</p></td>
+          
+          <td><p style='position:relative; left:250px'>Keterangan</td>
+          <td><p style='position:relative; left:250px'>:</p></td>
           <td>";
           $statusSelected = $this->session->userdata('keteranganIndex');
             echo "<input type='hidden' name='keterangan_index' value='".$statusSelected."' id='keterangan_index_id'/>
@@ -496,8 +522,8 @@
           </tr>
         <tr>
           <td>
-            <p>Surat Pesanan 
-              <td>:</td> 
+            <p style='position:relative; left:100px'>Surat Pesanan 
+              <td style='position:relative; left:100px'>:</td> 
             </td>
             <td>";
             $suratPesananSelected = $this->session->userdata('suratPesananIndex');
@@ -522,9 +548,9 @@
             }
             echo "</select></p>
           </td>
-          <td><p>|</p></td>
-          <td><p>Tipe LME</td>
-          <td><p>:</p></td>
+          
+          <td><p style='position:relative; left:250px'>Tipe LME</td>
+          <td><p style='position:relative; left:250px'>:</p></td>
           <td>";
           $statusSelected = $this->session->userdata('tipeIndex');
             echo "<input type='hidden' name='tipe_index' value='".$statusSelected."' id='tipe_index_id'/>
@@ -547,13 +573,12 @@
               }
             }
             echo "</select></p>
-          </td>";
-          ?>
+          </td>
         </tr>
           </table>
           <button type='submit' class='btn btn-success btn-block'>Filter</button>
-          <br>
-          <?php echo form_close(); 
+          <br>";
+          //echo form_close();
           ?>
           <?php
         $con=mysqli_connect("localhost","root","root","telkom_lme");
@@ -588,7 +613,7 @@
         $num = $this->session->userdata("num");
        $result2 = mysqli_query($con,"select NAMA_LOKASI, ALAMAT from tabel_lme_main, tabel_order 
                               where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER limit ".$num." , 20");
-       $result3 = mysqli_query($con,"select distinct ID_LME, STAT_PROGRESS, KLAS_STAT_PROGRESS, KETERANGAN 
+       $result3 = mysqli_query($con,"select ID_LME, STATUS_PROGRESS_WIFI, KLASIFIKASI_STATUS_SMILE, ALASAN_STATUS_PROGRESS 
                               from tabel_lme_main limit ".$num." , 20");
         echo "<div id='overlay'>
            <div>
@@ -648,13 +673,16 @@
           <thead>
             <tr>
               <th>#</th>
+              <th>Regional</th>
+              <th>Witel</th>
+              <th>Kota</th>
+              <th>Nama Lokasi</th>
               <th>Surat Pesanan</th>
               <th>TOC</th>
-              <th>Nama Lokasi</th>
-              <!--<th>Alamat</th>-->
-              <th>Witel</th>
               <th>Order</th>
               <th>Status</th>
+              <th>Tipe LME</th>
+              <th>Last Updated</th>
               <th>Action</th>
             </tr>
           </thead>";
@@ -670,13 +698,16 @@
             //$num++;
             echo "<tr>";
             echo "<td>" . $data->ID_LME/*$row['ID_LME']*/ . "</td>";
+            echo "<td>" . $data->DIVRE . "</td>";
+            echo "<td>" . $data->WITEL . "</td>";
+            echo "<td>" . $data->KOTA . "</td>";
+            echo "<td><a href='#' onclick='overlay()'>" . $data->NAMA_LOKASI . "</a></td>";
             echo "<td>" . $data->SURAT_PESANAN/*$row['SURAT_PESANAN']*/ . "</td>";
             echo "<td>" . $data->TOC . "</td>";
-            echo "<td><a href='#' onclick='overlay()'>" . $data->NAMA_LOKASI . "</a></td>";
-            //echo "<td>" . $row['ALAMAT'] . "</td>";
-            echo "<td>" . $data->WITEL . "</td>";
             echo "<td>" . $data->ORDERS . "</td>";
             echo "<td><a href='#' onclick='overlayB()'>" . $data->KLASIFIKASI_STATUS_SMILE . "</a></td>";
+            echo "<td>" . $data->TYPE_LME . "</td>";
+            echo "<td>dd/mm/yyyy hh:mm:ss</td>";
             echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $data->ID_LME) . "' >Edit</button>
             <button type='submit' onClick=window.location='" . site_url('/HomeController/deleteItem/' . $data->ID_LME) . "' >Delete</button></td>";
             echo "</tr>";

@@ -7,15 +7,22 @@ tambahan :
 - di laporan tambah last update
 
 urutan filter :
-1. REGIONAL
+1. REGIONAL ...
 2. WITEL
-3. KOTA
+3. KOTA ...
 4. NAMA LOKASI (pake key)
-5. ALAMAT
+5. ALAMAT ...
 6. SURAT PESANAN
 7. TOC
 8. ORDER
 9. KLASIFIKASI STATUS 
-10. STATUS PROGRESS
-11. KETERANGAN (Alasan status progress)
-12. TIPE LME
+10. STATUS PROGRESS ...
+11. KETERANGAN (Alasan status progress) ...
+12. TIPE LME ...
+
+
+
+
+
+
+

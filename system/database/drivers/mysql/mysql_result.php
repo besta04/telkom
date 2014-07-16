@@ -1,4 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ini_set('memory_limit', '-1');
 /**
  * CodeIgniter
  *
