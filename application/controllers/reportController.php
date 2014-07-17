@@ -11,6 +11,48 @@ class ReportController extends CI_Controller
         }
 
     // fungsi untuk manggil view log
+    public function reportDivre($id='')
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $this->load->helper('form');
+            $data = array('id' => $id);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view('reportDivre',$data);
+            }
+            else if($this->session->userdata('is_staff'))
+            {
+                $this->load->view('reportDivre',$data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
+    public function R1($id='')
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $this->load->helper('form');
+            $data = array('id' => $id);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view('R1',$data);
+            }
+            else if($this->session->userdata('is_staff'))
+            {
+                $this->load->view('R1',$data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
     public function log()
     {
         if($this->session->userdata('is_logged_in'))

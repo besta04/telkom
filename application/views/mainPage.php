@@ -114,6 +114,11 @@
               <p>Lihat log LME Wifi Nasional Telkom Indonesia</p>
               <p><a class="btn btn-default" href="<?php echo "../ReportController/log" ?>">View details &raquo;</a></p>
             </div>
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Rekapitulasi Nasional</h2>
+              <p>Lihat Rekapitulasi LME Wifi Nasional Telkom Indonesia</p>
+              <p><a class="btn btn-default" href="<?php echo "../ReportController/reportDivre" ?>">View details &raquo;</a></p>
+            </div>
           </div>
           <!--/row-->
         </div>

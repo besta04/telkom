@@ -201,29 +201,6 @@ class HomeController extends CI_Controller{
 	    }
 	}
 
-
-	public function reportDivre($id='')
-	{
-		if($this->session->userdata('is_logged_in'))
-	    {
-	    	$this->load->helper('form');
-			$data = array('id' => $id);
-	    	if($this->session->userdata('is_admin'))
-			{
-				$this->load->view('reportDivre',$data);
-			}
-			else if($this->session->userdata('is_staff'))
-			{
-				$this->load->view('reportDivre',$data);
-			}
-	    }
-	    else
-	    {
-	      redirect('HomeController/restricted');
-	    }
-	}
-
-
 	// fungsi manggil halaman konfirmasi delete
 	public function deleteItem($id='')
 	{
