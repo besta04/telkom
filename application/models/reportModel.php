@@ -33,6 +33,10 @@ class ReportModel extends CI_Model
         {
             $this->db->where('KOTA',$kota);
         }
+        if($alamat != '')
+        {
+            $this->db->where('ALAMAT',$alamat);
+        }
         if($tipe != '')
         {
             $this->db->where('TYPE_LME',$tipe);
@@ -56,6 +60,14 @@ class ReportModel extends CI_Model
         if($status != '')
         {
             $this->db->where('KLASIFIKASI_STATUS_SMILE',$status);
+        }
+        if($statProg != '')
+        {
+            $this->db->where('STATUS_PROGRESS_WIFI',$statProg);
+        }
+        if($keterangan != '')
+        {
+            $this->db->where('ALASAN_STATUS_PROGRESS',$keterangan);
         }
         return $this->db->count_all_results();
     }

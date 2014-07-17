@@ -161,15 +161,10 @@
         <label class='form-label'>Status Progress WIFI :</label>
         <input class='form-control' name='boxStatus' value='" . $rows['STATUS_PROGRESS_WIFI'] . "'>
         </div>
-<<<<<<< HEAD
+
         <label class='form-label'>Alasan Status Progress :</label>
         <textarea class='form-control' name='boxKeterangan' >".$rows['ALASAN_STATUS_PROGRESS']."</textarea><br>
-=======
-        <label class='form-label'>Status Progress :</label>
-        <textarea class='form-control' name='boxStatus' value='" . $rows['STAT_PROGRESS'] . "'>" . $rows['STAT_PROGRESS'] . "</textarea><br>
-        <label class='form-label'>Keterangan :</label>
-        <textarea class='form-control' name='boxKeterangan' value='" . $rows['KETERANGAN'] . "'>" . $rows['KETERANGAN'] . "</textarea><br>
->>>>>>> origin/master
+
         <button class='btn btn-lg btn-primary btn-block' id='submit'>Submit</button> 
     </div>";
   //if(isset($_REQUEST['submit']))

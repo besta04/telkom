@@ -101,7 +101,7 @@
         {
           echo "Failed to connect : ". mysqli_connect_error();
         }
-<<<<<<< HEAD
+
        $resultDivre = mysqli_query($con,"select distinct divre from tabel_lme_main");  
        $resultWitel = mysqli_query($con,"select distinct WITEL from tabel_lme_main"); 
        $resultKota = mysqli_query($con,"select distinct KOTA from tabel_lme_main");
@@ -112,22 +112,7 @@
        $resultSurat = mysqli_query($con, "select distinct surat_pesanan FROM tabel_order");
        echo form_open('InputController/insert_validation');
         echo "<h2 class='form-signin-heading'>Entry Data Baru</h2>
-=======
-       $resultDivisi = mysqli_query($con,"select distinct divisi from tabel_lme_main");  
-       $resultRegion = mysqli_query($con,"select distinct region from tabel_lme_main"); 
-       $resultProject = mysqli_query($con,"select distinct nama_project from tabel_lme_main"); 
-       $resultSp = mysqli_query($con,"select distinct project_sp from tabel_lme_main");
-       $resultSp2 = mysqli_query($con,"select distinct sp from tabel_lme_main");
-       $resultIdSite = mysqli_query($con,"select distinct id_site from tabel_lme_main");
-       $resultSurat = mysqli_query($con,"select distinct surat_pesanan FROM tabel_order");
-       $resultLokasi = mysqli_query($con,"select distinct nama_lokasi FROM tabel_lme_main");
-       $resultAlamat = mysqli_query($con,"select distinct alamat FROM tabel_lme_main");
-       $resultOrder = mysqli_query($con,"select distinct orders from tabel_lme_main");		 
-       $resultWitel = mysqli_query($con,"select distinct witel from tabel_lme_main");
-       $resultSite = mysqli_query($con, "select nama_lokasi FROM tabel_site");
-		  echo form_open('InputController/insert_validation');
-        echo "<h2 class='form-signin-heading'>Input new item</h2>
->>>>>>> origin/master
+
         <br>
         <div class='form-group'>
           <label class='control-label'>Divisi Regional:</label>";

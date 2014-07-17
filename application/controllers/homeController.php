@@ -201,7 +201,7 @@ class HomeController extends CI_Controller{
 	    }
 	}
 
-<<<<<<< HEAD
+
 	public function reportDivre($id='')
 	{
 		if($this->session->userdata('is_logged_in'))
@@ -223,9 +223,8 @@ class HomeController extends CI_Controller{
 	    }
 	}
 
-=======
+
 	// fungsi manggil halaman konfirmasi delete
->>>>>>> origin/master
 	public function deleteItem($id='')
 	{
 		if($this->session->userdata('is_logged_in'))
