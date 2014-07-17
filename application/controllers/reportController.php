@@ -125,7 +125,7 @@ class ReportController extends CI_Controller
                     'regional'=>$this->input->post("regional"),
                     'witel'=>$this->input->post("witel"),
                     'kota'=>$this->input->post("kota"),
-                    'namaLokasi'=>$this->input->post("namaLokasi"),
+                    'namaLokasi'=>$this->input->post("namaLokasiText"),
                     'alamat'=>$this->input->post("alamat"),
                     'suratPesanan'=>$this->input->post("suratPesanan"),
                     'toc'=>$this->input->post("toc"),

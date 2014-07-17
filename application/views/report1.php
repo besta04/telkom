@@ -13,6 +13,11 @@
       el = document.getElementById("overlayB");
       el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     }
+    function lokasiInputText() 
+    {
+      el = document.getElementById("lokasiInput");
+      el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    }
     function value()
     {
       $('#thetable').find('tr').click( function()
@@ -36,7 +41,9 @@
     }
     function setNamaLokasiIndex() 
     {
+      //alert('ambil : ' + document.getElementById("namaLokasi").selectedIndex);
       document.getElementById("namaLokasi_index_id").value = document.getElementById("namaLokasi").selectedIndex;
+      document.getElementById("namaLokasiText").value = document.getElementById("namaLokasi").value;
     }
     function setAlamatIndex() 
     {
@@ -70,6 +77,7 @@
     {
       document.getElementById("tipe_index_id").value = document.getElementById("tipe").selectedIndex;
     }
+    
     </script>
     <title>Laporan Wifi LME</title>
     <meta name="viewport" content="width=device-width">
@@ -216,11 +224,7 @@
           </div>
           <table>
             <tr>
-            <td><input type='text' list='namaLokasiList' name='namaLokasi' id='namaLokasi' >
-            <datalist id='namaLokasiList'>
-            <option>aa</option>
-            <option>bb</option>
-          </datalist>
+            <td>
               <?php 
               $con=mysqli_connect("localhost","root","root","telkom_lme");
         if (mysqli_connect_errno())
@@ -233,18 +237,9 @@
           {
           }
         }
-        echo "<div class='form-group'><input type='text' list='namaLokasiList' name='namaLokasi' id='namaLokasi' >
-            <datalist id='namaLokasiList'>
-            <option>aa</option>
-            <option>bb</option>
-          </datalist></div>";
               
-          echo form_open('ReportController/search');
-          echo "<div class='form-group'><input type='text' list='namaLokasiList' name='namaLokasi' id='namaLokasi' >
-            <datalist id='namaLokasiList'>
-            <option>aa</option>
-            <option>bb</option>
-          </datalist></div>
+          echo form_open('ReportController/search/');
+          echo "
           <p style='position:relative; left:100px'>Regional
             <td><p style='position:relative; left:100px'>:</p></td>
           </td>
@@ -415,29 +410,33 @@
               <td style='position:relative; left:100px'>:</td> 
             
             <td>";
-            //$statusSelected = $this->session->userdata('namaLokasiIndex');
-            echo //"<input type='hidden' name='namaLokasi_index' value='".$statusSelected."' id='namaLokasi_index_id'/>
-            "<input type='text' list='namaLokasiList' name='namaLokasi' id='namaLokasi'>
-            <datalist id='namaLokasiList'>
-            <option value='aa'></option>
-            <option value='bb'></option>";/*
+            $statusSelected = $this->session->userdata('namaLokasiIndex');
+            $textSelected = $this->session->userdata('namaLokasi');
+            echo "<input type='hidden' name='namaLokasi_index' value='".$statusSelected."' id='namaLokasi_index_id'/>
+            <select name='namaLokasi' id='namaLokasi' style='width:150px' onchange='setNamaLokasiIndex()'>
+            <option></option>";
             if (is_array($namaLokasi))
             {
-              //$i = 1;
+              $i = 1;
               foreach ($namaLokasi as $data)
               {
-                //if($i == $statusSelected)
-                //{
-                  //echo "<option selected='selected'>".$data->NAMA_LOKASI."</option>";
-                //}
-                //else
-                //{
+                if($i == $statusSelected)
+                {
+                  if($data->NAMA_LOKASI != $textSelected)
+                  {
+                    break;
+                  }
+                  echo "<option selected='selected'>".$data->NAMA_LOKASI."</option>";
+                }
+                else
+                {
                   echo "<option>".$data->NAMA_LOKASI."</option>";
-                //}
-                //$i++;
+                }
+                $i++;
               }
-            }*/
-            echo "</datalist></select>
+            }
+            echo "</select>
+            <input type='text' name='namaLokasiText' id='namaLokasiText' value='".$textSelected."' style='position:relative; left:100px; width:145px'/>
           </td>
           <td><p style='position:relative; left:250px'>Status Progress</td>
           <td><p style='position:relative; left:250px'>:</p></td>
@@ -578,7 +577,7 @@
           </table>
           <button type='submit' class='btn btn-success btn-block'>Filter</button>
           <br>";
-          //echo form_close();
+          echo form_close();
           ?>
           <?php
         $con=mysqli_connect("localhost","root","root","telkom_lme");

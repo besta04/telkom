@@ -348,7 +348,8 @@ class ReportModel extends CI_Model
         }
         if($namaLokasi != '')
         {
-            $this->db->where('NAMA_LOKASI',$namaLokasi);
+            //$this->db->where('NAMA_LOKASI',$namaLokasi);
+            $this->db->like('NAMA_LOKASI', $namaLokasi);
         }
         if($witel != '')
         {
