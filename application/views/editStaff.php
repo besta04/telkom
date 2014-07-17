@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    function setKlasifikasi() 
+    {
+      var status = document.getElementById("boxStatus").value;
+      if(status == "B")
+      {
+        document.getElementById("boxKlasifikasi").value = "testing";
+      }
+    }
+    </script>
     <style type="text/css">
       body {
         padding-top: 40px;
@@ -155,11 +165,11 @@
         </div>
         <div class='form-group'>
           <label class='control-label'>Klasifikasi Status Smile :</label>
-          <input type='text' class='form-control' name='boxKlasifikasi' value='" . $rows['KLASIFIKASI_STATUS_SMILE'] . "' readonly>
+          <input type='text' class='form-control' name='boxKlasifikasi' id='boxKlasifikasi' value='" . $rows['KLASIFIKASI_STATUS_SMILE'] . "' readonly>
         </div>
         <div class='form-group'>
         <label class='form-label'>Status Progress WIFI :</label>
-        <input class='form-control' name='boxStatus' value='" . $rows['STATUS_PROGRESS_WIFI'] . "'>
+        <input type='text' id='boxStatus' class='form-control' name='boxStatus' onchange='setKlasifikasi()' value='" . $rows['STATUS_PROGRESS_WIFI'] . "'>
         </div>
 
         <label class='form-label'>Alasan Status Progress :</label>
