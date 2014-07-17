@@ -15,6 +15,52 @@ class InputController extends CI_Controller
 	{
         $this->load->library('form_validation');
         $this->load->helper('url');
+<<<<<<< HEAD
+        //$this->form_validation->set_rules('nama','Nama','required');
+        //$this->form_validation->set_rules('spek','Spek','required');
+        //$this->form_validation->set_rules('pemilik','owner','required');
+        //if($this->form_validation->run() )
+        //{
+        	$id_order = $this->input->post('boxSurat');
+        	//$id_site = $this->input->post('boxLokasi');
+			$this->load->database();
+			//$this->db->select('ID_ORDER');
+			//$this->db->from('TABEL_ORDER');
+			//$this->db->where('SURAT_PESANAN', $temp);
+			$order = $this->db->query("SELECT ID_ORDER FROM TABEL_ORDER WHERE SURAT_PESANAN = '".$id_order."'");
+			//$lokasi = $this->db->query("SELECT ID_SITE FROM TABEL_SITE WHERE NAMA_LOKASI = '".$id_site."'");
+        	$temp3 = $order->first_row()->ID_ORDER;
+        	//$temp2 = $lokasi->first_row()->ID_SITE;
+        	$data = array(
+                    'ID_ORDER' => $temp3,
+                    'DIVRE' => $this->input->post('boxDivre'),
+                    'WITEL' => $this->input->post('boxWitel'),
+                    'KOTA' => $this->input->post('boxKota'),
+                    'NAMA_LOKASI' => $this->input->post('boxLokasi'),
+                    'ALAMAT' => $this->input->post('boxAlamat'),
+                    'TYPE_LME' => $this->input->post('boxTipe'),
+                    'ORDERS' => $this->input->post('boxOrder'),
+                    'KLASIFIKASI_STATUS_SMILE' => $this->input->post('boxKlasifikasi'),
+                    'STATUS_PROGRESS_WIFI' => $this->input->post('boxStatus'),
+                    'ALASAN_STATUS_PROGRESS' => $this->input->post('boxKeterangan')
+                    );
+
+          $this->load->model('RekapModel');
+          $this->db->set('waktu', 'NOW()', FALSE);
+              $data2 = array(
+		  				'keterangan' => 'INSERT DATA BARU',
+		  				'subjek' => $this->session->userdata('username'),
+		  			    'witel' => $this->input->post('boxWitel'),
+                        'kota' => $this->input->post('boxKota'),
+                        'lokasi' => $this->input->post('boxLokasi'),
+                        'from' => '-',
+                        'to' => '-'
+            );
+		  
+		  //$this->db->insert('log', $data2);
+		  $result = $this->RekapModel->log_insert($data2);
+          $result = $this->RekapModel->insert_entry($data);
+=======
         $id_order = $this->input->post('boxSurat');
         $this->load->database();
 
@@ -55,6 +101,7 @@ class InputController extends CI_Controller
         $result = $this->RekapModel->insert_validation($data);
 		  
         // kalo input berhasil
+>>>>>>> origin/master
         if($result==true)
         {
             $stat = 'Insert';
@@ -79,26 +126,36 @@ class InputController extends CI_Controller
         $id_order = $this->db->query("SELECT ID_ORDER FROM TABEL_ORDER WHERE SURAT_PESANAN = '".$surat."'");
         $temp3 = $id_order->first_row()->ID_ORDER;
         $data = array(
-            'DIVISI' => $this->input->post('boxDivisi'),
-            'REGION' => $this->input->post('boxRegional'),
-            'NAMA_PROJECT' => $this->input->post('boxProject'),
-            'PROJECT_SP' => $this->input->post('boxProject/SP'),
-            'ID_ORDER' => $temp3,
+            'DIVRE' => $this->input->post('boxDivre'),
             'WITEL' => $this->input->post('boxWitel'),
-            'ID_SITE' => $this->input->post('boxIdSite'),
+            'KOTA' => $this->input->post('boxKota'),
+            'ID_ORDER' => $temp3,
+            'NAMA_LOKASI' => $this->input->post('boxLokasi'),
+            'ALAMAT' => $this->input->post('boxAlamat'),
+            'TYPE_LME' => $this->input->post('boxTipe'),
             'ORDERS' => $this->input->post('boxOrder'),
-            'KLAS_STAT_PROGRESS' => $this->input->post('boxKlasifikasi'),
-            'STAT_PROGRESS' => $this->input->post('boxStatus'),
-            'KETERANGAN' => $this->input->post('boxKeterangan')
+            'KLASIFIKASI_STATUS_SMILE' => $this->input->post('boxKlasifikasi'),
+            'STATUS_PROGRESS_WIFI' => $this->input->post('boxStatus'),
+            'ALASAN_STATUS_PROGRESS' => $this->input->post('boxKeterangan')
             );
         $this->load->model('RekapModel');
         $data2 = array(
+<<<<<<< HEAD
+                        'keterangan' => 'UPDATE DATA',
+                        'subjek' => $this->session->userdata('username'),
+                        'witel' => $this->input->post('boxWitel'),
+                        'lokasi' => $this->input->post('boxLokasi'),
+                        'kota' => $this->input->post('boxKota'),
+                        'from' => $this->session->userdata('from'),
+                        'to' => $this->input->post('boxKlasifikasi'),
+=======
             'keterangan' => 'UPDATE DATA',
             'subjek' => $this->session->userdata('username'),
             'witel' => $this->input->post('boxWitel'),
             'lokasi' => $this->input->post('boxLokasi'),
             'from' => $this->session->userdata('from'),
             'to' => $this->input->post('boxKlasifikasi'),
+>>>>>>> origin/master
             );
         $this->db->set('waktu', 'NOW()', FALSE);
 
@@ -132,12 +189,22 @@ class InputController extends CI_Controller
         $rows = mysqli_fetch_array($resultDelete);
         $this->load->model('RekapModel');
         $data2 = array(
+<<<<<<< HEAD
+                        'keterangan' => 'DELETE',
+                        'subjek' => $this->session->userdata('username'),
+                        'witel' => $rows['witel'],
+                        'lokasi' => $rows['alamat'],
+                        'kota' => $this->input->post('boxKota'),
+                        'from' => '-',
+                        'to' => '-'
+=======
             'keterangan' => 'DELETE',
             'subjek' => $this->session->userdata('username'),
             'witel' => $rows['witel'],
             'lokasi' => $rows['alamat'],
             'from' => '-',
             'to' => '-'
+>>>>>>> origin/master
             );
         $this->db->set('waktu', 'NOW()', FALSE);
 

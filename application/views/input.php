@@ -101,6 +101,18 @@
         {
           echo "Failed to connect : ". mysqli_connect_error();
         }
+<<<<<<< HEAD
+       $resultDivre = mysqli_query($con,"select distinct divre from tabel_lme_main");  
+       $resultWitel = mysqli_query($con,"select distinct WITEL from tabel_lme_main"); 
+       $resultKota = mysqli_query($con,"select distinct KOTA from tabel_lme_main");
+       $resultLokasi = mysqli_query($con,"select distinct NAMA_LOKASI from tabel_lme_main");
+       $resultAlamat = mysqli_query($con,"select distinct ALAMAT from tabel_lme_main");
+       $resultTipe = mysqli_query($con,"select distinct TYPE_LME FROM tabel_lme_main");
+       $resultOrder = mysqli_query($con,"select distinct ORDERS FROM tabel_lme_main");
+       $resultSurat = mysqli_query($con, "select distinct surat_pesanan FROM tabel_order");
+       echo form_open('InputController/insert_validation');
+        echo "<h2 class='form-signin-heading'>Entry Data Baru</h2>
+=======
        $resultDivisi = mysqli_query($con,"select distinct divisi from tabel_lme_main");  
        $resultRegion = mysqli_query($con,"select distinct region from tabel_lme_main"); 
        $resultProject = mysqli_query($con,"select distinct nama_project from tabel_lme_main"); 
@@ -115,75 +127,14 @@
        $resultSite = mysqli_query($con, "select nama_lokasi FROM tabel_site");
 		  echo form_open('InputController/insert_validation');
         echo "<h2 class='form-signin-heading'>Input new item</h2>
+>>>>>>> origin/master
         <br>
         <div class='form-group'>
-          <label class='control-label'>Divisi :</label>";
-         echo "<input type='text' class='form-control' name='boxDivisi' list='divisi'>
-         <datalist id='divisi'>";
-         while ($row = mysqli_fetch_array($resultDivisi)){
-         echo "<option>".$row['divisi']."</option>";
-         }
-         echo "</datalist>";
-         
-       echo "</select>
-        </div>
-        
-        <div class='form-group'>
-          <label class='control-label'>Regional : (dinamis berdasarkan divisi)</label>
-          <input type='text' class='form-control' name='boxRegional' list='regional'>
-          <datalist id='regional'>";
-          while ($row = mysqli_fetch_array($resultRegion)){
-         echo "<option>".$row['region']."</option>";
-         }
-         echo "</datalist>";
-         echo "</select>
-        </div>
-        <div class='form-group'>
-          <label class='control-label'>Nama Project :</label>
-          <input type='text' list='project' class='form-control' name='boxProject'>
-          <datalist id='project'>";
-        while ($row = mysqli_fetch_array($resultProject)){
-         echo "<option>".$row['nama_project']."</option>";
-         }
-         echo "</datalist>";
-         echo "</select>
-        </div>
-        <div class='form-group'>
-          <label class='control-label'>Project/SP :</label>
-        <input type='text' list='SP' class='form-control' name='boxProject/SP'>
-        <datalist id='SP'>";
-            while ($row = mysqli_fetch_array($resultSp)){
-         echo "<option>".$row['project_sp']."</option>";
-         }
-         echo "</datalist>";
-         echo "</select>
-        </div>
-        <div class='form-group'>
-          <label class='control-label'>SP :</label>
-        <input type='text' list='SP2' class='form-control' name='boxSP'>
-        <datalist id='SP2'>";
-            while ($row = mysqli_fetch_array($resultSp2)){
-         echo "<option>".$row['sp']."</option>";
-         }
-         echo "</datalist>";
-          echo "</select>
-        </div>
-        <div class='form-group'>
-          <label class='control-label'>Surat Pesanan :</label>
-          <select list='surat' class='form-control' name='boxSurat' id='boxSurat'>
-          <datalist id='surat'>";
-            while ($row = mysqli_fetch_array($resultSurat)){
-         echo "<option>".$row['surat_pesanan']."</option>";
-         }
-         echo "</datalist>";
-         echo "</select>
-        </div>
-        <div class='form-group'>
-          <label class='control-label'>Order :</label>
-          <input type='text' list='orders' class='form-control' name='boxOrder'>
-          <datalist id='orders'>";
-            while ($row = mysqli_fetch_array($resultOrder)){
-         echo "<option>".$row['orders']."</option>";
+          <label class='control-label'>Divisi Regional:</label>";
+         echo "<input type='text' class='form-control' name='boxDivre' list='divre'>
+         <datalist id='divre'>";
+         while ($row = mysqli_fetch_array($resultDivre)){
+         echo "<option>".$row['divre']."</option>";
          }
          echo "</datalist>";
          echo "</select>
@@ -192,43 +143,88 @@
           <label class='control-label'>Witel :</label>
           <input type='text' list='witel' class='form-control' name='boxWitel'>
           <datalist id='witel'>";
-            while ($row = mysqli_fetch_array($resultWitel)){
-         echo "<option>".$row['witel']."</option>";
+        while ($row = mysqli_fetch_array($resultWitel)){
+         echo "<option>".$row['WITEL']."</option>";
          }
          echo "</datalist>";
          echo "</select>
         </div>
         <div class='form-group'>
-          <label class='control-label'>ID Site :</label>
-          <input type='text' list='id' class='form-control' name='boxIdSite'>
-          <datalist id='id'>";
-            while ($row = mysqli_fetch_array($resultIdSite)){
-         echo "<option>".$row['id_site']."</option>";
+          <label class='control-label'>Kota :</label>
+        <input type='text' list='kota' class='form-control' name='boxKota'>
+        <datalist id='kota'>";
+            while ($row = mysqli_fetch_array($resultKota)){
+         echo "<option>".$row['KOTA']."</option>";
          }
          echo "</datalist>";
-        echo "</select>
+         echo "</select>
         </div>
         <div class='form-group'>
           <label class='control-label'>Nama Lokasi :</label>
-          <input type='text' list='lokasi' class='form-control' name='boxLokasi'>
-          <datalist id='lokasi'>";
+        <input type='text' list='lokasi' class='form-control' name='boxLokasi'>
+        <datalist id='lokasi'>";
             while ($row = mysqli_fetch_array($resultLokasi)){
-         echo "<option>".$row['nama_lokasi']."</option>";
+         echo "<option>".$row['NAMA_LOKASI']."</option>";
          }
          echo "</datalist>";
-         echo "</select>
+          echo "</select>
         </div>
         <div class='form-group'>
-          <label class='control-label'>Alamat :</label>
-          <input type='text' list='alamat' class='form-control' name='boxAlamat'>
-          <datalist id='alamat'>";
+        <label class='control-label'>Alamat :</label>
+        <input list='alamat' class='form-control' name='boxAlamat'>
+        <datalist id='alamat'>";
             while ($row = mysqli_fetch_array($resultAlamat)){
-         echo "<option>".$row['alamat']."</option>";
+         echo "<option>".$row['ALAMAT']."</option>";
          }
          echo "</datalist>";
          echo "</select>
         </div>
         <div class='form-group'>
+          <label class='control-label'>Surat Pesanan :</label>
+          <select list='surat' class='form-control' name='boxSurat'>
+          <datalist id='surat'>";
+            while ($row = mysqli_fetch_array($resultSurat)){
+         echo "<option>".$row['surat_pesanan']."</option>";
+         }
+         echo "</datalist>";
+         echo "</select>
+        </div>
+        <div class='form-group'>
+          <label class='control-label'>Tipe LME :</label>
+          <input type='text' list='tipe' class='form-control' name='boxTipe'>
+          <datalist id='tipe'>";
+            while ($row = mysqli_fetch_array($resultTipe)){
+         echo "<option>".$row['TYPE_LME']."</option>";
+         }
+         echo "</datalist>";
+         echo "</select>
+        </div>
+        <div class='form-group'>
+          <label class='control-label'>Order :</label>
+          <input type='text' list='order' class='form-control' name='boxOrder'>
+          <datalist id='order'>";
+            while ($row = mysqli_fetch_array($resultOrder)){
+         echo "<option>".$row['ORDERS']."</option>";
+         }
+         echo "</datalist>";
+         echo "</select>
+         </div>
+         <div class='form-group'>
+          <label class='control-label'>Klasifikasi Status Smile :</label>
+          <input type='text' class='form-control' name='boxKlasifikasi'>";
+         echo "</select>
+         </div>
+         <div class='form-group'>
+          <label class='control-label'>Status Progress Wifi :</label>
+          <input type='text' class='form-control' name='boxStatus'>";
+         echo "</select>
+         </div>
+         <div class='form-group'>
+          <label class='control-label'>Keterangan Status :</label>
+          <input type='text' class='form-control' name='boxKeterangan'>";
+         /*echo "</select>
+          </div>
+          <div class='form-group'>
           <label class='control-label'>Klasifikasi Status Progress :</label>
           <select class='form-control' name='boxKlasifikasi'>
             <option>A. Non Progress</option>
@@ -239,12 +235,9 @@
             <option>F. Kendala Sitac</option>
             <option>G. Kendala Non-Sitac</option>
             <option>H. Batal</option>
-          </select>
+          </select>*/
+        echo "  
         </div>
-        <label class='form-label'>Status Progress :</label>
-        <textarea class='form-control' name='boxStatus'></textarea><br>
-        <label class='form-label'>Keterangan :</label>
-        <textarea class='form-control' name='boxKeterangan'></textarea><br>
         <button class='btn btn-lg btn-primary btn-block' id='submit'>Submit</button> 
     </div>";
     ?>
