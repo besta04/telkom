@@ -63,6 +63,7 @@
                 options.series[5] = json[6];
                 options.series[6] = json[7];
                 options.series[7] = json[8];
+                options.series[8] = json[9];
                 chart = new Highcharts.Chart(options);
             });
         });

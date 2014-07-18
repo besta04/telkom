@@ -16,7 +16,7 @@
     }
     
     </script>
-    <title>R1 Sumatera</title>
+    <title>R4 JAWA TENGAH</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -146,7 +146,7 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button></p>
           <div class="row">
             <div class="panel panel-default">
-            <div class="panel-body" style="text-align:center"><b style="font-size:x-large">DIVISI 1 REGIONAL SUMATERA</b></div>
+            <div class="panel-body" style="text-align:center"><b style="font-size:x-large">DIVISI 4 REGIONAL JAWA BARAT</b></div>
           </div>
           <table>
             <tr>
@@ -158,28 +158,22 @@
           echo "Failed to connect : ". mysqli_connect_error();
         }
         
-       $result1 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result2 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM BENGKULU (BENGKULU)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result3 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM JAMBI' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result4 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM LAMPUNG (BANDAR LAMPUNG)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result5 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM NAD (ACEH)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result6 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM RIAU DARATAN (PEKANBARU)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result7 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM RIAU KEPULAUAN (BATAM)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result8 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM SUMATERA BARAT (PADANG)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result9 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM SUMATERA SELATAN (PALEMBANG)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result10 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM SUMUT BARAT (MEDAN)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $result11 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA'
-        AND WITEL = 'TELKOM SUMUT TIMUR (PEMATANG SIANTAR)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $result1 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG'
+        AND WITEL = 'TELKOM JATENG BARAT SELATAN (PURWOKERTO)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $result2 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG'
+        AND WITEL = 'TELKOM JATENG BARAT UTARA (PEKALONGAN)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $result3 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG'
+        AND WITEL = 'TELKOM JATENG SELATAN (MAGELANG)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $result4 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG'
+        AND WITEL = 'TELKOM JATENG SELATAN (YOGYAKARTA)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $result5 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG'
+        AND WITEL = 'TELKOM JATENG TENGAH (SALATIGA)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $result6 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG'
+        AND WITEL = 'TELKOM JATENG TIMUR SELATAN (SOLO)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $result7 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG'
+        AND WITEL = 'TELKOM JATENG TIMUR UTARA (KUDUS)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $result8 = mysqli_query($con,"SELECT COUNT(KLASIFIKASI_STATUS_SMILE)-1 as JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG'
+        AND WITEL = 'TELKOM JATENG UTARA (SEMARANG)' GROUP BY WITEL, KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
         echo "<div>
            <div>
                 <table class='table table-hover table-bordered'>
@@ -199,81 +193,57 @@
                   </thead>
                   <tbody>";
                   echo "<tr>";
-                  echo "<td>TELKOM BANGKA BELITUNG (PANGKAL PINANG)</td>";
+                  echo "<td>TELKOM JATENG BARAT SELATAN (PURWOKERTO)</td>";
                   while ($row = mysqli_fetch_array($result1))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM BENGKULU (BENGKULU)</td>";
+                  echo "<td>TELKOM JATENG BARAT UTARA (PEKALONGAN)</td>";
                   while ($row = mysqli_fetch_array($result2))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM JAMBI</td>";
+                  echo "<td>TELKOM JATENG SELATAN (MAGELANG)</td>";
                   while ($row = mysqli_fetch_array($result3))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM LAMPUNG (BANDAR LAMPUNG)</td>";
+                  echo "<td>TELKOM JATENG SELATAN (YOGYAKARTA)</td>";
                   while ($row = mysqli_fetch_array($result4))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM NAD (ACEH)</td>";
+                  echo "<td>TELKOM JATENG TENGAH (SALATIGA)</td>";
                   while ($row = mysqli_fetch_array($result5))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM RIAU DARATAN (PEKANBARU)</td>";
+                  echo "<td>TELKOM JATENG TIMUR SELATAN (SOLO)</td>";
                   while ($row = mysqli_fetch_array($result6))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM RIAU KEPULAUAN (BATAM)</td>";
+                  echo "<td>TELKOM JATENG TIMUR UTARA (KUDUS)</td>";
                   while ($row = mysqli_fetch_array($result7))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM SUMATERA BARAT (PADANG)</td>";
+                  echo "<td>TELKOM JATENG UTARA (SEMARANG)</td>";
                   while ($row = mysqli_fetch_array($result8))
-                  {
-                      echo "<td>" . $row['JUMLAH'] . "</td>";
-                  }
-                  echo "</tr>";
-                  echo "</tr>";
-                  echo "<tr>";
-                  echo "<td>TELKOM SUMATERA SELATAN (PALEMBANG)</td>";
-                  while ($row = mysqli_fetch_array($result9))
-                  {
-                      echo "<td>" . $row['JUMLAH'] . "</td>";
-                  }
-                  echo "</tr>";
-                  echo "</tr>";
-                  echo "<tr>";
-                  echo "<td>TELKOM SUMUT BARAT (MEDAN)</td>";
-                  while ($row = mysqli_fetch_array($result10))
-                  {
-                      echo "<td>" . $row['JUMLAH'] . "</td>";
-                  }
-                  echo "</tr>";
-                  echo "</tr>";
-                  echo "<tr>";
-                  echo "<td>TELKOM SUMUT TIMUR (PEMATANG SIANTAR)</td>";
-                  while ($row = mysqli_fetch_array($result11))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
