@@ -53,6 +53,132 @@ class ReportController extends CI_Controller
         }
     }
 
+    public function R2($id='')
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $this->load->helper('form');
+            $data = array('id' => $id);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view('R2',$data);
+            }
+            else if($this->session->userdata('is_staff'))
+            {
+                $this->load->view('R2',$data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
+    public function R3($id='')
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $this->load->helper('form');
+            $data = array('id' => $id);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view('R3',$data);
+            }
+            else if($this->session->userdata('is_staff'))
+            {
+                $this->load->view('R3',$data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
+    public function R4($id='')
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $this->load->helper('form');
+            $data = array('id' => $id);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view('R4',$data);
+            }
+            else if($this->session->userdata('is_staff'))
+            {
+                $this->load->view('R4',$data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
+    public function R5($id='')
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $this->load->helper('form');
+            $data = array('id' => $id);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view('R5',$data);
+            }
+            else if($this->session->userdata('is_staff'))
+            {
+                $this->load->view('R5',$data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
+    public function R6($id='')
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $this->load->helper('form');
+            $data = array('id' => $id);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view('R6',$data);
+            }
+            else if($this->session->userdata('is_staff'))
+            {
+                $this->load->view('R6',$data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
+    public function R7($id='')
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            $this->load->helper('form');
+            $data = array('id' => $id);
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view('R7',$data);
+            }
+            else if($this->session->userdata('is_staff'))
+            {
+                $this->load->view('R7',$data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
     public function log()
     {
         if($this->session->userdata('is_logged_in'))

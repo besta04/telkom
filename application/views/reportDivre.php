@@ -199,12 +199,12 @@
         }
         
        $resultSumatera = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-12 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R1 SUMATERA' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $resultJakarta = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-1 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R2 JAKARTA' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $resultJabar = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-1 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R3 JABAR' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $resultJateng = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-1 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $resultJatim = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-1 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R5 JATIM' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $resultKalimantan = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-1 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R6 KALIMANTAN' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
-       $resultKTI = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-1 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R7 KTI' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $resultJakarta = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-11 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R2 JAKARTA' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $resultJabar = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-5 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R3 JABAR' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $resultJateng = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-9 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R4 JATENG' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $resultJatim = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-10 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R5 JATIM' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $resultKalimantan = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-7 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R6 KALIMANTAN' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
+       $resultKTI = mysqli_query($con,"SELECT DISTINCT KLASIFIKASI_STATUS_SMILE as 'STATUS SMILE', COUNT(KLASIFIKASI_STATUS_SMILE)-10 AS JUMLAH FROM tabel_lme_main WHERE DIVRE = 'R7 KTI' GROUP BY KLASIFIKASI_STATUS_SMILE ORDER BY KLASIFIKASI_STATUS_SMILE ASC");
         echo "<div>
            <div>
                 <table class='table table-hover table-bordered'>
@@ -231,42 +231,42 @@
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>R2 JAKARTA</td>";
+                  echo "<td><a href='".site_url()."/ReportController/R2'>R2 JAKARTA</a> </td>";
                   while ($row = mysqli_fetch_array($resultJakarta))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>R3 JABAR</td>";
+                  echo "<td><a href='".site_url()."/ReportController/R3'>R3 JABAR</a> </td>";
                   while ($row = mysqli_fetch_array($resultJabar))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>R4 JATENG</td>";
+                  echo "<td><a href='".site_url()."/ReportController/R4'>R4 JATENG</a> </td>";
                   while ($row = mysqli_fetch_array($resultJateng))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>R5 JATIM</td>";
+                  echo "<td><a href='".site_url()."/ReportController/R5'>R5 JATIM</a></td>";
                   while ($row = mysqli_fetch_array($resultJatim))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>R6 KALIMANTAN</td>";
+                  echo "<td><a href='".site_url()."/ReportController/R6'>R6 KALIMANTAN</a></td>";
                   while ($row = mysqli_fetch_array($resultKalimantan))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>R7 KTI</td>";
+                  echo "<td><a href='".site_url()."/ReportController/R7'>R7 KTI</a></td>";
                   while ($row = mysqli_fetch_array($resultKTI))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
