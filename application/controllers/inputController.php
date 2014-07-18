@@ -101,6 +101,15 @@ class InputController extends CI_Controller
         // insert ke log klo sudah update data
         $result = $this->RekapModel->log_insert($data2);
 
+        $temp = $this->db->query("select STATUS_PROGRESS_WIFI, ALASAN_STATUS_PROGRESS from tabel_lme_main where id_lme= " . $id);
+        $oldStatus = $temp->first_row()->STATUS_PROGRESS_WIFI;
+        $oldKeterangan = $temp->first_row()->ALASAN_STATUS_PROGRESS;
+        
+        if($this->input->post('boxStatus') != $oldStatus || $this->input->post('boxKeterangan') != $oldKeterangan)
+        {
+            $this->db->set('LAST_UPDATE', 'NOW()', FALSE);
+        }
+
         // panggil ke model rekapmodel untuk update data
         $result = $this->RekapModel->update_entry($data, $id);
         

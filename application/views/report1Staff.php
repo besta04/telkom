@@ -1,7 +1,6 @@
 <!doctype html>
 
 <html>
-  
   <head>
     <script type="text/javascript">
     function overlay() 
@@ -14,6 +13,11 @@
       el = document.getElementById("overlayB");
       el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     }
+    function lokasiInputText() 
+    {
+      el = document.getElementById("lokasiInput");
+      el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    }
     function value()
     {
       $('#thetable').find('tr').click( function()
@@ -23,6 +27,33 @@
         return row;
       });
     }
+    function clearIt()
+    {
+      //alert('a');
+      document.getElementById("namaLokasi").selectedIndex = 0;
+    }
+    function setRegionalIndex() 
+    {
+      document.getElementById("regional_index_id").value = document.getElementById("regional").selectedIndex;
+    }
+    function setWitelIndex() 
+    {
+      document.getElementById("witel_index_id").value = document.getElementById("witel").selectedIndex;
+    }
+    function setKotaIndex() 
+    {
+      document.getElementById("kota_index_id").value = document.getElementById("kota").selectedIndex;
+    }
+    function setNamaLokasiIndex() 
+    {
+      //alert('ambil : ' + document.getElementById("namaLokasi").selectedIndex);
+      document.getElementById("namaLokasi_index_id").value = document.getElementById("namaLokasi").selectedIndex;
+      document.getElementById("namaLokasiText").value = document.getElementById("namaLokasi").value;
+    }
+    function setAlamatIndex() 
+    {
+      document.getElementById("alamat_index_id").value = document.getElementById("alamat").selectedIndex;
+    }
     function setSuratPesananIndex() 
     {
       document.getElementById("suratPesanan_index_id").value = document.getElementById("suratPesanan").selectedIndex;
@@ -30,22 +61,6 @@
     function setTocIndex() 
     {
       document.getElementById("toc_index_id").value = document.getElementById("toc").selectedIndex;
-    }
-    function setNamaLokasiIndex() 
-    {
-      document.getElementById("namaLokasi_index_id").value = document.getElementById("namaLokasi").selectedIndex;
-    }
-    function setNamaProjectIndex() 
-    {
-      document.getElementById("namaProject_index_id").value = document.getElementById("namaProject").selectedIndex;
-    }
-    function setProjectSPIndex() 
-    {
-      document.getElementById("projectSP_index_id").value = document.getElementById("projectSP").selectedIndex;
-    }
-    function setWitelIndex() 
-    {
-      document.getElementById("witel_index_id").value = document.getElementById("witel").selectedIndex;
     }
     function setOrderIndex() 
     {
@@ -55,6 +70,19 @@
     {
       document.getElementById("status_index_id").value = document.getElementById("status").selectedIndex;
     }
+    function setStatProgIndex() 
+    {
+      document.getElementById("statProg_index_id").value = document.getElementById("statProg").selectedIndex;
+    }
+    function setKeteranganIndex() 
+    {
+      document.getElementById("keterangan_index_id").value = document.getElementById("keterangan").selectedIndex;
+    }
+    function setTipeIndex() 
+    {
+      document.getElementById("tipe_index_id").value = document.getElementById("tipe").selectedIndex;
+    }
+    
     </script>
     <title>Laporan Wifi LME</title>
     <meta name="viewport" content="width=device-width">
@@ -110,7 +138,7 @@
      left: 0px;
      top: 0px;
      width:100%;
-     height:200%;
+     height:300%;
      text-align:center;
      z-index: 1000;
      background-color: rgba(1,1,1,0.8)
@@ -130,7 +158,7 @@
      left: 0px;
      top: 0px;
      width:100%;
-     height:200%;
+     height:300%;
      text-align:center;
      z-index: 1000;
      background-color: rgba(1,1,1,0.8)
@@ -159,7 +187,7 @@
   </head>
   
   <body>
-
+    
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -401,9 +429,12 @@
                 {
                   if($data->NAMA_LOKASI != $textSelected)
                   {
-                    break;
+                    echo "<option>".$data->NAMA_LOKASI."</option>";
                   }
-                  echo "<option selected='selected'>".$data->NAMA_LOKASI."</option>";
+                  else
+                  {
+                    echo "<option selected='selected'>".$data->NAMA_LOKASI."</option>";
+                  }
                 }
                 else
                 {
@@ -413,7 +444,7 @@
               }
             }
             echo "</select>
-            <input type='text' name='namaLokasiText' id='namaLokasiText' value='".$textSelected."' style='position:relative; left:100px; width:145px'/>
+            <input type='text' name='namaLokasiText' id='namaLokasiText' value='".$textSelected."' style='position:relative; left:100px; width:145px' onChange='clearIt()'/>
           </td>
           <td><p style='position:relative; left:250px'>Status Progress</td>
           <td><p style='position:relative; left:250px'>:</p></td>
@@ -577,17 +608,19 @@
           }
           else
           {
-            $num = (int)$data->ID_LME;
-            $num -=20;
+            //$num = (int)$data->ID_LME;
+            //$num -=20;
           }
         }
         catch(Exception $e)
         {
           echo "<script>alert('No data found.')</script>";
-          $num = -1;
+          //$num = -1;
         }
-       $result2 = mysqli_query($con,"select distinct NAMA_LOKASI, ALAMAT from tabel_lme_main limit ".$num." , 20");
-       $result3 = mysqli_query($con,"select distinct ID_LME, STAT_PROGRESS, KLAS_STAT_PROGRESS, KETERANGAN 
+        $num = $this->session->userdata("num");
+       $result2 = mysqli_query($con,"select NAMA_LOKASI, ALAMAT from tabel_lme_main, tabel_order 
+                              where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER limit ".$num." , 20");
+       $result3 = mysqli_query($con,"select ID_LME, STATUS_PROGRESS_WIFI, KLASIFIKASI_STATUS_SMILE, ALASAN_STATUS_PROGRESS 
                               from tabel_lme_main limit ".$num." , 20");
         echo "<div id='overlay'>
            <div>
@@ -664,10 +697,12 @@
           //$num = 0;
           //while ($row = mysqli_fetch_array($result))
           //{
+          
           if (is_array($results))
           {
           foreach ($results as $data)
           {
+            $date = $data->LAST_UPDATE == '' ? 'Never' : $data->LAST_UPDATE;
             //$num++;
             echo "<tr>";
             echo "<td>" . $data->ID_LME/*$row['ID_LME']*/ . "</td>";
@@ -680,7 +715,7 @@
             echo "<td>" . $data->ORDERS . "</td>";
             echo "<td><a href='#' onclick='overlayB()'>" . $data->KLASIFIKASI_STATUS_SMILE . "</a></td>";
             echo "<td>" . $data->TYPE_LME . "</td>";
-            echo "<td>dd/mm/yyyy hh:mm:ss</td>";
+            echo "<td>". (string)$date ."</td>";
             echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $data->ID_LME) . "' >Edit</button>";
             echo "</tr>";
           //}
@@ -735,7 +770,7 @@
       <!--/row-->
       <hr>
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; PT. Telekomunikasi Indonesia 2014</p>
       </footer>
     </div>
     <!--/.container-->

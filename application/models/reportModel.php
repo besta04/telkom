@@ -47,7 +47,7 @@ class ReportModel extends CI_Model
         }
         if($namaLokasi != '')
         {
-            $this->db->where('NAMA_LOKASI',$namaLokasi);
+            $this->db->like('NAMA_LOKASI',$namaLokasi);
         }
         if($witel != '')
         {
@@ -140,7 +140,7 @@ class ReportModel extends CI_Model
         } 
         if($this->session->userdata('namaLokasi') != '')
         {
-             $this->db->where('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
+             $this->db->like('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
         } 
         if($this->session->userdata('alamat') != '')
         {
@@ -172,7 +172,7 @@ class ReportModel extends CI_Model
         } 
         if($this->session->userdata('namaLokasi') != '')
         {
-             $this->db->where('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
+             $this->db->like('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
         } 
         if($this->session->userdata('alamat') != '')
         {
@@ -204,7 +204,7 @@ class ReportModel extends CI_Model
         } 
         if($this->session->userdata('namaLokasi') != '')
         {
-             $this->db->where('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
+             $this->db->like('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
         } 
         if($this->session->userdata('alamat') != '')
         {
@@ -268,7 +268,7 @@ class ReportModel extends CI_Model
         } 
         if($this->session->userdata('namaLokasi') != '')
         {
-             $this->db->where('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
+             $this->db->like('NAMA_LOKASI',$this->session->userdata('namaLokasi'));
         } 
         if($this->session->userdata('witel') != '')
         {

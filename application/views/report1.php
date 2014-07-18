@@ -27,6 +27,11 @@
         return row;
       });
     }
+    function clearIt()
+    {
+      //alert('a');
+      document.getElementById("namaLokasi").selectedIndex = 0;
+    }
     function setRegionalIndex() 
     {
       document.getElementById("regional_index_id").value = document.getElementById("regional").selectedIndex;
@@ -424,9 +429,12 @@
                 {
                   if($data->NAMA_LOKASI != $textSelected)
                   {
-                    break;
+                    echo "<option>".$data->NAMA_LOKASI."</option>";
                   }
-                  echo "<option selected='selected'>".$data->NAMA_LOKASI."</option>";
+                  else
+                  {
+                    echo "<option selected='selected'>".$data->NAMA_LOKASI."</option>";
+                  }
                 }
                 else
                 {
@@ -436,7 +444,7 @@
               }
             }
             echo "</select>
-            <input type='text' name='namaLokasiText' id='namaLokasiText' value='".$textSelected."' style='position:relative; left:100px; width:145px'/>
+            <input type='text' name='namaLokasiText' id='namaLokasiText' value='".$textSelected."' style='position:relative; left:100px; width:145px' onchange=''clearIt()/>
           </td>
           <td><p style='position:relative; left:250px'>Status Progress</td>
           <td><p style='position:relative; left:250px'>:</p></td>
