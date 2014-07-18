@@ -74,10 +74,6 @@
     {
       document.getElementById("statProg_index_id").value = document.getElementById("statProg").selectedIndex;
     }
-    function setKeteranganIndex() 
-    {
-      document.getElementById("keterangan_index_id").value = document.getElementById("keterangan").selectedIndex;
-    }
     function setTipeIndex() 
     {
       document.getElementById("tipe_index_id").value = document.getElementById("tipe").selectedIndex;
@@ -504,27 +500,9 @@
           <td><p style='position:relative; left:250px'>Keterangan</td>
           <td><p style='position:relative; left:250px'>:</p></td>
           <td>";
-          $statusSelected = $this->session->userdata('keteranganIndex');
-            echo "<input type='hidden' name='keterangan_index' value='".$statusSelected."' id='keterangan_index_id'/>
-            <select name='keterangan' id='keterangan' onchange='setKeteranganIndex()'>
-            <option></option>";
-            if (is_array($keterangan))
-            {
-              $i = 1;
-              foreach ($keterangan as $data)
-              {
-                if($i == $statusSelected)
-                {
-                  echo "<option selected='selected'>".$data->ALASAN_STATUS_PROGRESS."</option>";
-                }
-                else
-                {
-                  echo "<option>".$data->ALASAN_STATUS_PROGRESS."</option>";
-                }
-                $i++;
-              }
-            }
-            echo "</select></p>
+            echo "<input type='text' name='keterangan' id='keterangan'/>";
+            
+            echo "</p>
           </td>
           </tr>
         <tr>
@@ -657,7 +635,7 @@
                       <th>#</th>
                       <th>Klasifikasi Status</th>
                       <th>Status Progress</th>
-                      <th>Keterangan</th>
+                      <th>Alasan Status Progress</th>
                     </tr>
                   </thead>
                   <tbody>";
@@ -702,6 +680,7 @@
           {
           foreach ($results as $data)
           {
+            $date = $data->LAST_UPDATE == '' ? 'Never' : $data->LAST_UPDATE;
             //$num++;
             echo "<tr>";
             echo "<td>" . $data->ID_LME/*$row['ID_LME']*/ . "</td>";
@@ -714,7 +693,7 @@
             echo "<td>" . $data->ORDERS . "</td>";
             echo "<td><a href='#' onclick='overlayB()'>" . $data->KLASIFIKASI_STATUS_SMILE . "</a></td>";
             echo "<td>" . $data->TYPE_LME . "</td>";
-            echo "<td>dd/mm/yyyy hh:mm:ss</td>";
+            echo "<td>". (string)$date ."</td>";
             echo "<td><button type='submit' onClick=window.location='" . site_url('/HomeController/editItem/' . $data->ID_LME) . "' >Edit</button>
             <button type='submit' onClick=window.location='" . site_url('/HomeController/deleteItem/' . $data->ID_LME) . "' >Delete</button></td>";
             echo "</tr>";

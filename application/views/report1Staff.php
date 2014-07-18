@@ -74,10 +74,6 @@
     {
       document.getElementById("statProg_index_id").value = document.getElementById("statProg").selectedIndex;
     }
-    function setKeteranganIndex() 
-    {
-      document.getElementById("keterangan_index_id").value = document.getElementById("keterangan").selectedIndex;
-    }
     function setTipeIndex() 
     {
       document.getElementById("tipe_index_id").value = document.getElementById("tipe").selectedIndex;
@@ -504,27 +500,9 @@
           <td><p style='position:relative; left:250px'>Keterangan</td>
           <td><p style='position:relative; left:250px'>:</p></td>
           <td>";
-          $statusSelected = $this->session->userdata('keteranganIndex');
-            echo "<input type='hidden' name='keterangan_index' value='".$statusSelected."' id='keterangan_index_id'/>
-            <select name='keterangan' id='keterangan' onchange='setKeteranganIndex()'>
-            <option></option>";
-            if (is_array($keterangan))
-            {
-              $i = 1;
-              foreach ($keterangan as $data)
-              {
-                if($i == $statusSelected)
-                {
-                  echo "<option selected='selected'>".$data->ALASAN_STATUS_PROGRESS."</option>";
-                }
-                else
-                {
-                  echo "<option>".$data->ALASAN_STATUS_PROGRESS."</option>";
-                }
-                $i++;
-              }
-            }
-            echo "</select></p>
+          echo "<input type='text' name='keterangan' id='keterangan'/>";
+            
+            echo "</p>
           </td>
           </tr>
         <tr>
@@ -657,7 +635,7 @@
                       <th>#</th>
                       <th>Klasifikasi Status</th>
                       <th>Status Progress</th>
-                      <th>Keterangan</th>
+                      <th>Alasan Status Progress</th>
                     </tr>
                   </thead>
                   <tbody>";

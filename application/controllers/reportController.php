@@ -191,7 +191,6 @@ class ReportController extends CI_Controller
                     'orderIndex'=>$this->input->post("order_index"),
                     'statusIndex'=>$this->input->post("status_index"),
                     'statProgIndex'=>$this->input->post("statProg_index"),
-                    'keteranganIndex'=>$this->input->post("keterangan_index"),
                     'tipeIndex'=>$this->input->post("tipe_index")
                     );
                 $this->session->set_userdata($dataIndex);
@@ -221,7 +220,6 @@ class ReportController extends CI_Controller
             $data["order"] = $this->reportModel->load_dropdown("ORDERS");
             $data["status"] = $this->reportModel->load_dropdown("KLAS_STAT_PROGRESS");
             $data["statProg"] = $this->reportModel->load_dropdown("STAT_PROGRESS");
-            $data["keterangan"] = $this->reportModel->load_dropdown("KETERANGAN");
             $data["tipe"] = $this->reportModel->load_dropdown("TIPE_LME");
 
             $config = array();

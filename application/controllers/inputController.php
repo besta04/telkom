@@ -63,6 +63,28 @@ class InputController extends CI_Controller
         }
     }
 
+    // fungsi restore item yang udah didelete
+    public function restoreItem($id)
+    {
+        $this->load->helper('url');
+        $this->load->model('RekapModel');
+        $this->db->set('waktu', 'NOW()', FALSE);
+        $data2 = array(
+                    'keterangan' => 'RESTORE DATA',
+                    'subjek' => $this->session->userdata('username'),
+                    'witel' => $this->input->post('boxWitel'),
+                    'kota' => $this->input->post('boxKota'),
+                    'lokasi' => $this->input->post('boxLokasi'),
+                    'from' => '-',
+                    'to' => '-'
+                    );
+          
+        $result = $this->RekapModel->log_insert($data2);
+        $result = $this->RekapModel->restore_entry($id);
+
+        header('Refresh:1, URL='.site_url().'ReportController/log/');
+    }
+
     // fungsi untuk update item, sebagian besar sama kayak inservalidation
     public function UpdateValidation($id)
     {

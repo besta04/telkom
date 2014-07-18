@@ -67,7 +67,7 @@ class ReportModel extends CI_Model
         }
         if($keterangan != '')
         {
-            $this->db->where('ALASAN_STATUS_PROGRESS',$keterangan);
+            $this->db->like('ALASAN_STATUS_PROGRESS',$keterangan);
         }
         return $this->db->count_all_results();
     }
@@ -101,10 +101,6 @@ class ReportModel extends CI_Model
         else if($key == "STAT_PROGRESS")
         {
             $this->db->select('STATUS_PROGRESS_WIFI');
-        }
-        else if($key == "KETERANGAN")
-        {
-            $this->db->select('ALASAN_STATUS_PROGRESS');
         }
         else if($key == "TIPE_LME")
         {
@@ -348,7 +344,7 @@ class ReportModel extends CI_Model
         }
         if($keterangan != '')
         {
-            $this->db->where('KETERANGAN',$keterangan);
+            $this->db->like('ALASAN_STATUS_PROGRESS',$keterangan);
         }
         if($tipe != '')
         {

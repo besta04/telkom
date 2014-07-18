@@ -142,6 +142,7 @@
               <th>Lokasi</th>
               <th>Before</th>
               <th>After</th>
+              <th>Action</th>
             </tr>
           </thead>";
           echo "<tbody>";
@@ -163,6 +164,14 @@
             echo "<td>" . $data->lokasi . "</td>";
             echo "<td>" . $data->from . "</td>";
             echo "<td>" . $data->to . "</td>";
+            if($data->keterangan == 'DELETE')
+            {
+              echo "<td><a href='" . site_url('/InputController/restoreItem/' . $data->id_log) . "'><i>restore</i><a></td>";
+            }
+            else
+            {
+              echo "<td><i>no action</i></td>";
+            }
             echo "</tr>";
           //}
           }

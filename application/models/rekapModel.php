@@ -56,7 +56,63 @@ class RekapModel extends CI_Model
     {
         try 
         {
+            $query = $this->db->get_where('tabel_lme_main', array('id_lme' => $id));
+            if ($query->num_rows() > 0) 
+            {
+                foreach ($query->result() as $row) 
+                {
+                    $data = array(
+                            'ID_ORDER' => $row->ID_ORDER,
+                            'DIVRE' => $row->DIVRE,
+                            'WITEL' => $row->WITEL,
+                            'KOTA' => $row->KOTA,
+                            'NAMA_LOKASI' => $row->NAMA_LOKASI,
+                            'ALAMAT' => $row->ALAMAT,
+                            'TYPE_LME' => $row->TYPE_LME,
+                            'ORDERS' => $row->ORDERS,
+                            'KLASIFIKASI_STATUS_SMILE' => $row->KLASIFIKASI_STATUS_SMILE,
+                            'STATUS_PROGRESS_WIFI' => $row->STATUS_PROGRESS_WIFI,
+                            'ALASAN_STATUS_PROGRESS' => $row->ALASAN_STATUS_PROGRESS
+                            );
+                }
+            }
+            $this->db->insert('tabel_deleted', $data);
             $this->db->delete('tabel_lme_main', array('id_lme' => $id));  
+            return true;
+        } 
+        catch (Exception $e) 
+        {
+            return false;            
+        }
+    }
+
+    // fungsi restore data
+    function restore_entry($id)
+    {
+        try 
+        {
+            $query = $this->db->get_where('tabel_deleted', array('id_deleted' => $id));
+            if ($query->num_rows() > 0) 
+            {
+                foreach ($query->result() as $row) 
+                {
+                    $data = array(
+                            'ID_ORDER' => $row->ID_ORDER,
+                            'DIVRE' => $row->DIVRE,
+                            'WITEL' => $row->WITEL,
+                            'KOTA' => $row->KOTA,
+                            'NAMA_LOKASI' => $row->NAMA_LOKASI,
+                            'ALAMAT' => $row->ALAMAT,
+                            'TYPE_LME' => $row->TYPE_LME,
+                            'ORDERS' => $row->ORDERS,
+                            'KLASIFIKASI_STATUS_SMILE' => $row->KLASIFIKASI_STATUS_SMILE,
+                            'STATUS_PROGRESS_WIFI' => $row->STATUS_PROGRESS_WIFI,
+                            'ALASAN_STATUS_PROGRESS' => $row->ALASAN_STATUS_PROGRESS
+                            );
+                }
+            }
+            $this->db->insert('tabel_lme_main', $data);
+            $this->db->delete('tabel_deleted', array('id_deleted' => $id));  
             return true;
         } 
         catch (Exception $e) 
