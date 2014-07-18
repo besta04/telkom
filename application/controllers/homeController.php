@@ -53,6 +53,8 @@ class HomeController extends CI_Controller{
 	    $series8 = array();
 	    $series8['name'] = 'BATAL';
 
+	    $series9 = array();
+	    $series9['name'] = 'BAST';
 	    foreach ($data as $row)
 	    {
 	        $category['data'][] = $row->WAKTU;
@@ -64,6 +66,7 @@ class HomeController extends CI_Controller{
 	        $series6['data'][] = $row->KENDALA_SITAC;
 	        $series7['data'][] = $row->KENDALA_NON_SITAC;
 	        $series8['data'][] = $row->BATAL;
+	        $series9['data'][] = $row->BAST;
 	    }
 	        
 	    $result = array();
@@ -76,6 +79,7 @@ class HomeController extends CI_Controller{
 	    array_push($result,$series6);
 	    array_push($result,$series7);
 	    array_push($result,$series8);
+	    array_push($result,$series9);
 	    
 	    print json_encode($result, JSON_NUMERIC_CHECK);
 	}

@@ -10,8 +10,6 @@ class Data extends CI_Model {
     
     function get_data()
     {
-    	//$this->db->select('*');
-    	//$this->db->from('chart');
     	$query = $this->db->get('chart');
       return $query->result();
     }
