@@ -64,7 +64,7 @@ class InputController extends CI_Controller
     }
 
     // fungsi restore item yang udah didelete
-    public function restoreItem($id)
+    public function restoreItem($idLog, $idDelete)
     {
         $this->load->helper('url');
         $this->load->model('RekapModel');
@@ -80,9 +80,9 @@ class InputController extends CI_Controller
                     );
           
         $result = $this->RekapModel->log_insert($data2);
-        $result = $this->RekapModel->restore_entry($id);
+        $result = $this->RekapModel->restore_entry($idLog, $idDelete);
 
-        header('Refresh:1, URL='.site_url().'ReportController/log/');
+        header('Refresh:1, URL='.site_url().'/ReportController/log/');
     }
 
     // fungsi untuk update item, sebagian besar sama kayak inservalidation
@@ -150,28 +150,7 @@ class InputController extends CI_Controller
     // fungsi delete item
     public function DeleteValidation($id)
     {
-        $con=mysqli_connect("localhost","root","root","telkom_lme");
-        if (mysqli_connect_errno())
-        {
-          echo "Failed to connect : ". mysqli_connect_error();
-        }
-        $resultDelete = mysqli_query($con,"select witel, alamat from tabel_lme_main where id_lme =".$id);
-        $rows = mysqli_fetch_array($resultDelete);
         $this->load->model('RekapModel');
-        $data2 = array(
-                        'keterangan' => 'DELETE',
-                        'subjek' => $this->session->userdata('username'),
-                        'witel' => $rows['witel'],
-                        'lokasi' => $rows['alamat'],
-                        'kota' => $this->input->post('boxKota'),
-                        'from' => '-',
-                        'to' => '-'
-            );
-        $this->db->set('waktu', 'NOW()', FALSE);
-
-        // insert ke log kalo sudah delete data
-        $result = $this->RekapModel->log_insert($data2);
-
         // delete entry, panggil ke model rekapmodel
         $result = $this->RekapModel->delete_entry($id);
         if($result==true)

@@ -164,9 +164,13 @@
             echo "<td>" . $data->lokasi . "</td>";
             echo "<td>" . $data->from . "</td>";
             echo "<td>" . $data->to . "</td>";
-            if($data->keterangan == 'DELETE')
+            if ($data->keterangan == 'DELETE' && $data->id_delete == '0000000')
             {
-              echo "<td><a href='" . site_url('/InputController/restoreItem/' . $data->id_log) . "'><i>restore</i><a></td>";
+              echo "<td><i style='color:green'>restored</i></td>";
+            }
+            else if($data->keterangan == 'DELETE')
+            {
+              echo "<td><a href='" . site_url('/InputController/restoreItem/' . $data->id_log . "/" . $data->id_delete) . "'><i>restore</i><a></td>";
             }
             else
             {
