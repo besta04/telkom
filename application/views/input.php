@@ -74,14 +74,20 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="#">Home</a>
+            <li >
+              <a href='<?php echo site_url('HomeController/main') ?>'>Home</a>
+            </li>
+            <li >
+              <a href='<?php echo site_url('ReportController/report1') ?>'>Laporan</a>
+            </li>
+            <li>
+              <a href='<?php echo site_url('ReportController/reportDivre') ?>'>Rekap</a>
+            </li>
+            <li>
+              <a href='<?php echo site_url('HomeController/statusProgress') ?>'>Chart</a>
             </li>
             <li>
               <a href="#about">About</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
             </li>
           </ul>
           <div class="navbar-form navbar-right">

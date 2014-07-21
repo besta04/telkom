@@ -194,14 +194,20 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
+            <li >
+              <a href='<?php echo site_url('HomeController/main') ?>'>Home</a>
+            </li>
             <li class="active">
-              <a href="#">Home</a>
+              <a href="#">Laporan</a>
+            </li>
+            <li>
+              <a href='<?php echo site_url('ReportController/reportDivre') ?>'>Rekap</a>
+            </li>
+            <li>
+              <a href='<?php echo site_url('HomeController/statusProgress') ?>'>Chart</a>
             </li>
             <li>
               <a href="#about">About</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
             </li>
           </ul>
           <div class="navbar-form navbar-right">
@@ -440,7 +446,7 @@
               }
             }
             echo "</select>
-            <input type='text' name='namaLokasiText' id='namaLokasiText' value='".$textSelected."' style='position:relative; left:100px; width:145px' onchange=''clearIt()/>
+            <input type='text' name='namaLokasiText' id='namaLokasiText' value='".$textSelected."' style='position:relative; left:100px; width:145px' onchange='clearIt()'/>
           </td>
           <td><p style='position:relative; left:250px'>Status Progress</td>
           <td><p style='position:relative; left:250px'>:</p></td>
@@ -600,30 +606,7 @@
                               where tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER limit ".$num." , 20");
        $result3 = mysqli_query($con,"select ID_LME, STATUS_PROGRESS_WIFI, KLASIFIKASI_STATUS_SMILE, ALASAN_STATUS_PROGRESS 
                               from tabel_lme_main limit ".$num." , 20");
-        echo "<div id='overlay'>
-           <div>
-           Click here to [<a href='#' onclick='overlay()'>close</a>]
-           <br><br>
-                <table class='table table-hover table-bordered'>
-                  <thead>
-                    <tr>
-                      <th>Nama Lokasi</th>
-                      <th>Alamat Lokasi</th>
-                    </tr>
-                  </thead>
-                  <tbody>";
-                  while ($row = mysqli_fetch_array($result2))
-                  {
-                    echo "<tr>";
-                      echo "<td>" . $row['NAMA_LOKASI'] . "</td>";
-                      echo "<td>" . $row['ALAMAT'] . "</td>";
-                    echo "</tr>";
-                  }
-                  echo "</tbody>
-                </table>
-                Click here to [<a href='#' onclick='overlay()'>close</a>]
-           </div>
-          </div>";
+        
 
           echo "<div id='overlayB'>
            <div>
@@ -639,6 +622,18 @@
                     </tr>
                   </thead>
                   <tbody>";
+                  if (is_array($results))
+                  {
+                    foreach ($results as $data)
+                    {
+                      echo "<tr>";
+                      echo "<td>" . $data->ID_LME . "</td>";
+                      echo "<td>" . $data->KLASIFIKASI_STATUS_SMILE . "</td>";
+                      echo "<td>" . $data->STATUS_PROGRESS_WIFI . "</td>";
+                      echo "<td>" . $data->ALASAN_STATUS_PROGRESS . "</td>";
+                      echo "</tr>";
+                    }
+                  }/*
                   while ($row = mysqli_fetch_array($result3))
                   {
                     echo "<tr>";
@@ -647,7 +642,7 @@
                       echo "<td>" . $row['STATUS_PROGRESS_WIFI'] . "</td>";
                       echo "<td>" . $row['ALASAN_STATUS_PROGRESS'] . "</td>";
                     echo "</tr>";
-                  }
+                  }*/
                   echo "</tbody>
                 </table>
                 Click here to [<a href='#' onclick='overlayB()'>close</a>]
@@ -702,6 +697,41 @@
         };
           echo "</tbody>";
           echo "</table>";
+
+          echo "<div id='overlay'>
+           <div>
+           Click here to [<a href='#' onclick='overlay()'>close</a>]
+           <br><br>
+                <table class='table table-hover table-bordered'>
+                  <thead>
+                    <tr>
+                      <th>Nama Lokasi</th>
+                      <th>Alamat Lokasi</th>
+                    </tr>
+                  </thead>
+                  <tbody>";
+                  if (is_array($results))
+                  {
+                    foreach ($results as $data)
+                    {
+                      echo "<tr>";
+                      echo "<td>" . $data->NAMA_LOKASI . "</td>";
+                      echo "<td>" . $data->ALAMAT . "</td>";
+                      echo "</tr>";
+                    }
+                  }/*
+                  while ($row = mysqli_fetch_array($result2))
+                  {
+                    echo "<tr>";
+                      echo "<td>" . $row['NAMA_LOKASI'] . "</td>";
+                      echo "<td>" . $row['ALAMAT'] . "</td>";
+                    echo "</tr>";
+                  }*/
+                  echo "</tbody>
+                </table>
+                Click here to [<a href='#' onclick='overlay()'>close</a>]
+           </div>
+          </div>";
 
           mysqli_close($con);
           ?>

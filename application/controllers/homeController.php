@@ -103,7 +103,23 @@ class HomeController extends CI_Controller{
 	public function index()
 	{
 		$this->load->helper('url');
-		$this->load->view('index');
+		if($this->session->userdata('is_logged_in'))
+		{
+			// kalo admin
+			if($this->session->userdata('is_admin'))
+			{
+				$this->load->view('mainPage');
+			}
+			// kalo bukan admin (user)
+			else if($this->session->userdata('is_staff'))
+			{
+				$this->load->view('mainPageStaff');
+			}
+		}
+		else
+		{
+			$this->load->view('index');
+		}
 	}
 
 	// fungsi halaman utama sesudah login
