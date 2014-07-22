@@ -213,20 +213,6 @@
          <div class='form-group'>
           <label class='control-label'>Keterangan Status :</label>
           <input type='text' class='form-control' name='boxKeterangan'>";
-         /*echo "</select>
-          </div>
-          <div class='form-group'>
-          <label class='control-label'>Klasifikasi Status Progress :</label>
-          <select class='form-control' name='boxKlasifikasi'>
-            <option>A. Non Progress</option>
-            <option>B. Survey</option>
-            <option>C. On Progress</option>
-            <option>D. Selesai Instalasi</option>
-            <option>E. Proses Rekon</option>
-            <option>F. Kendala Sitac</option>
-            <option>G. Kendala Non-Sitac</option>
-            <option>H. Batal</option>
-          </select>*/
         echo "  
         </div>
         <button class='btn btn-lg btn-primary btn-block' id='submit'>Submit</button> 
