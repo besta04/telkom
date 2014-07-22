@@ -391,24 +391,39 @@
             //echo "<script>alert('".$statusSelected."')</script>";
             echo "<input type='hidden' name='status_index' value='".$statusSelected."' id='status_index_id'/>
             <select name='status' id='status' onchange='setStatusIndex()'>";
-            echo "<option></option>";
-            if (is_array($status))
-            {
-              $i = 1;
-              foreach ($status as $data)
-              {
-                if($i == $statusSelected)
-                {
-                  echo "<option selected='selected'>".$data->KLASIFIKASI_STATUS_SMILE."</option>";
-                }
-                else
-                {
-                  echo "<option>".$data->KLASIFIKASI_STATUS_SMILE."</option>";
-                }
-                $i++;
-              }
-            }
-            echo "</select></p>
+            echo "<option></option>
+            <option>Alamat tidak di temukan</option>
+            <option>Batal</option>
+            <option>Belum Ada Izin Lokasi</option>
+            <option>Belum Order Mitra</option>
+            <option>Belum Proses</option>
+            <option>Dibatalkan oleh Wibro</option>
+            <option>Dismantle</option>
+            <option>Duplikasi</option>
+            <option>L1</option>
+            <option>L2</option>
+            <option>L3</option>
+            <option>Menunggu Aproval Design Center TA</option>
+            <option>Menunggu Aproval Witel</option>
+            <option>Menunggu DRM</option>
+            <option>Menunggu Feeder/Tidak ada Feeder</option>
+            <option>Menunggu Material</option>
+            <option>Menunggu SITAC dari Wibro</option>
+            <option>On Air</option>
+            <option>On Air Existing</option>
+            <option>On Air Tembaga</option>
+            <option>Order ke Mitra / Subcont</option>
+            <option>Other</option>
+            <option>Pelaksanaan DRM (Aproval Design)</option>
+            <option>Pelaksanaan UT</option>
+            <option>Penarikan Optic</option>
+            <option>Penerbitan BAST</option>
+            <option>Sedang Proses Rekonsiliasi</option>
+            <option>Sedang Proses Survey</option>
+            <option>Selesai Instalasi</option>
+            <option>SITAC</option>
+            <option>Tidak diizinkan Pemilik Lokasi</option>
+            </select></p>
           </td>
         </tr>
 

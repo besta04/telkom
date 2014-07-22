@@ -12,9 +12,41 @@
     function setKlasifikasi() 
     {
       var status = document.getElementById("boxStatus").value;
-      if(status == "B")
+      if(status == "Belum Proses" || status == "Belum Order Mitra")
       {
-        document.getElementById("boxKlasifikasi").value = "testing";
+        document.getElementById("boxKlasifikasi").value = "A. NON PROGRESS";
+      }
+      else if(status == "Sedang Proses Survey" || status == "Pelaksanaan DRM (Aproval Design)")
+      {
+        document.getElementById("boxKlasifikasi").value = "B. SURVEY";
+      }
+      else if(status == "Penarikan Optic" || status == "Menunggu Material" || status == "Order ke Mitra / Subcont")
+      {
+        document.getElementById("boxKlasifikasi").value = "C. ON PROGRESS";
+      }
+      else if(status == "L1" || status == "L2" || status == "L3" || status == "Selesai Instalasi" || status == "On Air")
+      {
+        document.getElementById("boxKlasifikasi").value = "D. SELESAI INSTALASI";
+      }
+      else if(status == "Sedang Proses Rekonsiliasi")
+      {
+        document.getElementById("boxKlasifikasi").value = "E. REKON";
+      }
+      else if(status == "Belum Ada Izin Lokasi" || status == "Tidak Di Izinkan Pemilik Lokasi" || status == "Menunggu SITAC dari Wibro")
+      {
+        document.getElementById("boxKlasifikasi").value = "F. KENDALA SITAC";
+      }
+      else if(status == "Menunggu Aproval Design Center TA" || status == "Menunggu Aproval Witel" || status == "Alamat tidak di temukan" || status == "Menunggu DRM" || status == "Menunggu Feeder/Tidak ada Feeder" || status == "Other")
+      {
+        document.getElementById("boxKlasifikasi").value = "G. KENDALA NON SITAC";
+      }
+      else if(status == "Duplikasi" || status == "On Air Existing" || status == "SITAC" || status == "Batal" || status == "Dismantle" || status == "Dibatalkan Oleh Wibro")
+      {
+        document.getElementById("boxKlasifikasi").value = "H. BATAL";
+      }
+      else if(status == "Pelaksanaan UT" || status == "Penerbitan BAST")
+      {
+        document.getElementById("boxKlasifikasi").value = "I. BAST";
       }
     }
     </script>
@@ -175,7 +207,39 @@
         </div>
         <div class='form-group'>
         <label class='form-label'>Status Progress WIFI :</label>
-        <input type='text' id='boxStatus' class='form-control' name='boxStatus' onchange='setKlasifikasi()' value='" . $rows['STATUS_PROGRESS_WIFI'] . "'>
+        <select type='text' id='boxStatus' class='form-control' name='boxStatus' onchange='setKlasifikasi()' value='" . $rows['STATUS_PROGRESS_WIFI'] . "'>
+          <option>Alamat tidak di temukan</option>
+          <option>Batal</option>
+          <option>Belum Ada Izin Lokasi</option>
+          <option>Belum Order Mitra</option>
+          <option>Belum Proses</option>
+          <option>Dibatalkan oleh Wibro</option>
+          <option>Dismantle</option>
+          <option>Duplikasi</option>
+          <option>L1</option>
+          <option>L2</option>
+          <option>L3</option>
+          <option>Menunggu Aproval Design Center TA</option>
+          <option>Menunggu Aproval Witel</option>
+          <option>Menunggu DRM</option>
+          <option>Menunggu Feeder/Tidak ada Feeder</option>
+          <option>Menunggu Material</option>
+          <option>Menunggu SITAC dari Wibro</option>
+          <option>On Air</option>
+          <option>On Air Existing</option>
+          <option>On Air Tembaga</option>
+          <option>Order ke Mitra / Subcont</option>
+          <option>Other</option>
+          <option>Pelaksanaan DRM (Aproval Design)</option>
+          <option>Pelaksanaan UT</option>
+          <option>Penarikan Optic</option>
+          <option>Penerbitan BAST</option>
+          <option>Sedang Proses Rekonsiliasi</option>
+          <option>Sedang Proses Survey</option>
+          <option>Selesai Instalasi</option>
+          <option>SITAC</option>
+          <option>Tidak diizinkan Pemilik Lokasi</option>
+        </select>
         </div>
 
         <label class='form-label'>Alasan Status Progress :</label>

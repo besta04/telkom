@@ -14,7 +14,10 @@
       el = document.getElementById("overlayB");
       el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     }
-    
+    function changeSatu()
+    {
+      document.getElementById("selected").values = "bangkabelitung";
+    }
     </script>
     <title>R1 Sumatera</title>
     <meta name="viewport" content="width=device-width">
@@ -203,9 +206,10 @@
                       <th>I. BAST</th>
                     </tr>
                   </thead>
-                  <tbody>";
+                  <tbody>
+                  <input type='hidden' id='selected' name='selected'>";
                   echo "<tr>";
-                  echo "<td>TELKOM BANGKA BELITUNG (PANGKAL PINANG)</td>";
+                  echo "<td><a id='pilihBangka' values='TELKOM BANGKA BELITUNG (PANGKAL PINANG)' onclick='changeSatu()' href='" . site_url() . "/ReportController/rekapDetail/" . "'>TELKOM BANGKA BELITUNG (PANGKAL PINANG)</a></td>";
                   while ($row = mysqli_fetch_array($result1))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";

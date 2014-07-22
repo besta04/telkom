@@ -227,6 +227,47 @@ class ReportController extends CI_Controller
         }
     }
 
+    // fungsi panggil view rekap per witel
+    public function rekapDetail()
+    {
+        if($this->session->userdata('is_logged_in'))
+        {
+            if($this->input->post("selected") == "bangkabelitung");
+            {
+                $witelQuery = "TELKOM BANGKA BELITUNG (PANGKAL PINANG)";
+            }
+            $config = array();
+            $config["base_url"] = site_url() . "/ReportController/rekapDetail/";  
+            $config["total_rows"] = $this->reportModel->fetch_rekap_count($witelQuery);
+            $config["per_page"] = 20;
+            $config["uri_segment"] = 3;
+            $choice = $config["total_rows"] / $config["per_page"];
+            $config["num_links"] = $choice>5 ? 5 : $choice;
+            
+            $this->pagination->initialize($config);
+            
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+            $data["results"] = $this->reportModel->
+                fetch_rekap($config["per_page"], $page, $witelQuery);
+
+            $data["links"] = $this->pagination->create_links();
+
+            if($this->session->userdata('is_admin'))
+            {
+                $this->load->view("rekapPerWitel", $data);
+            }
+            else if ($this->session->userdata('is_staff')) 
+            {
+                $this->load->view("rekapPerWitel", $data);
+            }
+        }
+        else
+        {
+          redirect('HomeController/restricted');
+        }
+    }
+
     // fungsi panggil view laporan
     public function report1() 
     {

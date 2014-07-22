@@ -85,26 +85,32 @@ class ReportModel extends CI_Model
         if($key == "SURAT_PESANAN")
         {
             $this->db->select('SURAT_PESANAN');
+            $this->db->order_by("SURAT_PESANAN", "asc"); 
         }
         else if($key == "TOC")
         {
             $this->db->select('TOC');
+            $this->db->order_by("TOC", "asc"); 
         }
         else if($key == "ORDERS")
         {
             $this->db->select('ORDERS');
+            $this->db->order_by("ORDERS", "asc"); 
         }
         else if($key == "KLAS_STAT_PROGRESS")
         {
             $this->db->select('KLASIFIKASI_STATUS_SMILE');
+            $this->db->order_by("KLASIFIKASI_STATUS_SMILE", "asc"); 
         }
         else if($key == "STAT_PROGRESS")
         {
             $this->db->select('STATUS_PROGRESS_WIFI');
+            $this->db->order_by("STATUS_PROGRESS_WIFI", "asc"); 
         }
         else if($key == "TIPE_LME")
         {
             $this->db->select('TYPE_LME');
+            $this->db->order_by("TYPE_LME", "asc"); 
         }
 
         $this->db->from('tabel_lme_main');
@@ -126,6 +132,7 @@ class ReportModel extends CI_Model
         $this->db->select('DIVRE');
         $this->db->from('tabel_lme_main');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        $this->db->order_by("DIVRE", "asc"); 
         if($this->session->userdata('witel') != '')
         {
              $this->db->where('WITEL',$this->session->userdata('witel'));
@@ -158,6 +165,7 @@ class ReportModel extends CI_Model
         $this->db->select('WITEL');
         $this->db->from('tabel_lme_main');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        $this->db->order_by("WITEL", "asc"); 
         if($this->session->userdata('regional') != '')
         {
              $this->db->where('DIVRE',$this->session->userdata('regional'));
@@ -190,6 +198,7 @@ class ReportModel extends CI_Model
         $this->db->select('KOTA');
         $this->db->from('tabel_lme_main');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        $this->db->order_by("KOTA", "asc"); 
         if($this->session->userdata('regional') != '')
         {
              $this->db->where('DIVRE',$this->session->userdata('regional'));
@@ -222,6 +231,7 @@ class ReportModel extends CI_Model
         $this->db->select('NAMA_LOKASI');
         $this->db->from('tabel_lme_main');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        $this->db->order_by("NAMA_LOKASI", "asc"); 
         if($this->session->userdata('regional') != '')
         {
              $this->db->where('DIVRE',$this->session->userdata('regional'));
@@ -254,6 +264,7 @@ class ReportModel extends CI_Model
         $this->db->select('ALAMAT');
         $this->db->from('tabel_lme_main');
         $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        $this->db->order_by("ALAMAT", "asc"); 
         if($this->session->userdata('regional') != '')
         {
              $this->db->where('DIVRE',$this->session->userdata('regional'));
@@ -314,6 +325,36 @@ class ReportModel extends CI_Model
             return $data;
         }
         return false;
+   }
+
+   // fungsi select data untuk rekap per witel
+   public function fetch_rekap($limit, $start, $witel)
+   {
+        $this->db->select('*');
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        $this->db->where('WITEL', $witel);
+        $this->db->limit($limit, $start);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+   }
+
+   // fungsi menghitung jumlah data untuk rekap per witel
+   public function fetch_rekap_count($witel)
+   {
+        $this->db->select('*');
+        $this->db->from('tabel_lme_main');
+        $this->db->join('tabel_order', 'tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER');
+        $this->db->where('WITEL', $witel);
+
+        return $this->db->count_all_results();
    }
 
    // fungsi untuk filter data report
