@@ -14,7 +14,42 @@
       el = document.getElementById("overlayB");
       el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     }
-    
+    function changeSatu()
+    {
+      document.getElementById("selected").value = "denpasar";
+    }
+    function changeDua()
+    {
+      document.getElementById("selected").value = "singaraja";
+    }
+    function changeTiga()
+    {
+      document.getElementById("selected").value = "mataram";
+    }
+    function changeEmpat()
+    {
+      document.getElementById("selected").value = "kupang";
+    }
+    function changeLima()
+    {
+      document.getElementById("selected").value = "makassar";
+    }
+    function changeEnam()
+    {
+      document.getElementById("selected").value = "palu";
+    }
+    function changeTujuh()
+    {
+      document.getElementById("selected").value = "kendari";
+    }
+    function changeDelapan()
+    {
+      document.getElementById("selected").value = "manado";
+    }
+    function changeSembilan()
+    {
+      document.getElementById("selected").value = "sulutsel";
+    }
     </script>
     <title>R7 KTI</title>
     <meta name="viewport" content="width=device-width">
@@ -200,57 +235,59 @@
                     </tr>
                   </thead>
                   <tbody>";
+                  echo form_open('ReportController/rekapDetail');
+                  echo "<input type='hidden' id='selected' name='selected'>";
                   echo "<tr>";
-                  echo "<td>TELKOM BALI SELATAN (DENPASAR)</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeSatu()'>TELKOM BALI SELATAN (DENPASAR)</button></td>";
                   while ($row = mysqli_fetch_array($result1))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM BALI UTARA (SINGARAJA)</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeDua()'>TELKOM BALI UTARA (SINGARAJA)</button></td>";
                   while ($row = mysqli_fetch_array($result2))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM NTB (MATARAM)</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeTiga()'>TELKOM NTB (MATARAM)</button></td>";
                   while ($row = mysqli_fetch_array($result3))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM NTT (KUPANG)</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeEmpat()'>TELKOM NTT (KUPANG)</button></td>";
                   while ($row = mysqli_fetch_array($result4))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM SULSEL MAKASAR</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeLima()'>TELKOM SULSEL MAKASAR</button></td>";
                   while ($row = mysqli_fetch_array($result5))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM SULTENG PALU</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeEnam()'>TELKOM SULTENG PALU</button></td>";
                   while ($row = mysqli_fetch_array($result6))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM SULTRA (KENDARI)</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeTujuh()'>TELKOM SULTRA (KENDARI)</button></td>";
                   while ($row = mysqli_fetch_array($result7))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
                   }
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM SULUT MANADO</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeDelapan()'>TELKOM SULUT MANADO</button></td>";
                   while ($row = mysqli_fetch_array($result8))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";
@@ -258,7 +295,7 @@
                   echo "</tr>";
                   echo "</tr>";
                   echo "<tr>";
-                  echo "<td>TELKOM SULUT SELATAN</td>";
+                  echo "<td><button class='btn btn-error' type='submit' onclick='changeSembilan()'>TELKOM SULUT SELATAN</button></td>";
                   while ($row = mysqli_fetch_array($result9))
                   {
                       echo "<td>" . $row['JUMLAH'] . "</td>";

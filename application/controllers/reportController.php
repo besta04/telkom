@@ -234,52 +234,252 @@ class ReportController extends CI_Controller
     {
         if($this->session->userdata('is_logged_in'))
         {
-            $witel = $this->input->get('selected_name');
-            $witelQuery = '';
-            if($witel == 'bangkabelitung')
+            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            if($page == 0)
             {
-                $witelQuery = 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)';
+                $dataa = array('witelQuery'=>$this->input->post("selected"));
+                $this->session->set_userdata($dataa);
             }
-            else if($this->input->post("selected") == "bengkulu")
+            
+            $witel = $this->session->userdata('witelQuery');
+            // R1
+            if($witel == "bangkabelitung")
+            {
+                $witelQuery = "TELKOM BANGKA BELITUNG (PANGKAL PINANG)";
+            }
+            else if($witel == "bengkulu")
             {
                 $witelQuery = "TELKOM BENGKULU (BENGKULU)";
             }
-            else if($this->input->post("selected") == "jambi")
+            else if($witel == "jambi")
             {
                 $witelQuery = "TELKOM JAMBI";
             }
-            else if($this->input->post("selected") == "lampung")
+            else if($witel == "lampung")
             {
                 $witelQuery = "TELKOM LAMPUNG (BANDAR LAMPUNG)";
             }
-            else if($this->input->post("selected") == "nad")
+            else if($witel == "nad")
             {
                 $witelQuery = "TELKOM NAD (ACEH)";
             }
-            else if($this->input->post("selected") == "riauDar")
+            else if($witel == "riauDar")
             {
                 $witelQuery = "TELKOM RIAU DARATAN (PEKANBARU)";
             }
-            else if($this->input->post("selected") == "riauKep")
+            else if($witel == "riauKep")
             {
                 $witelQuery = "TELKOM RIAU KEPULAUAN (BATAM)";
             }
-            else if($this->input->post("selected") == "sumbar")
+            else if($witel == "sumbar")
             {
                 $witelQuery = "TELKOM SUMATERA BARAT (PADANG)";
             }
-            else if($this->input->post("selected") == "sumsel")
+            else if($witel == "sumsel")
             {
                 $witelQuery = "TELKOM SUMATERA SELATAN (PALEMBANG)";
             }
-            else if($this->input->post("selected") == "sumutbar")
+            else if($witel == "sumutbar")
             {
                 $witelQuery = "TELKOM SUMUT BARAT (MEDAN)";
             }
-            else if($this->input->post("selected") == "sumuttim")
+            else if($witel == "sumuttim")
             {
                 $witelQuery = "TELKOM SUMUT TIMUR (PEMATANG SIANTAR)";
             }
+
+            // R2
+            else if($witel == "bantenbarat")
+            {
+                $witelQuery = "TELKOM BANTEN BARAT (SERANG)";
+            }
+            else if($witel == "bantentimur")
+            {
+                $witelQuery = "TELKOM BANTEN TIMUR (TANGERANG)";
+            }
+            else if($witel == "jabarbar")
+            {
+                $witelQuery = "TELKOM JABAR BARAT (BOGOR)";
+            }
+            else if($witel == "jabarut")
+            {
+                $witelQuery = "TELKOM JABAR BARAT UTARA (BEKASI)";
+            }
+            else if($witel == "jakbar")
+            {
+                $witelQuery = "TELKOM JAKARTA BARAT";
+            }
+            else if($witel == "jakpus")
+            {
+                $witelQuery = "TELKOM JAKARTA PUSAT";
+            }
+            else if($witel == "jaksel")
+            {
+                $witelQuery = "TELKOM JAKARTA SELATAN";
+            }
+            else if($witel == "jaktim")
+            {
+                $witelQuery = "TELKOM JAKARTA TIMUR";
+            }
+            else if($witel == "jakut")
+            {
+                $witelQuery = "TELKOM JAKARTA UTARA";
+            }
+
+            // R3
+            else if($witel == "sukabumi")
+            {
+                $witelQuery = "TELKOM JABAR SELATAN (SUKABUMI)";
+            }
+            else if($witel == "bandung")
+            {
+                $witelQuery = "TELKOM JABAR TENGAH (BANDUNG)";
+            }
+            else if($witel == "tasikmalaya")
+            {
+                $witelQuery = "TELKOM JABAR TIMSEL (TASIKMALAYA)";
+            }
+            else if($witel == "cirebon")
+            {
+                $witelQuery = "TELKOM JABAR TIMUR (CIREBON)";
+            }
+
+            // R4
+            else if($witel == "purwokerto")
+            {
+                $witelQuery = "TELKOM JATENG BARAT SELATAN (PURWOKERTO)";
+            }
+            else if($witel == "pekalongan")
+            {
+                $witelQuery = "TELKOM JATENG BARAT UTARA (PEKALONGAN)";
+            }
+            else if($witel == "magelang")
+            {
+                $witelQuery = "TELKOM JATENG SELATAN (MAGELANG)";
+            }
+            else if($witel == "jogja")
+            {
+                $witelQuery = "TELKOM JATENG SELATAN (YOGYAKARTA)";
+            }
+            else if($witel == "salatiga")
+            {
+                $witelQuery = "TELKOM JATENG TENGAH (SALATIGA)";
+            }
+            else if($witel == "solo")
+            {
+                $witelQuery = "TELKOM JATENG TIMUR SELATAN (SOLO)";
+            }
+            else if($witel == "kudus")
+            {
+                $witelQuery = "TELKOM JATENG TIMUR UTARA (KUDUS)";
+            }
+            else if($witel == "semarang")
+            {
+                $witelQuery = "TELKOM JATENG UTARA (SEMARANG)";
+            }
+
+            // R5
+            else if($witel == "banyuwangi")
+            {
+                $witelQuery = "TELKOM JATIM (BANYUWANGI)";
+            }
+            else if($witel == "madiun")
+            {
+                $witelQuery = "TELKOM JATIM BARAT (MADIUN)";
+            }
+            else if($witel == "malang")
+            {
+                $witelQuery = "TELKOM JATIM SELATAN (MALANG)";
+            }
+            else if($witel == "pasuruan")
+            {
+                $witelQuery = "TELKOM JATIM SELATAN TIMUR (PASURUAN)";
+            }
+            else if($witel == "surabaya")
+            {
+                $witelQuery = "TELKOM JATIM SURAMADU (SURABAYA)";
+            }
+            else if($witel == "sidoarjo")
+            {
+                $witelQuery = "TELKOM JATIM TENGAH TIMUR (SIDOARJO)";
+            }
+            else if($witel == "kediri")
+            {
+                $witelQuery = "TELKOM JATIM TENGAH (KEDIRI)";
+            }
+            else if($witel == "jember")
+            {
+                $witelQuery = "TELKOM JATIM TIMUR (JEMBER)";
+            }
+            else if($witel == "gresik")
+            {
+                $witelQuery = "TELKOM JATIM UTARA (GRESIK)";
+            }
+
+            // R6
+            else if($witel == "banjarmasin")
+            {
+                $witelQuery = "TELKOM BANJARMASIN";
+            }
+            else if($witel == "pontianak")
+            {
+                $witelQuery = "TELKOM KALBAR (PONTIANAK)";
+            }
+            else if($witel == "palangkaraya")
+            {
+                $witelQuery = "TELKOM KALTENG (PALANGKARAYA)";
+            }
+            else if($witel == "balikpapan")
+            {
+                $witelQuery = "TELKOM KALTIMSEL (BALIKPAPAN)";
+            }
+            else if($witel == "tarakan")
+            {
+                $witelQuery = "TELKOM KALTIMUT (TARAKAN)";
+            }
+            else if($witel == "samarinda")
+            {
+                $witelQuery = "TELKOM SAMARINDA";
+            }
+
+            // R7
+            else if($witel == "denpasar")
+            {
+                $witelQuery = "TELKOM BALI SELATAN (DENPASAR)";
+            }
+            else if($witel == "singaraja")
+            {
+                $witelQuery = "TELKOM BALI UTARA (SINGARAJA)";
+            }
+            else if($witel == "mataram")
+            {
+                $witelQuery = "TELKOM NTB (MATARAM)";
+            }
+            else if($witel == "kupang")
+            {
+                $witelQuery = "TELKOM NTT (KUPANG)";
+            }
+            else if($witel == "makassar")
+            {
+                $witelQuery = "TELKOM SULSEL MAKASAR";
+            }
+            else if($witel == "palu")
+            {
+                $witelQuery = "TELKOM SULTENG PALU";
+            }
+            else if($witel == "kendari")
+            {
+                $witelQuery = "TELKOM SULTRA (KENDARI)";
+            }
+            else if($witel == "manado")
+            {
+                $witelQuery = "TELKOM SULUT MANADO";
+            }
+            else if($witel == "sulutsel")
+            {
+                $witelQuery = "TELKOM SULUT SELATAN";
+            }
+
             $config = array();
             $config["base_url"] = site_url() . "/ReportController/rekapDetail/";  
             $config["total_rows"] = $this->reportModel->fetch_rekap_count($witelQuery);
@@ -289,8 +489,6 @@ class ReportController extends CI_Controller
             $config["num_links"] = $choice>5 ? 5 : $choice;
             
             $this->pagination->initialize($config);
-            
-            $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
             $data["results"] = $this->reportModel->
                 fetch_rekap($config["per_page"], $page, $witelQuery);
