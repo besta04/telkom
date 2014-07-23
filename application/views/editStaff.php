@@ -157,7 +157,7 @@
        $resultAlamat = mysqli_query($con,"select distinct ALAMAT from tabel_lme_main");
        $resultTipe = mysqli_query($con,"select distinct TYPE_LME FROM tabel_lme_main");
        $resultOrder = mysqli_query($con,"select distinct ORDERS FROM tabel_lme_main");
-       $resultSurat = mysqli_query($con, "select distinct surat_pesanan FROM tabel_order");
+       $resultSurat = mysqli_query($con, "select distinct surat_pesanan FROM tabel_order WHERE ID_ORDER != 10");
 
        $resultSelected = mysqli_query($con,"select * FROM tabel_lme_main, tabel_order 
                               where id_lme = " . $id . " and tabel_lme_main.ID_ORDER = tabel_order.ID_ORDER");  
