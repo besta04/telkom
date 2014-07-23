@@ -3,11 +3,13 @@ class ReportController extends CI_Controller
 {
     public function __construct() {
         parent:: __construct();
+        //$this->output->enable_profiler(TRUE);
         $this->load->helper("url");
         $this->load->model("reportModel");
         $this->load->library("pagination");
         $this->load->helper("form");
         $this->load->library('session');
+        $this->load->library('form_validation');
         }
 
     // fungsi untuk manggil view log
@@ -232,9 +234,51 @@ class ReportController extends CI_Controller
     {
         if($this->session->userdata('is_logged_in'))
         {
-            if($this->input->post("selected") == "bangkabelitung");
+            $witel = $this->input->get('selected_name');
+            $witelQuery = '';
+            if($witel == 'bangkabelitung')
             {
-                $witelQuery = "TELKOM BANGKA BELITUNG (PANGKAL PINANG)";
+                $witelQuery = 'TELKOM BANGKA BELITUNG (PANGKAL PINANG)';
+            }
+            else if($this->input->post("selected") == "bengkulu")
+            {
+                $witelQuery = "TELKOM BENGKULU (BENGKULU)";
+            }
+            else if($this->input->post("selected") == "jambi")
+            {
+                $witelQuery = "TELKOM JAMBI";
+            }
+            else if($this->input->post("selected") == "lampung")
+            {
+                $witelQuery = "TELKOM LAMPUNG (BANDAR LAMPUNG)";
+            }
+            else if($this->input->post("selected") == "nad")
+            {
+                $witelQuery = "TELKOM NAD (ACEH)";
+            }
+            else if($this->input->post("selected") == "riauDar")
+            {
+                $witelQuery = "TELKOM RIAU DARATAN (PEKANBARU)";
+            }
+            else if($this->input->post("selected") == "riauKep")
+            {
+                $witelQuery = "TELKOM RIAU KEPULAUAN (BATAM)";
+            }
+            else if($this->input->post("selected") == "sumbar")
+            {
+                $witelQuery = "TELKOM SUMATERA BARAT (PADANG)";
+            }
+            else if($this->input->post("selected") == "sumsel")
+            {
+                $witelQuery = "TELKOM SUMATERA SELATAN (PALEMBANG)";
+            }
+            else if($this->input->post("selected") == "sumutbar")
+            {
+                $witelQuery = "TELKOM SUMUT BARAT (MEDAN)";
+            }
+            else if($this->input->post("selected") == "sumuttim")
+            {
+                $witelQuery = "TELKOM SUMUT TIMUR (PEMATANG SIANTAR)";
             }
             $config = array();
             $config["base_url"] = site_url() . "/ReportController/rekapDetail/";  
